@@ -533,30 +533,39 @@ table.tbl td.tc-actions{white-space:nowrap;text-align:right}
 .qc-title{font-size:.81rem;font-weight:600;overflow-wrap:anywhere;line-height:1.4;min-width:0;text-align:left;width:100%;writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word}
 .qc-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
 .qc-action-label{display:none}
+.qc-mobile-more{display:none}
+.matrix-mobile-controls{display:none}
 .qempty{text-align:center;color:var(--text-muted);font-size:.76rem;padding:20px 6px}
 @media (max-width:899px){ .quad-body{max-height:260px} .qcard{cursor:default} }
 @media (max-width:640px){
-  .matrix{grid-template-columns:minmax(0,1fr);grid-template-rows:none;gap:12px}
-  .quad{min-height:0;overflow:visible}
-  .quad-head{padding:10px 12px;gap:7px}
-  .quad-head .qh-name{overflow:visible;text-overflow:clip;white-space:normal;word-break:break-word;overflow-wrap:anywhere;line-height:1.4}
-  .quad-head .qh-count{font-size:.72rem}
-  .quad-head .qh-add{width:36px;height:36px}
-  .quad-body{max-height:none;overflow:visible;padding:10px}
-  .qcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;padding:10px;min-width:0}
-  .qcard .task-check{margin-top:2px}
-  .qc-main{min-width:0}
-  .qc-title,.task-title{writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word;overflow-wrap:anywhere;line-height:1.45;min-width:0}
-  .qcard .task-acts{grid-column:1/-1;display:flex;width:100%;justify-content:flex-end;gap:6px;padding-top:8px;border-top:1px dashed var(--border)}
-  .qcard .icon-btn.sm{width:auto;min-width:38px;height:38px;padding:0 9px;gap:5px}
-  .qcard .qc-action-label{display:inline;font-size:.72rem}
-  .matrix-toolbar{align-items:stretch}
-  .matrix-toolbar .seg{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-  .matrix-toolbar .seg button{min-width:0;padding-inline:6px;white-space:nowrap}
-  .matrix-toolbar .row.tight{width:100%;display:grid;grid-template-columns:1fr 1fr}
-  .matrix-toolbar .row.tight .btn{width:100%;min-width:0;white-space:nowrap}
+  .matrix{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(210px,auto));gap:4px}
+  .quad{min-width:0;min-height:210px;overflow:hidden}
+  .quad-head{padding:6px;gap:3px;min-width:0}
+  .quad-head .qh-num{font-size:.78rem}
+  .quad-head .qh-name{font-size:clamp(13px,3.5vw,14px);overflow:visible;text-overflow:clip;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;line-height:1.25}
+  .quad-head .qh-count{font-size:.64rem}
+  .quad-head .qh-add{width:24px;height:24px;border-radius:7px}
+  .quad-body{max-height:none;overflow:visible;padding:6px;gap:5px;min-width:0}
+  .qempty{padding:14px 4px;font-size:.68rem;line-height:1.4}
+  .qcard{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:5px;padding:7px;min-width:0;align-items:start}
+  .qcard .task-check{width:18px;height:18px;margin-top:1px;flex:0 0 auto}
+  .qc-main{min-width:0;flex:1 1 auto;width:auto}
+  .qc-title,.task-title{display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word;overflow-wrap:anywhere;line-height:1.4;min-width:0;width:auto}
+  .qc-meta{margin-top:3px;gap:3px;min-width:0}
+  .qc-meta .tag{font-size:.61rem;padding:0 5px;line-height:1.55}
+  .qc-meta .tag:nth-child(n+2){display:none}
+  .qcard .task-acts{display:none}
+  .qc-mobile-more{display:flex;width:28px;height:28px;flex:0 0 auto;border-radius:7px;align-items:center;justify-content:center;color:var(--text-secondary)}
+  .qc-mobile-more:active{background:var(--surface-3);color:var(--text-primary)}
+  .matrix-filter-card{background:transparent;border:0;box-shadow:none;margin-bottom:6px}
+  .matrix-filter-card .card-body{padding:0}
+  .matrix-toolbar{align-items:center;min-height:32px}
+  .matrix-toolbar .seg,.matrix-toolbar > .row.tight,.matrix-filter-card p{display:none}
+  .matrix-mobile-controls{display:flex;align-items:center;gap:4px;margin-left:auto}
+  .matrix-mobile-range{width:auto;min-width:78px;min-height:32px;padding:4px 25px 4px 8px;font-size:.76rem;white-space:nowrap}
+  .matrix-mobile-more{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xs);color:var(--text-secondary)}
 }
-@media (max-width:360px){ .quad-head{padding:8px} .quad-head .qh-name{font-size:.75rem} }
+@media (max-width:360px){ .quad-head{padding:5px} .quad-head .qh-name{font-size:13px} .quad-head .qh-add{width:22px;height:22px} }
 
 /* 总览中的紧凑四象限概览 */
 .dashboard-matrix-card .card-head{gap:8px}
@@ -2761,7 +2770,7 @@ function renderMatrix() {
   Object.keys(byQ).forEach(function (k) { byQ[k] = sortTasks(byQ[k], 'due'); });
 
   let html = '';
-  html += '<section class="section card"><div class="card-body tight"><div class="row between matrix-toolbar">' +
+  html += '<section class="section card matrix-filter-card"><div class="card-body tight"><div class="row between matrix-toolbar">' +
     '<div class="seg" role="tablist" aria-label="时间范围">' +
       '<button type="button" class="' + (r.range === 'today' ? 'on' : '') + '" data-action="matrix-range" data-value="today" role="tab" aria-selected="' + (r.range === 'today') + '">今天</button>' +
       '<button type="button" class="' + (r.range === 'week' ? 'on' : '') + '" data-action="matrix-range" data-value="week" role="tab" aria-selected="' + (r.range === 'week') + '">本周</button>' +
@@ -2770,7 +2779,12 @@ function renderMatrix() {
     '<div class="row tight">' +
       '<button type="button" class="btn sm" data-action="matrix-toggle-done">' + (r.showCompleted ? '隐藏已完成' : '显示已完成') + '</button>' +
       '<button type="button" class="btn primary sm only-mobile" data-action="task-new">' + svg('plus', 15) + '新增</button>' +
-    '</div></div>' +
+    '</div>' +
+    '<div class="matrix-mobile-controls"><select class="select matrix-mobile-range" data-action="matrix-range" aria-label="四象限时间范围">' +
+      '<option value="today"' + (r.range === 'today' ? ' selected' : '') + '>今天</option>' +
+      '<option value="week"' + (r.range === 'week' ? ' selected' : '') + '>本周</option>' +
+      '<option value="all"' + (r.range === 'all' ? ' selected' : '') + '>全部</option>' +
+    '</select><button type="button" class="matrix-mobile-more" data-action="matrix-more" aria-label="四象限更多选项" title="更多选项">' + svg('more', 17) + '</button></div></div>' +
     '<p style="font-size:.72rem;color:var(--text-muted);padding-top:8px">电脑端可直接拖动卡片切换象限；手机端点击卡片上的移动按钮选择目标象限。</p>' +
     '</div></section>';
 
@@ -2793,6 +2807,7 @@ function quadCardHTML(t) {
       '<button type="button" class="qc-title" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务：' + escapeAttr(t.title) + '">' + escapeHTML(t.title) + '</button>' +
       '<div class="qc-meta">' + taskMetaTags(t, { showQuad:false }) + '</div>' +
     '</div>' +
+    '<button type="button" class="qc-mobile-more" data-action="matrix-task-menu" data-id="' + t.id + '" aria-label="任务更多操作" title="更多操作">' + svg('more', 16) + '</button>' +
     '<div class="task-acts">' +
       '<button type="button" class="icon-btn sm qc-action" data-action="matrix-move" data-id="' + t.id + '" aria-label="移动到其他象限" title="移动到其他象限">' + svg('move', 15) + '<span class="qc-action-label">移动</span></button>' +
       '<button type="button" class="icon-btn sm qc-action" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务" title="编辑">' + svg('edit', 15) + '<span class="qc-action-label">编辑</span></button>' +
@@ -2810,6 +2825,20 @@ function openQuadMoveModal(taskId) {
         '<span class="dot" style="background:var(--q' + q + ')"></span>' + m.roman + ' ' + escapeHTML(m.name) + (q === cur ? '（当前）' : '') + '</button>';
     }).join('') + '</div>';
   showModal({ title:'移动到其他象限', subtitle: t.title, body: body, hideSubmit:true, cancelText:'关闭', dirtyCheck:false });
+}
+function openMatrixTaskMenu(taskId) {
+  const t = findById('tasks', taskId);
+  if (!t) return;
+  const body = '<div style="display:flex;flex-direction:column;gap:8px">' +
+    '<button type="button" class="btn block" data-modal-extra="matrix-move:' + t.id + '">' + svg('move', 16) + '移动到其他象限</button>' +
+    '<button type="button" class="btn block" data-modal-extra="matrix-edit:' + t.id + '">' + svg('edit', 16) + '编辑任务</button>' +
+    '<button type="button" class="btn danger block" data-modal-extra="matrix-delete:' + t.id + '">' + svg('trash', 16) + '删除任务</button>' +
+    '</div>';
+  showModal({ title:'任务操作', subtitle:t.title, body:body, hideSubmit:true, cancelText:'关闭', dirtyCheck:false });
+}
+function openMatrixOptions() {
+  const label = ui.matrix.showCompleted ? '隐藏已完成任务' : '显示已完成任务';
+  showModal({ title:'四象限选项', body:'<button type="button" class="btn block" data-modal-extra="matrix-toggle-done">' + label + '</button>', hideSubmit:true, cancelText:'关闭', dirtyCheck:false });
 }
 function moveTaskToQuadrant(taskId, q) {
   const t = findById('tasks', taskId);
@@ -3877,6 +3906,10 @@ function handleModalExtra(key) {
     }
     case 'job-next-task': closeTopModal(true); createJobNextTask(val); break;
     case 'job-edit': closeTopModal(true); openJobModal(val); break;
+    case 'matrix-toggle-done': ui.matrix.showCompleted = !ui.matrix.showCompleted; closeTopModal(true); renderCurrentRoute(); break;
+    case 'matrix-move': closeTopModal(true); openQuadMoveModal(val); break;
+    case 'matrix-edit': closeTopModal(true); openTaskModal(val); break;
+    case 'matrix-delete': closeTopModal(true); deleteTaskConfirm(val); break;
     default: break;
   }
 }
@@ -3965,6 +3998,8 @@ function dispatch(action, el) {
     /* 四象限 */
     case 'matrix-range': ui.matrix.range = value; renderCurrentRoute(); break;
     case 'matrix-toggle-done': ui.matrix.showCompleted = !ui.matrix.showCompleted; renderCurrentRoute(); break;
+    case 'matrix-more': openMatrixOptions(); break;
+    case 'matrix-task-menu': openMatrixTaskMenu(id); break;
     case 'matrix-move': openQuadMoveModal(id); break;
     case 'matrix-add': {
       const m = QUAD_META[Number(value)] || { important:false, urgent:false };
@@ -4036,6 +4071,7 @@ function handleClick(e) {
   const el = getActionEl(e.target);
   if (!el) return;
   const action = el.getAttribute('data-action');
+  if (action === 'matrix-range' && el.tagName === 'SELECT') return;
   if (action === 'today-search' || action === 'jobs-search' || action === 'tea-search' || action === 'planner-date') return;
   closeModalIfNeeded(el);
   dispatch(action, el);
@@ -4051,6 +4087,7 @@ function handleLiveInput(e) {
 function handleChange(e) {
   const t = e.target;
   if (!t || !t.getAttribute) return;
+  if (t.getAttribute('data-action') === 'matrix-range') { ui.matrix.range = t.value; renderCurrentRoute(); return; }
   // 设置页控件
   if (climb(t, '[data-action="setting"]')) {
     const setEl = climb(t, '[data-action="setting"]');
