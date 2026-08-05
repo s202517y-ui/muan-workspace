@@ -55,10 +55,10 @@
   --primary-ghost:color-mix(in srgb,var(--accent) 8%,var(--surface));
 
   /* 四象限（固定低饱和莫兰迪色） */
-  --q1:#C97C73; --q1-soft:color-mix(in srgb,var(--q1) 15%,var(--surface));
-  --q2:#D8A061; --q2-soft:color-mix(in srgb,var(--q2) 15%,var(--surface));
-  --q3:#7C98B8; --q3-soft:color-mix(in srgb,var(--q3) 15%,var(--surface));
-  --q4:#7AA892; --q4-soft:color-mix(in srgb,var(--q4) 15%,var(--surface));
+  --q1:#C97C73; --q1-soft:#F4E5E2;
+  --q2:#D8A061; --q2-soft:#F5EBDD;
+  --q3:#7C98B8; --q3-soft:#E5EBF2;
+  --q4:#7AA892; --q4-soft:#E2EEE7;
 
   /* 阴影（暖灰，轻） */
   --shadow-1:0 1px 3px rgba(79,73,64,.06);
@@ -105,6 +105,10 @@ body[data-route="settings"]{   --accent:var(--coffee);  --accent-dark:#574539; }
   --red:#D08A82; --purple:#BBA9CC; --orange:#E0B27C; --yellow:#D6C183; --brown:#B0937E; --coffee:#9A8273;
 
   --success:#82AE92; --warning:#DDA66A; --danger:#D58A82; --info:#8AA3C0;
+  --q1-soft:color-mix(in srgb,var(--q1) 18%,var(--surface));
+  --q2-soft:color-mix(in srgb,var(--q2) 18%,var(--surface));
+  --q3-soft:color-mix(in srgb,var(--q3) 18%,var(--surface));
+  --q4-soft:color-mix(in srgb,var(--q4) 18%,var(--surface));
 
   --shadow-1:0 1px 3px rgba(0,0,0,.30);
   --shadow-2:0 6px 18px rgba(0,0,0,.38);
@@ -204,7 +208,7 @@ svg{display:block;flex:none}
   .app.collapsed .nav-item{justify-content:flex-start;padding:9px 11px}
   .collapse-btn{display:none !important}
   .topbar{padding:10px 14px;padding-top:calc(10px + var(--safe-t))}
-  .view{padding:var(--gap) 14px calc(86px + var(--safe-b))}
+  .view{padding:var(--gap) 14px calc(128px + var(--safe-b))}
   .tabbar{
     display:flex;position:fixed;left:0;right:0;bottom:0;z-index:55;
     background:color-mix(in srgb,var(--surface) 92%,transparent);
@@ -526,11 +530,49 @@ table.tbl td.tc-actions{white-space:nowrap;text-align:right}
 .qcard.done{opacity:.62}
 .qcard.done .qc-title{text-decoration:line-through;color:var(--text-muted)}
 .qc-main{flex:1;min-width:0}
-.qc-title{font-size:.81rem;font-weight:600;overflow-wrap:anywhere;line-height:1.4}
+.qc-title{font-size:.81rem;font-weight:600;overflow-wrap:anywhere;line-height:1.4;min-width:0;text-align:left;width:100%;writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word}
 .qc-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
+.qc-action-label{display:none}
 .qempty{text-align:center;color:var(--text-muted);font-size:.76rem;padding:20px 6px}
 @media (max-width:899px){ .quad-body{max-height:260px} .qcard{cursor:default} }
+@media (max-width:640px){
+  .matrix{grid-template-columns:minmax(0,1fr);grid-template-rows:none;gap:12px}
+  .quad{min-height:0;overflow:visible}
+  .quad-head{padding:10px 12px;gap:7px}
+  .quad-head .qh-name{overflow:visible;text-overflow:clip;white-space:normal;word-break:break-word;overflow-wrap:anywhere;line-height:1.4}
+  .quad-head .qh-count{font-size:.72rem}
+  .quad-head .qh-add{width:36px;height:36px}
+  .quad-body{max-height:none;overflow:visible;padding:10px}
+  .qcard{display:grid;grid-template-columns:auto minmax(0,1fr);gap:8px;padding:10px;min-width:0}
+  .qcard .task-check{margin-top:2px}
+  .qc-main{min-width:0}
+  .qc-title,.task-title{writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word;overflow-wrap:anywhere;line-height:1.45;min-width:0}
+  .qcard .task-acts{grid-column:1/-1;display:flex;width:100%;justify-content:flex-end;gap:6px;padding-top:8px;border-top:1px dashed var(--border)}
+  .qcard .icon-btn.sm{width:auto;min-width:38px;height:38px;padding:0 9px;gap:5px}
+  .qcard .qc-action-label{display:inline;font-size:.72rem}
+  .matrix-toolbar{align-items:stretch}
+  .matrix-toolbar .seg{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .matrix-toolbar .seg button{min-width:0;padding-inline:6px;white-space:nowrap}
+  .matrix-toolbar .row.tight{width:100%;display:grid;grid-template-columns:1fr 1fr}
+  .matrix-toolbar .row.tight .btn{width:100%;min-width:0;white-space:nowrap}
+}
 @media (max-width:360px){ .quad-head{padding:8px} .quad-head .qh-name{font-size:.75rem} }
+
+/* 总览中的紧凑四象限概览 */
+.dashboard-matrix-card .card-head{gap:8px}
+.dashboard-matrix-title{font-size:.92rem;font-weight:700;flex:1;min-width:0;text-align:left}
+.dashboard-matrix-open,.dashboard-matrix-grid,.dashboard-quad{cursor:pointer}
+.dashboard-matrix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.dashboard-quad{min-width:0;text-align:left;border:1px solid transparent;border-radius:var(--radius-sm);padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:var(--text-primary)}
+.dashboard-quad[data-q="1"]{background:var(--q1-soft);border-color:color-mix(in srgb,var(--q1) 22%,var(--border));}
+.dashboard-quad[data-q="2"]{background:var(--q2-soft);border-color:color-mix(in srgb,var(--q2) 22%,var(--border));}
+.dashboard-quad[data-q="3"]{background:var(--q3-soft);border-color:color-mix(in srgb,var(--q3) 22%,var(--border));}
+.dashboard-quad[data-q="4"]{background:var(--q4-soft);border-color:color-mix(in srgb,var(--q4) 22%,var(--border));}
+.dashboard-quad .dmq-top{display:flex;align-items:center;gap:5px;min-width:0}
+.dashboard-quad .dmq-num{font-family:"Times New Roman",Georgia,serif;font-weight:800;flex:none}
+.dashboard-quad .dmq-name{font-size:.72rem;font-weight:700;min-width:0;overflow-wrap:anywhere;line-height:1.3}
+.dashboard-quad .dmq-count{margin-left:auto;font-size:.78rem;font-weight:700;flex:none}
+.dashboard-quad .dmq-task{font-size:.72rem;color:var(--text-secondary);line-height:1.4;overflow-wrap:anywhere}
 
 /* 秋招 */
 .job-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 13px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:8px}
@@ -1263,7 +1305,7 @@ const ui = {
   today: { tab:'today', q:'', category:'', status:'', importance:'', sort:'priority', selected:{} },
   planner: { mode:'day', date: todayStr() },
   words: { month: currentMonthStr() },
-  matrix: { range:'week', showCompleted:false },
+  matrix: { range:'all', showCompleted:false },
   jobs: { q:'', campus:'', industry:'', direction:'', region:'', priority:'', progress:'', quick:'', sort:'deadline' },
   milktea: { q:'', month: currentMonthStr(), brand:'' },
   review: { weekStart:'', year:'' },
@@ -1995,20 +2037,8 @@ function renderDashboard() {
       : '<div class="card-body">' + emptyBlock(todays.length ? '今日任务都已完成，做得很好。' : EMPTY_TEXT.dashboard, '新增任务', 'data-action="task-new"') + '</div>') +
     '</section>';
 
-  // 今日时间安排
-  const blocks = coll('timeBlocks').filter(function (b) { return b.date === t; })
-    .sort(function (a, b) { return (timeToMinutes(a.startTime) || 0) - (timeToMinutes(b.startTime) || 0); });
-  html += '<section class="card"><div class="card-head"><h2>今日时间安排</h2><span class="ch-sub">' + blocks.length + ' 个时间块</span>' +
-    '<button type="button" class="btn ghost xs" data-action="go" data-route="planner">规划 ' + svg('right', 13) + '</button></div>' +
-    (blocks.length
-      ? '<div class="card-body" style="display:flex;flex-direction:column;gap:8px">' + blocks.slice(0, 6).map(function (b) {
-          const color = (BLOCK_COLORS.find(function (c) { return c.key === b.color; }) || BLOCK_COLORS[0]).value;
-          return '<button type="button" class="tl-card" style="border-left-color:' + color + ';text-align:left;width:100%' + (b.completed ? ';opacity:.65' : '') + '" data-action="go" data-route="planner">' +
-            '<div class="tl-title"' + (b.completed ? ' style="text-decoration:line-through"' : '') + '>' + escapeHTML(b.startTime + '–' + b.endTime + ' ' + b.title) + '</div>' +
-            '<div class="tl-sub">' + escapeHTML(b.category || '其他') + (b.note ? ' · ' + escapeHTML(b.note) : '') + '</div></button>';
-        }).join('') + '</div>'
-      : '<div class="card-body">' + emptyBlock(EMPTY_TEXT.planner, '新增时间安排', 'data-action="block-new"') + '</div>') +
-    '</section>';
+  // 四象限概览（默认统计全部未完成任务）
+  html += dashboardMatrixCard();
 
   // 单词概况
   const wlog = wordLogOf(t);
@@ -2068,6 +2098,24 @@ function statBox(label, value, sub, cls) {
   return '<div class="stat ' + (cls || '') + '"><span class="s-label">' + escapeHTML(label) + '</span>' +
     '<span class="s-value">' + escapeHTML(String(value)) + '</span>' +
     (sub ? '<span class="s-sub">' + escapeHTML(sub) + '</span>' : '') + '</div>';
+}
+function dashboardMatrixCard() {
+  const byQ = { 1:[], 2:[], 3:[], 4:[] };
+  coll('tasks').filter(function (t) { return !t.completed; }).forEach(function (t) { byQ[taskQuadrant(t)].push(t); });
+  let html = '<section class="card dashboard-matrix-card"><div class="card-head">' +
+    '<button type="button" class="dashboard-matrix-title" data-action="dashboard-matrix">四象限</button>' +
+    '<span class="ch-sub">全部 ·</span><button type="button" class="btn ghost xs" data-action="dashboard-matrix">详情 ' + svg('right', 13) + '</button></div>' +
+    '<div class="card-body dashboard-matrix-open" data-action="dashboard-matrix"><div class="dashboard-matrix-grid">';
+  [1, 2, 3, 4].forEach(function (q) {
+    const meta = QUAD_META[q];
+    const items = sortTasks(byQ[q], 'priority');
+    const lead = items[0];
+    html += '<button type="button" class="dashboard-quad" data-q="' + q + '" data-action="dashboard-matrix" aria-label="查看' + escapeAttr(meta.roman + ' ' + meta.name) + '详情">' +
+      '<span class="dmq-top"><span class="dmq-num">' + meta.roman + '</span><span class="dmq-name">' + escapeHTML(meta.name) + '</span><span class="dmq-count">' + items.length + '</span></span>' +
+      (lead ? '<span class="dmq-task clamp2">' + escapeHTML(lead.title) + '</span>' : '<span class="dmq-task">暂无未完成任务</span>') +
+      '</button>';
+  });
+  return html + '</div></div></section>';
 }
 function miniBox(v, l) {
   return '<div class="mini"><div class="m-v">' + escapeHTML(String(v)) + '</div><div class="m-l">' + escapeHTML(l) + '</div></div>';
@@ -2713,7 +2761,7 @@ function renderMatrix() {
   Object.keys(byQ).forEach(function (k) { byQ[k] = sortTasks(byQ[k], 'due'); });
 
   let html = '';
-  html += '<section class="section card"><div class="card-body tight"><div class="row between">' +
+  html += '<section class="section card"><div class="card-body tight"><div class="row between matrix-toolbar">' +
     '<div class="seg" role="tablist" aria-label="时间范围">' +
       '<button type="button" class="' + (r.range === 'today' ? 'on' : '') + '" data-action="matrix-range" data-value="today" role="tab" aria-selected="' + (r.range === 'today') + '">今天</button>' +
       '<button type="button" class="' + (r.range === 'week' ? 'on' : '') + '" data-action="matrix-range" data-value="week" role="tab" aria-selected="' + (r.range === 'week') + '">本周</button>' +
@@ -2742,13 +2790,13 @@ function quadCardHTML(t) {
   return '<article class="qcard' + (t.completed ? ' done' : '') + '" draggable="true" data-task-card="' + t.id + '">' +
     '<button type="button" class="task-check' + (t.completed ? ' on' : '') + '" data-action="task-toggle" data-id="' + t.id + '" aria-label="' + (t.completed ? '标记为未完成' : '标记为完成') + '">' + svg('tick', 12, 'stroke-width="3"') + '</button>' +
     '<div class="qc-main">' +
-      '<div class="qc-title">' + escapeHTML(t.title) + '</div>' +
+      '<button type="button" class="qc-title" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务：' + escapeAttr(t.title) + '">' + escapeHTML(t.title) + '</button>' +
       '<div class="qc-meta">' + taskMetaTags(t, { showQuad:false }) + '</div>' +
     '</div>' +
     '<div class="task-acts">' +
-      '<button type="button" class="icon-btn sm" data-action="matrix-move" data-id="' + t.id + '" aria-label="移动到其他象限" title="移动到其他象限">' + svg('move', 15) + '</button>' +
-      '<button type="button" class="icon-btn sm" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务" title="编辑">' + svg('edit', 15) + '</button>' +
-      '<button type="button" class="icon-btn sm danger" data-action="task-delete" data-id="' + t.id + '" aria-label="删除任务" title="删除">' + svg('trash', 15) + '</button>' +
+      '<button type="button" class="icon-btn sm qc-action" data-action="matrix-move" data-id="' + t.id + '" aria-label="移动到其他象限" title="移动到其他象限">' + svg('move', 15) + '<span class="qc-action-label">移动</span></button>' +
+      '<button type="button" class="icon-btn sm qc-action" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务" title="编辑">' + svg('edit', 15) + '<span class="qc-action-label">编辑</span></button>' +
+      '<button type="button" class="icon-btn sm danger qc-action" data-action="task-delete" data-id="' + t.id + '" aria-label="删除任务" title="删除">' + svg('trash', 15) + '<span class="qc-action-label">删除</span></button>' +
     '</div></article>';
 }
 function openQuadMoveModal(taskId) {
@@ -3856,6 +3904,7 @@ function dispatch(action, el) {
   switch (action) {
     /* 外壳 / 导航 */
     case 'go': navigate(el.getAttribute('data-route')); break;
+    case 'dashboard-matrix': ui.matrix.range = 'all'; ui.matrix.showCompleted = false; navigate('matrix'); break;
     case 'fab': { const fa = el.getAttribute('data-fab-action'); if (fa) dispatch(fa, el); break; }
     case 'toggle-sidebar':
       state.settings.sidebarCollapsed = !state.settings.sidebarCollapsed;
