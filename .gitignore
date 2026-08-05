@@ -1,0 +1,10 @@
+.DS_Store
+*.json
+*.csv
+*.log
+.env
+.env.*
+.vscode/
+.idea/
+index_before_morandi_theme.html
+.workbuddy-ai/
