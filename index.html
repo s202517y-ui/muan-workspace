@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="木案 · 14天认知恢复与AI使用习惯实验，每日训练、状态记录与阶段复盘，本地保存。">
+<meta name="description" content="木案 · 14天认知实验与英语正反馈训练，分步练习、每日记录、口语回听与阶段复盘，本地保存。">
 <title>不要蕉绿 · 个人工作台</title>
 <style>
 /* ==========================================================================
@@ -525,6 +525,39 @@ body[data-route^="experiment"]{--accent:var(--teal);--accent-dark:var(--teal-dar
 .ex-notice{color:var(--text-secondary);font-size:.73rem;border-left:2px solid var(--teal);padding-left:10px;margin-top:12px}
 @media(max-width:1000px){.ex-layout{grid-template-columns:minmax(0,1fr)}.ex-hero{padding-top:12px}.ex-hero-side{max-width:210px}}
 @media(max-width:640px){.ex-hero{display:block}.ex-hero-side{justify-content:flex-start;max-width:none;margin-top:14px}.ex-hero h2{font-size:1.4rem}.ex-card{padding:16px;border-radius:12px}.ex-days{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.ex-day{min-height:47px;padding:6px 1px}.ex-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ex-tabs button{padding:9px 5px}.ex-review-grid{grid-template-columns:1fr}.ex-statrow{gap:6px}.ex-stat{padding-left:7px}.ex-stat strong{font-size:1.12rem}.ex-actions .btn{flex:1;justify-content:center}.ex-banner .btn{margin-left:0}.ex-shell{font-size:.82rem}.ex-fields{gap:10px}}
+body[data-route^="english"]{--accent:var(--blue);--accent-dark:var(--blue-dark)}
+.en-shell{--teal-dark:var(--blue-dark);--teal-soft:var(--blue-soft)}
+.en-shell .ex-day.missed{border-style:dashed}
+.en-shell .ex-day.done:after{width:auto;height:auto;content:'✓';background:none;font-size:9px;bottom:0;left:calc(50% - 4px)}
+.en-mode{display:flex;gap:6px;flex-wrap:wrap}
+.en-mode .on{border-color:var(--blue);background:var(--blue-soft)}
+.en-vocab{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.en-word{border:1px solid var(--border);border-radius:10px;padding:13px;min-width:0}
+.en-word strong{font-size:1rem;display:block;overflow-wrap:anywhere;color:var(--blue-dark)}
+.en-word small{display:block;color:var(--text-secondary);margin-top:4px}
+.en-word p{margin-top:8px;font-size:.8rem;line-height:1.7;overflow-wrap:anywhere}
+.en-reading{font-size:1rem;line-height:1.95;white-space:pre-wrap;overflow-wrap:anywhere;margin:16px 0;font-family:Georgia,'Times New Roman',serif}
+.en-budget{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:var(--surface-warm);border:1px solid var(--border);border-radius:12px;padding:10px 14px;margin-bottom:16px;font-size:.75rem}
+.en-budget strong{font-variant-numeric:tabular-nums;font-size:1.05rem;color:var(--blue-dark)}
+.en-budget .btn{margin-left:auto}
+.en-flash{padding:24px 12px;text-align:center;background:var(--surface-2);border-radius:12px;margin:16px 0;min-height:190px}
+.en-flash h3{font-size:1.5rem;margin:16px 0;overflow-wrap:anywhere}
+.en-flash .ex-actions{justify-content:center}
+.en-metrics{display:flex;flex-direction:column;gap:9px;margin:16px 0;font-size:.8rem}
+.en-metrics div{display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid var(--border);padding-bottom:8px}
+.en-metrics strong{font-variant-numeric:tabular-nums;text-align:right;flex:none}
+.en-audio{margin:14px 0;padding:12px;border:1px solid var(--border);border-radius:10px}
+.en-audio audio{width:100%;height:38px;margin-top:8px}
+.en-audio .btn{min-height:34px;font-size:.73rem}
+.en-upload{position:relative;display:inline-flex}
+.en-upload input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.en-prompt{font-size:1.1rem;line-height:1.7;color:var(--blue-dark);padding:18px;background:var(--blue-soft);border-radius:12px;margin:14px 0;overflow-wrap:anywhere}
+.en-good{background:var(--green-soft);border-left:3px solid var(--green);padding:13px 16px;border-radius:0 10px 10px 0;margin:16px 0}
+.en-status{font-size:.72rem;color:var(--blue-dark)}
+.en-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.en-chips button{font-size:.73rem;border:1px solid var(--border);background:var(--surface-2);padding:7px 10px;border-radius:999px;line-height:1.5;text-align:left;white-space:normal;max-width:100%}
+.en-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+@media(max-width:640px){.en-vocab,.en-compare{grid-template-columns:1fr}.en-budget{gap:6px}.en-budget .btn{margin-left:0}.en-shell .ex-tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.en-shell .ex-tabs button{font-size:.7rem}.en-metrics{font-size:.75rem}.en-reading{font-size:.96rem}}
 </style>
 </head>
 <body>
@@ -596,7 +629,7 @@ body[data-route^="experiment"]{--accent:var(--teal);--accent-dark:var(--teal-dar
    区域 1：常量与默认数据
    ========================================================================== */
 const STORAGE_KEY = 'muan_workspace_state';
-const APP_VERSION = 2;
+const APP_VERSION = 3;
 
 const ICON = {
   home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/>',
@@ -644,6 +677,8 @@ function svg(name, size, extra) {
 
 const ROUTES = [
   { key:'experiment', label:'14天实验', mobile:'今日训练', desc:'先让大脑搜索，再让 AI 补充', icon:'target' },
+  { key:'english', label:'14天英语训练', mobile:'英语训练', desc:'每天一次有效训练，积累看得见的反馈', icon:'book' },
+  { key:'english-records', label:'英语反馈记录', mobile:'英语记录', desc:'只做今天；中断以后回来，也值得一个勾', icon:'check' },
   { key:'experiment-records', label:'实验记录', mobile:'记录', desc:'只记录事实，不给自己下判断', icon:'calendar' },
   { key:'experiment-review', label:'阶段复盘', mobile:'复盘', desc:'D7 看均值，D14 看趋势', icon:'chart' },
   { key:'dashboard', label:'总览',     mobile:'总览', desc:'今天的整体情况一览',           icon:'home' },
@@ -651,8 +686,8 @@ const ROUTES = [
   { key:'settings',  label:'设置',     mobile:'设置', desc:'偏好设置与数据管理',           icon:'gear' }
 ];
 const ROUTE_KEYS = ROUTES.map(function (r) { return r.key; });
-const MOBILE_TABS = ['experiment', 'experiment-records', 'experiment-review', 'settings'];
-const MORE_ROUTES = ['dashboard', 'review'];
+const MOBILE_TABS = ['experiment', 'english', 'english-records', 'experiment-records'];
+const MORE_ROUTES = ['experiment-review', 'dashboard', 'review', 'settings'];
 
 const TASK_CATEGORIES = ['求职', '论文', '学习', '工作', '生活', '其他'];
 const TASK_STATUSES  = ['未开始', '进行中', '已完成', '已延期', '已取消'];
@@ -767,9 +802,11 @@ const defaultState = {
   milkTeaLogs: [],
   weeklyReviews: [],
   experimentRuns: [],
-  experimentLogs: []
+  experimentLogs: [],
+  englishRuns: [],
+  englishLogs: []
 };
-const COLLECTIONS = ['tasks', 'timeBlocks', 'wordLogs', 'jobApplications', 'milkTeaLogs', 'weeklyReviews', 'experimentRuns', 'experimentLogs'];
+const COLLECTIONS = ['tasks', 'timeBlocks', 'wordLogs', 'jobApplications', 'milkTeaLogs', 'weeklyReviews', 'experimentRuns', 'experimentLogs', 'englishRuns', 'englishLogs'];
 
 /* ==========================================================================
    区域 2：基础工具（id、转义、深合并、日期）
@@ -1123,6 +1160,8 @@ function migrateState(raw) {
 
   merged.experimentRuns = merged.experimentRuns.filter(function (r) { return isValidDateStr(r.startDate); });
   merged.experimentLogs = merged.experimentLogs.filter(function (r) { return r.day >= 1 && r.day <= 14 && typeof r.runId === 'string'; });
+  merged.englishRuns = merged.englishRuns.filter(function (r) { return isValidDateStr(r.startDate); });
+  merged.englishLogs = merged.englishLogs.filter(function (r) { return Number.isInteger(r.day) && r.day >= 1 && r.day <= 14 && typeof r.runId === 'string'; });
   if (!merged.meta.experimentUpgrade) {
     if (merged.settings.defaultRoute === 'dashboard') merged.settings.defaultRoute = 'experiment';
     merged.meta.experimentUpgrade = true;
@@ -1556,6 +1595,8 @@ function renderNav() {
 function navBadges() { return {}; }
 
 const RENDERERS = {
+  english: function () { return renderEnglish(); },
+  'english-records': function () { return renderEnglishRecords(); },
   experiment: function () { return renderExperiment(); },
   'experiment-records': function () { return renderExperimentRecords(); },
   'experiment-review': function () { return renderExperimentReview(); },
@@ -1600,6 +1641,7 @@ function renderCurrentRoute() {
       '<pre style="white-space:pre-wrap;font-size:.72rem;color:var(--danger);margin-top:8px">' + escapeHTML(String(err && err.message || err)) + '</pre></div>';
   }
   $view.innerHTML = html;
+  if (ui.route.indexOf('english') === 0) enHydrateAudio();
 
   if (focusId) {
     const el = document.getElementById(focusId);
@@ -1623,6 +1665,7 @@ function handleHashChange() {
     location.replace('#' + key);
     return;
   }
+  enRouteChanged(key);
   ui.route = key;
   closeLayers();
   document.body.setAttribute('data-route', key);
@@ -1633,15 +1676,11 @@ function openMore() { document.body.classList.add('sheet-open'); ui.moreOpen = t
 function closeLayers() { document.body.classList.remove('drawer-open', 'sheet-open'); ui.moreOpen = false; }
 
 function renderDashboard() {
-  const run = expRun();
-  if (!run) return expEmpty();
-  const day = Math.max(1, Math.min(14, expElapsed(run)));
-  const logs = expLogs(run, 14), r = expLog(run, day, false);
-  return '<div class="ex-shell">' + expHeader(run, '留一点时间，给自己的思考。', '这里汇总实验进度，不用单日成绩评价自己。') +
-    '<section class="ex-card"><div class="ex-head"><h3>当前实验</h3><span class="ex-pill">已记录 ' + logs.filter(function(x) {return x.recorded;}).length + ' / 14 天</span></div>' +
-    '<p class="ex-muted">每天约 25–35 分钟。前 6 天只记录，D7 看一次阶段均值，D14 统一复盘。</p><div class="ex-actions">' +
-    '<button class="btn primary" data-action="go" data-route="experiment">继续今日训练</button><button class="btn" data-action="go" data-route="experiment-records">查看实验记录</button><button class="btn" data-action="go" data-route="experiment-review">阶段复盘</button></div></section>' +
-    '<section class="ex-card soft"><h3>D' + day + ' · 原始记录</h3><pre class="ex-summary" style="margin-top:12px">' + escapeHTML(expSummary(r)) + '</pre></section></div>';
+  const run = expRun(), english = enRun();
+  let html = '<div class="ex-shell"><div class="ex-hero"><div><div class="ex-eyebrow">One small practice at a time</div><h2>' + escapeHTML(greetingText() + (state.settings.nickname ? '，' + state.settings.nickname : '')) + '</h2><p class="ex-muted">两个独立的 14 天周期。先自己想，再主动表达；今天只做今天的部分。</p></div></div><div class="ex-review-grid">';
+  html += '<section class="ex-card"><div class="ex-eyebrow">认知 · 25–35 分钟</div><h3>14 天认知实验</h3><p class="ex-instruction">' + (run ? run.startDate + ' 开始 · 已记录 ' + expLogs(run,14).filter(function(r){return r.recorded;}).length + '/14 天' : '10词回忆、8分钟独立思考、面试结构记忆与每日状态。') + '</p><p class="ex-muted">只在 D7、D14 统一观察；不为单日表现下结论。</p><div class="ex-actions"><button class="btn primary" data-action="go" data-route="experiment">' + (run ? '继续认知实验' : '打开认知实验') + '</button></div></section>';
+  html += '<section class="ex-card en-shell"><div class="ex-eyebrow">英语 · 30–40 分钟 / 最低 10 分钟</div><h3>14 天英语正反馈</h3><p class="ex-instruction">' + (english ? english.startDate + ' 开始 · 完成 ' + coll('englishLogs').filter(function(r){return r.runId===english.id&&r.completed;}).length + '/14 天（含最低版）' : '昨日回测、8词微词汇、可理解输入、两遍口语输出。') + '</p><p class="ex-muted">不补课，不比连胜。D14 重新听见 D1 与今天的差别。</p><div class="ex-actions"><button class="btn primary" data-action="go" data-route="english">' + (english ? '继续英语训练' : '打开英语训练') + '</button></div></section></div></div>';
+  return html;
 }
 
 function miniBox(v, l) {
@@ -1862,8 +1901,8 @@ function renderSettings() {
       }).join('') + '</div>', true) +
     '</div></section>';
 
-  const counts = ['experimentRuns', 'experimentLogs', 'weeklyReviews'].map(function (c) { return { key:c, n: coll(c).length }; });
-  const labelMap = { experimentRuns:'实验周期', experimentLogs:'实验日记录', weeklyReviews:'每周复盘' };
+  const counts = ['experimentRuns', 'experimentLogs', 'englishRuns', 'englishLogs', 'weeklyReviews'].map(function (c) { return { key:c, n: coll(c).length }; });
+  const labelMap = { experimentRuns:'认知实验周期', experimentLogs:'认知日记录', englishRuns:'英语周期', englishLogs:'英语日记录', weeklyReviews:'每周复盘' };
   html += '<section class="section card"><div class="card-head"><h2>数据管理</h2><span class="badge-ver">应用版本 v' + APP_VERSION + '</span></div><div class="card-body">' +
     '<div class="mini-stats" style="margin-bottom:14px">' + counts.map(function (c) { return miniBox(c.n, labelMap[c.key]); }).join('') + '</div>' +
     '<div class="row" style="gap:8px">' +
@@ -1900,7 +1939,8 @@ function exportFileName(ext) {
   const d = new Date();
   return (state.settings.appName || '不要蕉绿') + '工作台备份_' + getLocalDateString(d) + '_' + pad2(d.getHours()) + '-' + pad2(d.getMinutes()) + '.' + ext;
 }
-function exportAllData() {
+async function exportAllData() {
+  if (enRecorder || enUI.unsaved) { showToast('请先停止录音，并下载尚未保存的录音，再导出完整备份','info'); return; }
   const payload = {
     app: state.settings.appName || '不要蕉绿',
     appId:'muan-workspace',
@@ -1916,14 +1956,17 @@ function exportAllData() {
       milkTeaLogs: clone(state.milkTeaLogs),
       weeklyReviews: clone(state.weeklyReviews),
       experimentRuns: clone(state.experimentRuns),
-      experimentLogs: clone(state.experimentLogs)
+      experimentLogs: clone(state.experimentLogs),
+      englishRuns: clone(state.englishRuns),
+      englishLogs: clone(state.englishLogs)
     }
   };
   try {
+    payload.audioArchive = await enExportAudio(payload.data.englishLogs);
     downloadBlob(new Blob([JSON.stringify(payload, null, 2)], { type:'application/json;charset=utf-8' }), exportFileName('json'));
     state.meta.lastExportAt = nowISO();
     saveState(true);
-    showToast('数据已导出，请妥善保存备份文件');
+    showToast(payload.audioArchive.missing.length ? '文字记录已导出；有 ' + payload.audioArchive.missing.length + ' 段录音不在本浏览器，未能纳入备份' : '数据与本机英语录音已导出，请妥善保存', payload.audioArchive.missing.length ? 'warning' : 'success', 5000);
     if (ui.route === 'settings') renderCurrentRoute();
   } catch (e) {
     console.error(e);
@@ -1941,12 +1984,15 @@ function validateImport(parsed) {
   if (!hasAny) return { ok:false, msg:'文件中没有可识别的业务数据' };
   return { ok:true, data:data };
 }
-function importAllData(parsed, mode) {
+async function importAllData(parsed, mode) {
   const check = validateImport(parsed);
   if (!check.ok) { showToast('导入失败：' + check.msg, 'error', 3600); return false; }
   const incoming = migrateState(check.data);
   const backup = clone(state);
   try {
+    if (enRecorder) await enStopRecording();
+    enPauseCurrent();
+    await enImportAudio(parsed.audioArchive, incoming.englishLogs, mode);
     if (mode === 'replace') {
       const keepCreated = state.meta.createdAt;
       state = incoming;
@@ -1997,7 +2043,7 @@ function handleImportFile(file) {
     if (!check.ok) { showToast('导入失败：' + check.msg, 'error', 3600); return; }
     const d = check.data;
     const summary = COLLECTIONS.map(function (k) {
-      const labels = { tasks:'任务', timeBlocks:'时间块', wordLogs:'单词记录', jobApplications:'秋招岗位', milkTeaLogs:'奶茶记录', weeklyReviews:'每周复盘', experimentRuns:'实验周期', experimentLogs:'实验日记录' };
+      const labels = { tasks:'历史任务', timeBlocks:'历史时间块', wordLogs:'历史单词记录', jobApplications:'历史岗位', milkTeaLogs:'历史奶茶记录', weeklyReviews:'每周复盘', experimentRuns:'认知实验周期', experimentLogs:'认知日记录', englishRuns:'英语周期', englishLogs:'英语日记录' };
       return labels[k] + ' ' + (Array.isArray(d[k]) ? d[k].length : 0) + ' 条';
     }).join('，');
     showModal({
@@ -2019,10 +2065,13 @@ function handleImportFile(file) {
 function clearAllData() {
   showConfirm({
     title:'清空全部数据',
-    message:'该操作会删除所有实验周期、实验记录、每周复盘与历史归档，且无法撤销。建议先导出备份。',
+    message:'该操作会删除所有认知与英语周期、日记录、英语录音、每周复盘与历史归档，且无法撤销。建议先导出备份。',
     confirmText:'确认清空', danger:true, requireText:'确认清空'
-  }).then(function (ok) {
+  }).then(async function (ok) {
     if (!ok) return;
+    if (enRecorder) await enStopRecording();
+    try { await enClearAudio(); } catch (error) { showToast(error.message,'error'); return; }
+    enPauseCurrent();
     const settings = clone(state.settings);
     state = migrateState({});
     state.settings = deepMerge(defaultState.settings, settings);
@@ -2084,6 +2133,7 @@ function submitTopModal() {
 
 /* --------- 主分发 --------- */
 function dispatch(action, el) {
+  if (action.indexOf('en-') === 0) { englishAction(action, el); return; }
   if (action.indexOf('exp-') === 0) { experimentAction(action, el); return; }
   const id = el.getAttribute('data-id');
   const value = el.getAttribute('data-value');
@@ -2134,16 +2184,22 @@ function handleClick(e) {
   const el = getActionEl(e.target);
   if (!el) return;
   const action = el.getAttribute('data-action');
-  if (el.matches('[data-exp-field], [data-exp-run]')) return;
+  if (el.matches('[data-exp-field], [data-exp-run], [data-en-field], [data-en-run], [data-en-upload]')) return;
   closeModalIfNeeded(el);
   dispatch(action, el);
 }
 
 /* --------- 输入 / 变更托管 --------- */
-function handleLiveInput(e) { if (e.target.hasAttribute('data-exp-field')) saveExperimentInput(e.target); }
+function handleLiveInput(e) {
+  if (e.target.hasAttribute('data-en-field')) { enSaveInput(e.target); return; }
+  if (e.target.hasAttribute('data-exp-field')) saveExperimentInput(e.target);
+}
 function handleChange(e) {
   const t = e.target;
   if (!t || !t.getAttribute) return;
+  if (t.hasAttribute('data-en-field')) { enSaveInput(t); return; }
+  if (t.hasAttribute('data-en-run')) { enPauseCurrent(); if (enRecorder) enStopRecording(); state.settings.activeEnglishId = t.value; enUI.day = null; enUI.step = 'review'; enUI.expired = false; saveState(true); renderCurrentRoute(); return; }
+  if (t.hasAttribute('data-en-upload')) { enUploadAudio(t); return; }
   if (t.hasAttribute('data-exp-field')) { saveExperimentInput(t); return; }
   if (t.hasAttribute('data-exp-run')) { state.settings.activeExperimentId = t.value; expUI.day = null; saveState(true); renderCurrentRoute(); return; }
   // 设置页控件
@@ -2556,6 +2612,703 @@ setInterval(function () {
 window.addEventListener('pagehide',function(){if(saveTimer)saveState(true);});
 
 /* ==========================================================================
+   14 天英语正反馈：每日素材（原创虚构场景，不是新闻或真实案例）
+   ========================================================================== */
+function enPack(title, topic, rows, text) {
+  return {title:title, topic:topic, words:rows.trim().split('\n').map(function(line) {const p=line.split('|');return {en:p[0].trim(),zh:p[1].trim(),example:p[2].trim()};}), text:text};
+}
+const EN_DAYS = [
+  enPack('A small campaign, a useful lesson','Tell me about a recent internship or a small project you know well.',`coordinate|协调|I helped coordinate a small campaign.
+identify an issue|发现问题|We used the data to identify an issue.
+prioritize|确定优先级|I had to prioritize the most urgent tasks.
+conversion rate|转化率|We checked the conversion rate before changing the page.
+collaborate with|与…合作|I collaborated with the content team.
+take responsibility for|负责…|I took responsibility for the weekly report.
+improve efficiency|提高效率|A shared checklist helped us improve efficiency.
+customer feedback|顾客反馈|I used customer feedback to improve the message.`,
+`During an internship, a student named Alex helped a small online shop prepare a weekend campaign. The shop sold travel bags, and the team wanted more young customers to visit its website. Alex did not lead the whole project. Her job was to collect information, check a few numbers, and help people work together.
+
+At first, the team planned to post more photos. However, Alex noticed a different issue. Many people clicked the link, but few bought a bag. She read customer feedback and found a common question: could the bag fit under a plane seat? The product page did not give a clear answer.
+
+Alex shared this finding with the content team. They added a simple size photo and a short explanation. They also made a checklist so that everyone knew what to finish first. The team checked the conversion rate again after the campaign. It looked better, although they could not say that the new photo was the only reason.
+
+For Alex, the most useful lesson was small and practical: good coordination starts with a clear problem. Before asking everyone to do more work, it helps to understand what customers actually need.`),
+  enPack('Listen before you change things','Describe something useful you did today.',`listen carefully|认真倾听|I try to listen carefully before giving advice.
+ask a question|提问|I asked a question to understand the problem.
+clarify|澄清|I wanted to clarify what the customer meant.
+common concern|常见顾虑|Price was a common concern.
+respond to|回应…|We responded to the comments that afternoon.
+follow up|跟进|I followed up with the team the next day.
+practical|实用的|We needed a practical solution.
+make a difference|产生影响|One clear answer can make a difference.`,
+`A small clothing store received several messages about a new jacket. The manager first thought that customers wanted a lower price. She was ready to offer a discount, but her colleague Ben suggested reading the messages together before making a decision.
+
+They spent ten minutes sorting the questions. Only a few people mentioned price. Most wanted to know how the jacket would fit. The photos showed one person, and the size guide used words that were difficult to understand. Some customers also asked whether they could exchange the jacket if it was too small.
+
+The team decided to make two simple changes. They added photos of people wearing different sizes. They also wrote a short answer about exchanges in everyday language. Ben checked the messages the next morning and followed up with customers who still needed help.
+
+The changes did not solve every problem. Some people still preferred another jacket, and that was fine. The team had learned not to treat every question as a request for a discount. Listening carefully gave them a more practical starting point. For Ben, good customer service meant understanding a concern before trying to provide an answer.`),
+  enPack('What comes first?','What kind of work do you enjoy, and why?',`deadline|截止时间|The deadline was Friday afternoon.
+break down|拆分|I broke down the project into smaller tasks.
+focus on|专注于…|I focused on one important task at a time.
+urgent|紧急的|I checked which request was truly urgent.
+realistic|切实可行的|We made a realistic plan for the day.
+keep track of|跟踪…|A simple list helped me keep track of progress.
+make a decision|做决定|We needed to make a decision before lunch.
+on time|按时|The team delivered the report on time.`,
+`On Monday morning, Mia opened her messages and found five requests. A teammate needed numbers for a meeting. A manager wanted a draft report. Someone else asked her to change the color of a slide. Everything seemed urgent, and she did not know where to start.
+
+Instead of trying to finish all five requests at once, Mia wrote a short list. She asked when each item was needed and who was waiting for it. The meeting was in one hour, so the numbers came first. The report was due on Friday, and the slide could wait until tomorrow.
+
+Mia broke the report into smaller steps. She would collect information today, write a rough draft tomorrow, and leave time to check it later. She also told her teammate when she could help with the slide. This felt uncomfortable at first because she wanted to say yes immediately.
+
+By the end of the morning, the important numbers were ready and the other work had a realistic plan. Mia still had plenty to do, but she no longer had to hold every request in her head. Prioritizing did not mean working faster on everything. It meant deciding what deserved her attention first.`),
+  enPack('Why I remember this brand','Talk about a brand you like and one specific reason you like it.',`stand out|显得突出|A clear message helped the brand stand out.
+target audience|目标人群|Students were the main target audience.
+brand image|品牌形象|The calm design matched the brand image.
+reliable|可靠的|I prefer products that feel reliable.
+affordable|负担得起的|The basic option was affordable for me.
+consistent|一致的|The service was consistent across different visits.
+recommend|推荐|I would recommend it for a short trip.
+personal experience|个人经历|My opinion comes from personal experience.`,
+`Leo liked a small notebook brand, but he found it hard to explain why. When a friend asked about it, he first said, “The brand is nice.” That answer was true, but it did not tell his friend much.
+
+He thought about the first notebook he had bought. The pages were easy to write on, the cover stayed clean in his bag, and the simple design did not distract him. The notebook was not the cheapest one in the shop, but he could afford to buy another when he needed it. These were details from his own experience, not phrases from an advertisement.
+
+Later, Leo saw the brand share short videos about how people used their notebooks. The videos did not promise a perfect life. They showed shopping lists, rough drawings, and unfinished ideas. That message felt consistent with the product he knew.
+
+Leo changed his answer. He said, “I like this brand because its products are practical and its message feels honest. For example, my notebook still works well after months in my bag.” He had not discovered a complicated marketing theory. He had simply moved from a general opinion to one reason and one clear example.`),
+  enPack('A clear project story','Tell me about a project you worked on. Use Point → Example → Result.',`contribute to|为…作贡献|I contributed to the research stage of the project.
+gather information|收集信息|I gathered information from customer comments.
+compare options|比较选项|We compared two possible approaches.
+present findings|呈现发现|I presented my findings in a short meeting.
+as a result|结果…|As a result, the team made a clearer plan.
+specific|具体的|I tried to give a specific example.
+outcome|结果|The main outcome was a simpler process.
+learn from|从…中学习|I learned from the feedback after the project.`,
+`Nora was preparing for an interview and wanted to describe a university project. Her first answer included every meeting, every document, and the names of all six people in her group. After two minutes, she had still not explained what she had contributed.
+
+A friend asked her to use three parts: a point, an example, and a result. Nora began again. Her point was that she could organize information clearly. For her example, she described a project about a local visitor center. The group had many customer comments, but the comments were stored in different places. Nora gathered them into one document and sorted them by topic.
+
+She then explained the result. Her group could compare the main concerns without reading every comment again. They chose two issues to include in their final presentation. Nora did not claim that she had changed the whole visitor center. She described the part she could explain honestly.
+
+The shorter answer left room for questions. Her friend could now ask how she chose the topics or what she would do differently. Nora realized that a useful project story does not need every detail. It needs a clear point, enough evidence, and an understandable outcome.`),
+  enPack('A strength with an example','What is one of your strengths? Give an example and a result.',`strength|优势|One of my strengths is organization.
+pay attention to|留意…|I pay attention to small details in a report.
+support|支持|I supported the team during a busy week.
+adapt to|适应…|I can adapt to a new working style.
+communicate clearly|清楚地沟通|I tried to communicate clearly with each teammate.
+depend on|依赖…|Our next step depended on the research results.
+handle|处理|I helped handle several requests at once.
+evidence|证据|I used a real example as evidence.`,
+`When Sam was asked about his strengths, he usually listed five words: friendly, careful, creative, organized, and responsible. He worried that choosing only one would make him sound less capable. Yet the longer list was difficult to remember and did not give the listener much evidence.
+
+He decided to focus on organization. During a student event, several people were preparing different parts of the program. Some did not know when their work was needed. Sam made a shared schedule, checked the key deadlines, and asked each person to confirm one next step. When a room booking changed, the group could see which parts of the plan needed attention.
+
+The event was not perfect. One activity started late, and Sam mentioned that honestly. Still, the shared schedule helped the team respond without losing track of everything else.
+
+Now his interview answer had a simple shape. He made one point, described what he actually did, and explained what became easier afterward. He could adapt the same structure to another question without memorizing a new paragraph. The goal was not to choose an impressive label. It was to make one strength believable through a specific example.`),
+  enPack('When the first plan did not work','Describe a challenge you faced. Use Point → Example → Result.',`challenge|挑战|The main challenge was a lack of clear information.
+unexpected|意料之外的|We received an unexpected request.
+look into|调查…|I looked into the reason for the delay.
+adjust|调整|We adjusted the plan after the meeting.
+find a solution|找到解决办法|We worked together to find a solution.
+stay calm|保持冷静|I tried to stay calm and ask clear questions.
+explain|解释|I explained what we could finish that day.
+reflect on|回顾思考…|I reflected on the experience afterward.`,
+`A student team planned to interview visitors at a weekend market. They expected many people to stop and answer questions. However, on the first morning, most visitors walked past. Some were carrying food, others were meeting friends, and the long questionnaire did not fit the situation.
+
+The team felt disappointed, but one member, Eva, suggested looking closely at the problem. She watched how people moved through the market and asked two visitors whether they had a minute. Both said that ten questions were too many, but three would be manageable.
+
+The team adjusted its approach. They kept the three questions most closely connected to their research goal and asked people near a quiet seating area. They also explained that the conversation would be short and that visitors could decline.
+
+They still did not reach their original target, so they reported that limit in their presentation. However, the answers they collected were more useful than the few rushed responses from the first morning. Eva learned that staying calm did not mean pretending there was no problem. It meant noticing what was happening, asking a practical question, and changing the part of the plan that was not working.`),
+  enPack('Finding a reason for a role','Why are you interested in this role? Use Point → Example → Result.',`be interested in|对…感兴趣|I am interested in understanding customer needs.
+relevant|相关的|My internship gave me relevant experience.
+opportunity|机会|The role is an opportunity to develop my skills.
+develop a skill|发展一项技能|I want to develop my research skills.
+understand needs|理解需求|I enjoy trying to understand customer needs.
+match|匹配|The work matches the tasks I enjoy.
+bring value|带来价值|I hope to bring value through careful analysis.
+long term|长期来看|I want to keep learning in this area long term.`,
+`Jade found a job description that sounded interesting, but she did not want to answer “Why this role?” by saying only that the company was famous. She read the description again and marked the actual tasks: checking customer information, helping plan content, and working with several teams.
+
+She chose one task she could connect to her own experience. During an internship, she had enjoyed reading customer comments and turning them into useful questions. She liked the moment when a general concern became a clear issue that a team could discuss.
+
+Jade used that example to explain her interest. She said that the role matched her curiosity about customers and would give her opportunities to improve her analysis and communication. She also mentioned one skill she still needed to develop. This made the answer more honest and more specific.
+
+Her preparation did not give her a script for every possible interview. It gave her a link between the role and her own work. If the interviewer asked a follow-up question, she could return to the same example and add a detail. A convincing reason did not have to sound dramatic. It had to show that she understood the work and had a real reason to learn more.`),
+  enPack('Useful feedback is specific','Tell me about a time you received feedback and used it.',`give feedback|给出反馈|My teammate gave feedback on my first draft.
+revise|修改|I revised the opening of the presentation.
+notice|注意到|I noticed that the main point was unclear.
+improvement|改善之处|The second version showed a small improvement.
+take action|采取行动|I chose one issue and took action.
+instead of|而不是…|I used an example instead of a general statement.
+step by step|一步一步地|I improved the answer step by step.
+make sense|说得通；有意义|The new structure made sense to the listener.`,
+`After a short presentation, Tom asked a classmate for feedback. The classmate first said, “It was good.” Tom was pleased, but he still did not know what to keep or change. He asked a more useful question: “Was there one part that was difficult to follow?”
+
+The classmate pointed to the opening. Tom had shown several numbers before explaining the question those numbers were meant to answer. The information was not wrong, but the listener did not yet know why it mattered.
+
+Tom did not rewrite the whole presentation. He changed three things. He opened with the main question, chose one example to explain the numbers, and added a sentence about what the team could do next. Then he gave the short presentation again.
+
+The second version still included pauses, and Tom forgot one word. However, his classmate could explain the main point afterward. That was useful evidence of improvement. Tom learned that feedback does not need to become a large list of personal weaknesses. A specific problem and a small revision can be enough for one practice session. The important part is trying again and noticing what changed, rather than waiting until the first version is perfect.`),
+  enPack('A small test before a large plan','Choose an unfamiliar question when you are ready.',`test an idea|测试想法|We tested the idea with a small group.
+assumption|假设|Our first assumption was not completely right.
+limited budget|有限预算|We had to work with a limited budget.
+measure|衡量|We chose one result to measure.
+experiment|实验|The team ran a small experiment.
+learn quickly|快速学习|A simple test helped us learn quickly.
+based on|基于…|We changed the plan based on the responses.
+next step|下一步|Our next step was to ask a clearer question.`,
+`A new travel service wanted to offer weekend trips for young professionals. The team had many ideas, including mountain walks, food tours, and quiet stays in small towns. With a limited budget, they could not promote every option at once.
+
+Instead of choosing the idea that sounded most exciting in a meeting, they planned a small test. They wrote two short descriptions and showed them to a small group of potential customers. They asked which trip people would consider and what information was missing. They did not treat a positive comment as a confirmed booking.
+
+The responses challenged one assumption. Several people liked the mountain trip, but they worried about the early starting time and the transport. The team realized that the practical details might matter as much as the destination.
+
+They revised the description and chose a clear next step: ask whether people would join on a specific date at a stated price. The test did not prove that the whole business would succeed. It helped the team decide what to learn next. A small experiment can be valuable even when it does not produce a simple yes or no. It reduces uncertainty enough to make the next decision more informed.`),
+  enPack('Explain a choice, not a perfect answer','Choose an unfamiliar question when you are ready.',`consider|考虑|I considered two different options.
+trade-off|取舍|There was a trade-off between cost and convenience.
+convenient|方便的|The train was more convenient for our group.
+alternative|替代方案|We prepared an alternative in case of rain.
+reason|理由|I explained the main reason for my choice.
+depend on the situation|视情况而定|The best option depends on the situation.
+weigh up|权衡|We weighed up the benefits and the cost.
+in this case|在这个情况下|In this case, a smaller event made more sense.`,
+`A group of friends wanted to plan a one-day trip. One person preferred a busy city because there were many restaurants and museums. Another wanted a quiet place near a lake. At first, they tried to decide which destination was simply better.
+
+Lily suggested a different question: better for what kind of day? Two friends had worked late all week and wanted to rest. Another had a limited budget, and no one wanted to spend four hours traveling. These details made the decision easier to discuss.
+
+The group compared the options using three points: travel time, cost, and how they wanted to feel at the end of the day. They chose a town near the lake with a direct train connection. They also checked a small indoor exhibition as an alternative if it rained.
+
+The choice was not perfect for everyone. They would have fewer restaurants than in the city, but they accepted that trade-off. Lily later noticed that she could use the same approach when answering an unfamiliar interview question. She did not need to find a universal answer immediately. She could explain the goal, consider a few practical limits, and give a reason for the option that made sense in that situation.`),
+  enPack('A number needs a question','Choose an unfamiliar question when you are ready.',`increase|增加|The number of visits increased that week.
+decrease|减少|Orders decreased after the holiday.
+compare with|与…比较|We compared this week with a similar week.
+possible reason|可能的原因|A change in traffic was one possible reason.
+check the data|检查数据|I checked the data before drawing a conclusion.
+draw a conclusion|得出结论|We needed more information to draw a conclusion.
+separate|区分；分开|We separated new visitors from returning customers.
+look at the whole picture|看全貌|I tried to look at the whole picture.`,
+`An online shop noticed that its orders had decreased. During the first meeting, someone suggested changing all the product photos. Another person wanted to lower prices immediately. Both ideas might be useful, but the team had not yet checked where the decrease came from.
+
+Amir began with a few simple questions. Had fewer people visited the website, or had visitors become less likely to buy? Was the change happening across all products or only one category? Were they comparing an ordinary week with a holiday promotion?
+
+The team found that visits had fallen after a paid campaign ended. The percentage of visitors who bought something was similar to the previous ordinary week. This did not explain every detail, but it changed the conversation. Replacing every photo was no longer the first action they wanted to take.
+
+Amir wrote down what they knew, what they were assuming, and what they still needed to check. He avoided saying that one number had proved a complete explanation. The team chose to investigate the traffic change first. For him, analysis was not about knowing a complicated word for every number. It was about asking a clear question and making sure that the comparison answered it.`),
+  enPack('Come back to a small practice','Choose an unfamiliar question when you are ready.',`return to|回到…|I returned to my practice after a busy day.
+manageable|可承受的|I chose a manageable task for the evening.
+make progress|取得进展|I can make progress through small steps.
+pause|停顿；暂停|I paused, found a simpler word, and continued.
+rephrase|换个说法|I rephrased the sentence when I forgot a word.
+complete|完成|I completed one short practice session.
+small win|小收获|Speaking for thirty seconds was a small win.
+keep going|继续下去|I did not need a perfect answer to keep going.`,
+`After two busy days, Ella returned to her English practice. Her first thought was that she needed to finish everything she had missed. That plan would have taken most of the evening, and she already felt tired. She almost decided not to start at all.
+
+Instead, she chose a small session for that day. She reviewed a few useful phrases, read a short passage, and spoke about something familiar. During her first recording, she forgot the word she wanted. She paused for a moment and used a simpler explanation. The sentence was not elegant, but the meaning was still understandable.
+
+When she listened again, she chose only three places to change. She practiced one phrase, shortened one sentence, and added one example. Her second recording was not perfect either. However, she finished her main point instead of stopping halfway through it.
+
+At the end, Ella wrote one sentence: “Today I found a way to continue when I forgot a word.” She did not use the session to prove that her English had suddenly become excellent. She had completed a useful piece of practice and learned something specific. Tomorrow would bring another small task, not a debt from the days she had missed.`)
+];
+
+const EN_RANDOM_TOPICS = [
+  'A small travel brand has a limited budget. What would you try first to reach young customers?',
+  'An online shop gets many visits but few orders. What would you check first?',
+  'Your team has two urgent requests and little time. How would you choose what to do first?',
+  'A customer says a product is difficult to use. What would you ask before suggesting a change?',
+  'How would you explain a complicated idea to someone who is new to the topic?',
+  'A campaign gets many likes but little useful feedback. What could the team learn next?',
+  'What would you do if a colleague disagreed with your first idea?',
+  'A visitor has only one day in your city. How would you help them choose a plan?',
+  'How would you test whether a small change to a website is useful?',
+  'A project is delayed. How would you explain the situation to a teammate?',
+  'What makes a brand message feel trustworthy to you?',
+  'If your first solution did not work, how would you choose a next step?',
+  'How could a small shop learn what returning customers value?',
+  'What would you include in a short handover note for a new teammate?',
+  'How would you organize a small event for people with different interests?',
+  'What is one practical way to improve a confusing product description?'
+];
+const enUI = {day:null,step:'review',audioURLs:[],pendingMic:false,expired:false};
+let enRecorder = null;
+let enAudioDBPromise = null;
+function enRun() {return coll('englishRuns').find(function(r){return r.id===state.settings.activeEnglishId;})||coll('englishRuns').slice(-1)[0]||null;}
+function enElapsed(run) {return diffDays(run.startDate,todayStr())+1;}
+function enDay(run) {return enUI.day||Math.max(1,Math.min(14,enElapsed(run)));}
+function enLog(run,day,create) {
+  let r=coll('englishLogs').find(function(x){return x.runId===run.id&&Number(x.day)===Number(day);});
+  if(!r&&create&&!enEditable(run,day))return {runId:run.id,day:day,date:addDays(run.startDate,day-1),mode:'full'};
+  if(!r&&create){
+    const d1=coll('englishLogs').find(function(x){return x.runId===run.id&&x.day===1;});
+    const content=EN_DAYS[day===14?0:day-1];
+    const source=day===14&&d1?d1:null;
+    r=insertRecord('englishLogs',{runId:run.id,day:day,date:addDays(run.startDate,day-1),mode:'full',words:clone(source&&source.words||content.words),reading:clone(source&&source.reading||{title:content.title,text:content.text,url:''}),topic:source?source.topic||content.topic:day<10?content.topic:'',anchors:source?source.anchors||'':'',sessionSeconds:0,moduleSeconds:{},activeModule:'review'});
+  }
+  return r||{runId:run.id,day:day,date:addDays(run.startDate,day-1),mode:'full'};
+}
+function enContent(r) {const d=EN_DAYS[r.day===14?0:r.day-1];return {words:Array.isArray(r.words)&&r.words.length===8?r.words:d.words,reading:r.reading||{title:d.title,text:d.text,url:''},topic:r.topic||((r.day<10||r.day===14)?d.topic:'')};}
+function enEditable(run,day) {return enElapsed(run)===Number(day)&&day>=1&&day<=14;}
+function enWritable(r) {const run=enRun();return !!run&&enEditable(run,r.day)&&!r.completed&&!r.closed;}
+function enSaved(r) {r.updatedAt=nowISO();saveState(true);}
+function enBtn(action,label,primary,extra) {return '<button type="button" class="btn'+(primary?' primary':'')+'" data-action="en-'+action+'"'+(extra||'')+'>'+label+'</button>';}
+function enField(r,key,label,type,extra) {
+  const value=r[key]===undefined||r[key]===null?'':r[key];
+  const id='en-'+key,attr=' id="'+id+'" data-en-field="'+key+'"'+(!enWritable(r)?' disabled':'');
+  const control=type==='textarea'?'<textarea class="input"'+attr+(extra||'')+'>'+escapeHTML(value)+'</textarea>':'<input class="input"'+attr+' type="'+(type||'text')+'" value="'+escapeAttr(value)+'"'+(extra||'')+'>';
+  return '<label class="ex-field'+(type==='textarea'?' wide':'')+'" for="'+id+'">'+label+control+'</label>';
+}
+function enNum(r,key,label,max) {return enField(r,key,label,'number',' min="0" max="'+max+'" step="1" inputmode="numeric"');}
+function enCheck(r,key,label) {return '<label class="ex-check"><input type="checkbox" data-en-field="'+key+'"'+(r[key]?' checked':'')+(!enWritable(r)?' disabled':'')+'><span>'+label+'</span></label>';}
+function enScore(value,max) {return expHas(value)?escapeHTML(value)+(max?'/'+max:''):'—';}
+function enTodayLog() {const run=enRun();return run?enLog(run,enDay(run),false):null;}
+function enTotal(r) {return Math.min(2700,Number(r.sessionSeconds||0)+(r.sessionStartedAt?Math.max(0,(Date.now()-r.sessionStartedAt)/1000):0));}
+function enSettle(r) {
+  if(!r.sessionStartedAt)return;
+  const delta=Math.max(0,Math.min((Date.now()-r.sessionStartedAt)/1000,2700-Number(r.sessionSeconds||0)));
+  r.sessionSeconds=Number(r.sessionSeconds||0)+delta;
+  if(r.activeModule&&r.activeModule!=='feedback'){if(!isPlainObject(r.moduleSeconds))r.moduleSeconds={};r.moduleSeconds[r.activeModule]=Number(r.moduleSeconds[r.activeModule]||0)+delta;}
+  r.sessionStartedAt=Date.now();
+}
+function enPause(r) {if(r&&r.sessionStartedAt){enSettle(r);r.sessionStartedAt=null;enSaved(r);}}
+function enPauseCurrent() {coll('englishLogs').forEach(function(r){if(r.sessionStartedAt)enPause(r);});}
+function enResume(r) {
+  if(!enWritable(r)||r.capped||enTotal(r)>=2700)return false;
+  if(!r.sessionStartedAt)r.sessionStartedAt=Date.now();r.timerStarted=true;r.activeModule=enUI.step;enSaved(r);return true;
+}
+function enRouteChanged(key) {
+  if(key!=='english'){enPauseCurrent();if(enRecorder)enStopRecording();}
+  if(key.indexOf('english')!==0){enAudioGeneration++;enReleaseAudioURLs();}
+}
+function enRecallSource(run,r) {
+  if(r.day===14){const d1=enLog(run,1,false);return {words:enContent(d1).words,label:'D1 的原始 8 词',previous:d1,available:true,baseline:!d1.id};}
+  if(r.day===1)return {available:false,label:'D1 没有昨日词组'};
+  const prev=enLog(run,r.day-1,false);
+  if(!prev.id||!prev.wordsStudied)return {available:false,label:'昨天没有新词训练记录'};
+  return {available:true,words:enContent(prev).words,label:'昨天实际学过的 8 词',previous:prev};
+}
+function enSetup() {
+  showModal({title:'开启 14 天英语训练',subtitle:'英语周期与认知实验分开计日；已有周期会保留。',submitText:'创建英语周期',body:'<label class="field">开始日期<input class="input" type="date" data-field="startDate" value="'+todayStr()+'" min="'+todayStr()+'"></label><p class="ex-instruction">标准版每天 30–40 分钟，最多 45 分钟。忙的时候切换 10 分钟最低版，同样算完成。过去的日子只回看，不补课。</p>',onSubmit:function(data){
+    if(!isValidDateStr(data.startDate)||data.startDate<todayStr()){showToast('从今天或未来一天开始，不补开过去的训练','info');return false;}
+    enPauseCurrent();const run=insertRecord('englishRuns',{startDate:data.startDate});state.settings.activeEnglishId=run.id;enUI.day=null;enUI.step='review';enUI.expired=false;saveState(true);navigate('english');
+  }});
+}
+function enEmpty() {
+  return '<div class="ex-shell en-shell"><div class="ex-hero"><div><div class="ex-eyebrow">14 days · small wins in English</div><h2>今天，会一点昨天还不会的。</h2><p class="ex-muted">不追赶词汇量，也不拿长期分数评价今天。每天留下一次主动提取、一段能懂的输入和一点自己的表达。</p></div><span class="ex-pill">30–40 分钟 / 天</span></div><section class="ex-card ex-empty"><h2>完成一次有效训练，就是今天的成功。</h2><p class="ex-muted">8 个实用词、可理解的短材料、两遍 60–90 秒口语。<br>忙的时候做 10 分钟最低版，也值得一个 ✅。</p>'+enBtn('setup','开始我的英语 14 天',true)+'</section><div class="ex-review-grid"><section class="ex-card"><h3>四步，留住当天的反馈</h3><p class="ex-instruction">① 昨日 8 词回测 · 5 分钟<br>② 8 词微词汇 · 8 分钟<br>③ 可理解输入 · 8–10 分钟<br>④ 两遍口语输出 · 10–15 分钟</p></section><section class="ex-card"><h3>中断不是欠账</h3><p class="ex-instruction">漏掉 D3、D4，到了 D5 只做 D5。<br>不补课，不叠加，不用连续天数证明自己。<br>D14 回到 D1 的任务，听见两周之间的变化。</p></section></div><p class="ex-notice">内置短文为原创虚构练习材料。录音只在你主动点击后请求麦克风权限，保存在当前浏览器，不上传服务器。</p></div>';
+}
+function enHeader(run,title,description) {
+  const elapsed=enElapsed(run),day=enDay(run),logs=coll('englishLogs').filter(function(r){return r.runId===run.id;});
+  return '<div class="ex-hero"><div><div class="ex-eyebrow">English · 14 days of small wins</div><h2>'+title+'</h2><p class="ex-muted">'+description+'</p></div><div class="ex-hero-side"><span class="ex-pill">'+(elapsed<1?'还未开始':elapsed>14?'本周期已结束':'D'+elapsed+' / 14')+'</span>'+enBtn('export','备份记录与录音')+'</div></div><section class="ex-card soft"><div class="ex-head"><span class="ex-muted">'+run.startDate+' — '+addDays(run.startDate,13)+' · 完成 '+logs.filter(function(r){return r.completed;}).length+' 天（含最低版）</span><label class="ex-muted">英语周期 <select class="select" data-en-run aria-label="切换英语周期">'+coll('englishRuns').map(function(r){return '<option value="'+escapeAttr(r.id)+'"'+(r.id===run.id?' selected':'')+'>'+r.startDate+' 开始</option>';}).join('')+'</select></label></div><div class="ex-days" aria-label="英语训练日">'+Array.from({length:14},function(_,i){const n=i+1,r=logs.find(function(x){return Number(x.day)===n;});return '<button type="button" class="ex-day'+(n===day?' selected':'')+(r&&r.completed?' done':n<elapsed?' missed':'')+'" data-action="en-day" data-value="'+n+'"'+(n>elapsed?' disabled':'')+(n===day?' aria-current="date"':'')+'>D'+n+'<small>'+(r&&r.completed?(r.completedMode==='minimum'?'最低版 ✓':'已完成 ✓'):n<elapsed?'只回看':formatDateShort(addDays(run.startDate,i)))+'</small></button>';}).join('')+'</div><p class="ex-muted">只做今天，不补课。漏过的训练不会排进今天，也不会扣分。</p></section>';
+}
+function enBudget(r) {
+  return '<div class="en-budget"><span>今天已投入</span><strong data-en-budget>'+expClock(enTotal(r))+'</strong><span>标准 30–40 分钟 · 最多 45 分钟</span>'+(r.capped?'<span>45 分钟到了，今天到这里。</span>':enBtn(r.sessionStartedAt?'pause':'resume',r.sessionStartedAt?'暂停计时':'继续 / 开始计时'))+'<span class="ex-muted">离开英语页面会自动暂停。回测间隔仍按真实时间计算。</span><span class="en-status" id="en-save-status" role="status">填写即自动保存</span></div>';
+}
+function enTake(r,n) {return r['take'+n]||null;}
+function enSeconds(r,n) {const take=enTake(r,n);return take&&expHas(take.seconds)?take.seconds:r['manualSeconds'+n];}
+function enSummary(r) {
+  return 'D'+r.day+' · '+r.date+'\n'+(r.day===14?'D1词汇回测':'昨日词汇回忆')+'：'+(expHas(r.recallScore)?r.recallScore+'/8':'—')+'\n'+(r.day===14?'今日新词：不学新东西':'今日8词回忆：'+(expHas(r.wordFirst)?r.wordFirst:'—')+' → '+(expHas(r.wordSecond)?r.wordSecond:'—')+'/8')+'\n输入理解：'+(expHas(r.inputBefore)?r.inputBefore:'—')+'% → '+(expHas(r.inputAfter)?r.inputAfter:'—')+'%\n口语卡顿：'+(expHas(r.stalls1)?r.stalls1:'—')+' → '+(expHas(r.stalls2)?r.stalls2:'—')+' 次\n口语时长：'+(expHas(enSeconds(r,1))?enSeconds(r,1):'—')+'s → '+(expHas(enSeconds(r,2))?enSeconds(r,2):'—')+'s\n今日完成：'+(r.completed?'✅ '+(r.completedMode==='minimum'?'10分钟最低版':'标准版'):r.closed?'已记录今天做到的部分':'记录中')+(r.win?'\n今天会了什么：'+r.win:'');
+}
+function enFiveMetrics(r) {
+  return '<div class="en-metrics"><div><span>'+(r.day===14?'D1 词汇回测':'昨日词汇回忆')+'</span><strong>'+enScore(r.recallScore,8)+'</strong></div><div><span>'+(r.day===14?'今日不学新词':'今日 8 词回忆')+'</span><strong>'+(r.day===14?'—':enScore(r.wordFirst)+' → '+enScore(r.wordSecond,8))+'</strong></div><div><span>输入理解</span><strong>'+enScore(r.inputBefore)+'% → '+enScore(r.inputAfter)+'%</strong></div><div><span>口语卡顿</span><strong>'+enScore(r.stalls1)+' → '+enScore(r.stalls2)+' 次</strong></div><div><span>今日完成</span><strong>'+(r.completed?'✅ '+(r.completedMode==='minimum'?'最低版':'标准版'):'还在路上')+'</strong></div></div>';
+}
+function renderEnglish() {
+  const run=enRun();if(!run)return enEmpty();
+  if(enUI.day===null)enUI.day=Math.max(1,Math.min(14,enElapsed(run)));
+  const day=enDay(run),r=enLog(run,day,false),today=enElapsed(run),writable=enWritable(r);
+  let html='<div class="ex-shell en-shell">'+enHeader(run,'今天，留下一点会了的证据。','每天 30–40 分钟，最多 45 分钟。不比较别人，只观察自己的两次尝试。');
+  if(today<1)return html+'<section class="ex-card ex-empty"><h3>从 '+run.startDate+' 开始</h3><p class="ex-muted">今天不用提前完成明天的训练。</p></section></div>';
+  if(!enEditable(run,day)||r.completed||r.closed){
+    html+='<section class="ex-card"><h3>'+(r.completed?'这一天已经留下了一次有效训练。':r.id?'这一天的记录，留在这里。':'这一天没有记录，也没有欠账。')+'</h3><p class="ex-instruction">'+(r.completed?'完成过，就算数。可以回听录音，不必再刷一遍证明自己。':'过去的训练只回看，不补做。今天回来，只做今天的部分。')+'</p>'+enFiveMetrics(r)+(r.id?'<pre class="ex-summary">'+escapeHTML(enSummary(r))+'</pre>':'')+'<div class="ex-actions">'+(today>=1&&today<=14&&day!==today?enBtn('today','回到今天',true):'')+enBtn('records','查看英语反馈记录')+'</div></section>';
+    if(r.id)html+='<section class="ex-card"><h3>这一日的口语</h3>'+enAudioHTML(r,1)+enAudioHTML(r,2)+'<details class="ex-sample"><summary>只回看当天保存的词组、材料与话题</summary><p class="en-prompt">'+escapeHTML(enContent(r).topic)+'</p>'+enWordList(enContent(r).words)+'<h3>'+escapeHTML(enContent(r).reading.title)+'</h3><article class="en-reading" lang="en">'+escapeHTML(enContent(r).reading.text)+'</article></details></section>';
+    if(day===14)html+=enComparison(run);
+    return html+'</div>';
+  }
+  const completedBefore=coll('englishLogs').filter(function(x){return x.runId===run.id&&x.day<day&&x.completed;});
+  if(day>1&&!completedBefore.some(function(x){return x.day===day-1;}))html+='<div class="en-good">欢迎回来。今天只做 D'+day+'，不需要补上之前的内容。</div>';
+  const phase=day<=4?'D1–D4 · 熟悉话题':day<=9?'D5–D9 · Point → Example → Result':day<=13?'D10–D13 · 先想 60 秒，再开口':'D14 · 重做 D1，不学新东西';
+  html+=enBudget(r)+'<section class="ex-card"><div class="ex-head"><h3>D'+day+' · '+phase+'</h3><div class="en-mode">'+enBtn('mode','标准版',r.mode!=='minimum',' data-value="full"')+enBtn('mode','10分钟最低版',r.mode==='minimum',' data-value="minimum"')+'</div></div><p class="ex-muted">'+(r.mode==='minimum'?'3分钟回测 / 熟悉 → 3分钟听读 → 4分钟说话（至少30秒）。最低版同样算完成。':'5分钟回测 → 8分钟微词汇 → 8–10分钟输入 → 10–15分钟两遍输出。到40分钟开始收尾，45分钟结束。')+'</p></section>';
+  if(r.capped)html+='<div class="ex-banner">45 分钟到了。训练计时已结束，可以记录今天的收获；不用加练或补课。</div>';
+  const steps=r.mode==='minimum'?[['review','① 回测'],['input','② 输入'],['output','③ 30秒输出'],['feedback','今日收获']]:[['review',day===14?'① D1词回测':'① 记忆回测'],['words',day===14?'② 原词核对':'② 8词微词汇'],['input',day===14?'③ D1原材料':'③ 可理解输入'],['output',day===14?'④ D1话题':'④ 两遍输出'],['feedback','今日收获']];
+  if(!steps.some(function(s){return s[0]===enUI.step;}))enUI.step='review';
+  html+='<div class="ex-layout"><section class="ex-card"><div class="ex-tabs" role="tablist" aria-label="英语训练步骤">'+steps.map(function(s){return '<button type="button" role="tab" aria-selected="'+(s[0]===enUI.step)+'" class="'+(s[0]===enUI.step?'on':'')+'" data-action="en-step" data-value="'+s[0]+'">'+s[1]+'</button>';}).join('')+'</div>';
+  if(r.quiz&&enQuizModule(r.quiz.kind)===enUI.step)html+=enQuizHTML(run,r);
+  else html+=enUI.step==='review'?enReview(run,r):enUI.step==='words'?enWords(run,r):enUI.step==='input'?enInput(r):enUI.step==='output'?enOutput(r):enFeedback(r);
+  html+='</section><aside><section class="ex-card soft"><h3>只留这五项反馈</h3>'+enFiveMetrics(r)+'<p class="ex-muted">未测就留空，不用填 0。今天没有提高，也可以因为完成一次有效训练而打勾。</p><div class="ex-actions">'+enBtn('step','记录今日收获',true,' data-value="feedback"')+'</div></section><section class="ex-card"><h3>不欠课，也不比连胜</h3><p class="ex-muted">一次中断 ≠ 整个计划失败。<br>忙的时候切最低版；回来时，只做今天。</p></section></aside></div>';
+  return html+'<p class="ex-notice">文字与音频保存在当前浏览器。正常使用 AI；D10–D13 请先独立思考、先说，再参考 AI。应用不发送内容给 AI 服务。</p></div>';
+}
+function enReview(run,r) {
+  const source=enRecallSource(run,r);
+  let html='<h3>'+(r.day===14?'重新提取 D1 的 8 个词。':'过了一夜，还留下了什么？')+'</h3>';
+  if(!source.available)html+='<p class="ex-instruction">'+source.label+'，不补旧训练。'+(r.mode==='minimum'?'今天用 3 分钟熟悉下面这组词就够了。':'直接从今天的 8 词开始。这不是少做了一天的证明。')+'</p>';
+  else html+='<p class="ex-instruction">'+source.label+'。先看中文说英文，再翻答案。只记住一部分也算“留住了一部分”。'+(source.baseline?'D1 没有个人记录，使用内置 D1 基准；无法据此做个人前后比较。':'')+'</p>';
+  if(source.available&&!r.recallDone)html+=enBtn('quiz-start','开始 8 词提取',true,' data-value="recall"');
+  if(r.recallDone)html+='<div class="en-good">今天仍能主动提取 '+enScore(r.recallScore,8)+'。'+(r.day!==14&&source.previous&&expHas(source.previous.wordSecond)?'昨天结束时为 '+source.previous.wordSecond+'/8；遗忘的词重新看一遍就好。':'')+'</div><details class="ex-sample"><summary>只重看这次没想起的词</summary>'+enWordList((source.words||[]).filter(function(_,i){return Array.isArray(r.recallMissed)&&r.recallMissed.includes(i);}))+ '</details>';
+  if(!source.available&&r.mode==='minimum')html+=enWordList(enContent(r).words)+enCheck(r,'minReviewDone','我已经做了约 3 分钟的词组熟悉');
+  if(source.available&&!r.recallDone)html+='<details class="ex-sample"><summary>已经在线下回测？直接记分</summary>'+enNum(r,'recallScore','主动说出的词 / 8',8)+enCheck(r,'recallDone','我已先回忆、再核对（线下完成）')+'</details>';
+  html+='<div class="ex-actions">'+enBtn('step',r.mode==='minimum'?'继续 · 输入':r.day===14?'继续 · D1 原词回看':'继续 · 8词微词汇',false,' data-value="'+(r.mode==='minimum'?'input':'words')+'"')+'</div>';
+  return html;
+}
+function enWordList(words) {return '<div class="en-vocab">'+words.map(function(w){return '<article class="en-word"><strong lang="en">'+escapeHTML(w.en)+'</strong><small>'+escapeHTML(w.zh)+'</small><p lang="en">'+escapeHTML(w.example)+'</p></article>';}).join('')+'</div>';}
+function enWords(run,r) {
+  if(r.day===14)return '<h3>D14 不学新词。</h3><p class="ex-instruction">今天只重测 D1 的词、重读 D1 的材料、重讲 D1 的话题。</p>'+(r.recallDone?enWordList(enContent(r).words):'<p class="ex-muted">先完成 D1 词汇提取，再显示原词，避免提前提示。</p>')+'<div class="ex-actions">'+enBtn('step','继续 · D1 原材料',true,' data-value="input"')+'</div>';
+  const content=enContent(r);
+  let html='<h3>8 个能变成自己一句话的词。</h3><p class="ex-muted">读词与例句，想一想自己会在哪里用到它。测试时只看中文，先说英文，再翻答案。</p>';
+  if(!expHas(r.wordFirst))html+=enWordList(content.words)+'<div class="ex-actions">'+enBtn('quiz-start','学完了 · 第一次主动提取',true,' data-value="first"')+'</div>';
+  else if(!expHas(r.wordSecond)){
+    const remain=Math.max(0,300-(Date.now()-Number(r.firstRecallAt||Date.now()))/1000);
+    html+='<div class="en-good">第一次主动提取 '+enScore(r.wordFirst,8)+'。五分钟后再测一次，看看今天留下了什么。</div>';
+    if(!r.firstRecallAt||remain>0)html+='<p class="ex-muted" data-en-retest>第二次提取还需 '+expClock(remain)+'。可以先做输入模块。</p>';
+    else html+=enBtn('quiz-start','五分钟到了 · 第二次主动提取',true,' data-value="second"');
+    html+='<details class="ex-sample"><summary>等待时再学一次，尤其是没记住的词</summary>'+enWordList(content.words)+'</details>';
+  }else html+='<div class="en-good">'+r.wordFirst+' → '+r.wordSecond+'/8。这是今天真实记录到的两次结果，不必要求每次都上升。</div>'+enWordList(content.words);
+  if(!r.wordsStudied&&!expHas(r.wordFirst))html+='<details class="ex-sample"><summary>换成对自己更有用的 8 词</summary><p class="ex-muted">每行：英文 | 中文意思 | 你能说的例句。共 8 行，开始第一次提取后固定本日词组。</p>'+enField(r,'customWords','自己的 8 词','textarea',' rows="8" placeholder="coordinate | 协调 | I helped coordinate a small campaign."')+enBtn('custom-words','使用这 8 词')+'</details>';
+  html+='<details class="ex-sample"><summary>已经在线下完成两次回测？直接记分</summary><p class="ex-muted">仅用于记录你实际完成、相隔约 5 分钟的两次提取，不是跳过训练。</p><div class="ex-fields">'+enNum(r,'offlineFirst','第一次 / 8',8)+enNum(r,'offlineSecond','五分钟后 / 8',8)+'</div>'+enBtn('offline-words','保存线下两次结果')+'</details><div class="ex-actions">'+enBtn('step','继续 · 可理解输入',false,' data-value="input"')+'</div>';
+  return html;
+}
+function enInput(r) {
+  const reading=enContent(r).reading;
+  let html='<h3>'+(r.day===14?'回到 D1 的同一段材料。':'给自己一次“我能懂一部分”的体验。')+'</h3><p class="ex-muted">'+(r.mode==='minimum'?'用约 3 分钟读 / 听一小段，不必查完所有词。':'用 8–10 分钟，第一遍不查词 → 回答三个问题 → 补理解 → 再读 / 听一遍。适合第一遍能懂约 70% 的材料。')+'</p>';
+  html+='<div class="ex-head" style="margin-top:16px"><h3>'+escapeHTML(reading.title||'自己的英语材料')+'</h3><span class="ex-pill">'+(reading.url?'自己的材料':'原创虚构练习')+'</span></div>'+(reading.url?'<a class="btn" href="'+escapeAttr(safeUrl(reading.url))+'" target="_blank" rel="noopener noreferrer">打开所选听读材料</a>':'')+'<article class="en-reading" lang="en">'+escapeHTML(reading.text||'在上面的链接中听 / 读所选材料，然后回到这里记录。')+'</article>';
+  if(r.mode==='minimum')return html+enCheck(r,'minInputDone','我已用约 3 分钟听 / 读了一小段')+'<div class="ex-actions">'+enBtn('step','继续 · 30秒输出',true,' data-value="output"')+'</div>';
+  html+='<div class="ex-fields">'+enNum(r,'inputBefore','第一遍理解程度（%）',100)+enNum(r,'inputAfter','第二遍理解程度（%）',100)+'</div><p class="ex-muted">都是自己的估计，没有对错分数。第一遍太难，可以在下一次选择更容易的材料。</p>'+enField(r,'what','What happened? 发生了什么？','textarea',' placeholder="允许中英混写，一两句就好。"')+enField(r,'why','Why? 为什么？','textarea')+enField(r,'soWhat','So what? 这意味着什么？','textarea');
+  if(r.day!==14&&!expHas(r.inputBefore))html+='<details class="ex-sample"><summary>今天想用自己的短文 / 1–2分钟音视频</summary>'+enField(r,'customTitle','材料标题','text')+enField(r,'customReading','粘贴短文（约200词；可选）','textarea')+enField(r,'customURL','或填写音视频 / 文章链接（可选）','url')+enBtn('custom-input','替换本日材料')+'<p class="ex-muted">链接只在你点击时打开，不自动抓取。开始记录第一遍理解后，固定本日材料，以便复测。</p></details>';
+  return html+'<div class="ex-actions">'+enBtn('step','继续 · 英语输出',true,' data-value="output"')+'</div>';
+}
+function enQuizModule(kind) {return kind==='recall'?'review':'words';}
+function enQuizWords(run,r) {return r.quiz.kind==='recall'?(enRecallSource(run,r).words||[]):enContent(r).words;}
+function enQuizHTML(run,r) {
+  const q=r.quiz,words=enQuizWords(run,r),w=words[q.order?q.order[q.index]:q.index];if(!w)return '<p>本次词组不完整，请返回本日记录。</p>';
+  return '<h3>'+(q.kind==='recall'?'隔夜 / D1 提取':q.kind==='first'?'第一次提取':'五分钟后再提取')+'</h3><div class="en-flash"><p class="ex-muted">'+(q.index+1)+' / 8 · 先自己说英文</p><h3>'+escapeHTML(w.zh)+'</h3>'+(q.revealed?'<p lang="en" style="font-size:1.2rem">'+escapeHTML(w.en)+'</p><p class="ex-muted" lang="en">'+escapeHTML(w.example)+'</p><div class="ex-actions">'+enBtn('quiz-rate','我先想起来了',true,' data-value="1"')+enBtn('quiz-rate','这次没想起来',false,' data-value="0"')+'</div>':enBtn('quiz-reveal','说过了 · 翻开答案',true))+'</div><p class="ex-muted">按刚才是否独立说出判断，不要求口音或逐字例句。漏了一个词不代表这次训练失败。</p>';
+}
+
+function enAudioHTML(r,n) {
+  const take=enTake(r,n);
+  return '<div class="en-audio"><div class="ex-head"><strong>第 '+n+' 遍</strong><span class="ex-muted">'+(expHas(enSeconds(r,n))?enSeconds(r,n)+' 秒':'还未录制')+'</span></div>'+(take?'<audio controls preload="none" data-en-audio="'+escapeAttr(take.key)+'" aria-label="D'+r.day+' 第'+n+'遍录音"></audio><p class="ex-muted" data-en-audio-status="'+escapeAttr(take.key)+'">正在读取本机录音…</p>'+enBtn('audio-download','下载这段录音',false,' data-key="'+escapeAttr(take.key)+'"'):'<p class="ex-muted">可以在下方录音，也可以上传在其他录音工具中完成的音频。</p>')+'</div>';
+}
+function enOutput(r) {
+  const content=enContent(r),recording=enRecorder&&enRecorder.r.id===r.id;
+  const randomDay=r.day>=10&&r.day<=13;
+  let html='<h3>'+(r.mode==='minimum'?'今天，自己说至少 30 秒。':r.day===14?'重讲 D1 的话题，再听听两周之间。':'先说一遍，只改三处，再说一遍。')+'</h3><p class="ex-muted">'+(r.day<=4?'说熟悉的事。允许卡顿，可以看 3–5 个关键词，不准备逐字稿。':r.day<=9?'只用一个骨架：Point → Example → Result。一个观点、一个例子、一个结果。':r.day<=13?'题目 → 我先想 → 我先说 → 参考补充 → 我再说。前 60 秒不问 AI。':'沿用 D1 实际话题与关键词。完成后可同时回听 D1 与 D14 的录音。')+'</p>';
+  if(enUI.unsaved)html+='<div class="ex-banner">有一段录音未能写入本机数据库，请先下载保留。'+enBtn('download-unsaved','下载未保存录音',true)+'</div>';
+  if(randomDay&&!r.topic)return html+'<p class="ex-instruction">题目在你点击后才抽取，不提前展示明天的题。准备 60 秒后开始回答。</p>'+enBtn('draw','抽题并开始 60 秒准备',true);
+  html+='<div class="en-prompt" lang="en">'+escapeHTML(content.topic)+'</div>';
+  if(randomDay&&r.prepStartedAt&&!r.prepReady)html+='<div class="ex-clock"><div class="ex-timer" data-en-prep>'+expClock(Math.max(0,60-(Date.now()-r.prepStartedAt)/1000))+'</div><p class="ex-muted">先自己想。写出两个点也可以，计满 60 秒才开放录音。</p></div>';
+  if(r.day<=9&&!enTake(r,1)&&!expHas(r.manualSeconds1))html+='<details class="ex-sample"><summary>换成自己更熟悉的同阶段话题</summary>'+enField(r,'topicDraft','自己的英语话题','text')+enBtn('topic','使用这个话题')+'</details>';
+  if(!enTake(r,1)&&!expHas(r.manualSeconds1))html+=enField(r,'anchors','3–5 个关键词锚点（每行一个；陌生题两个点也可以）','textarea',' rows="4" maxlength="280" placeholder="internship\ndata\ncoordination\nresult"');
+  else html+='<details class="ex-sample"><summary>查看自己的关键词</summary><p style="white-space:pre-wrap">'+escapeHTML(r.anchors||'未填写关键词')+'</p></details>';
+  if(recording)html+='<div class="ex-banner"><strong>正在录第 '+enRecorder.n+' 遍</strong><span data-en-record-clock>0:00</span>'+enBtn('record-stop','停止并保存录音',true)+'</div><p class="ex-muted">最长 90 秒，到时自动停止。不要在停止保存前关闭页面。</p>';
+  else if(!randomDay||r.prepReady)html+='<div class="ex-actions">'+enBtn('record-start',enTake(r,1)?'重录第一遍':'录第一遍',true,' data-value="1"'+(enUI.pendingMic?' disabled':''))+((enTake(r,1)||expHas(r.manualSeconds1))?enBtn('record-start',enTake(r,2)?'重录第二遍':'录第二遍',false,' data-value="2"'+(enUI.pendingMic?' disabled':'')):'')+'</div><p class="ex-muted">'+(enUI.pendingMic?'等待浏览器麦克风授权…':'首次录音会请求麦克风权限；仅保存在本机。重录会替换这一遍，建议先下载需要保留的录音。')+'</p>';
+  html+=enAudioHTML(r,1);
+  if(enTake(r,1)||expHas(r.manualSeconds1)){
+    html+=enNum(r,'stalls1','第一遍：明显卡顿几次？',1000)+'<p class="ex-instruction">自己回听，只找三处：① 哪句话说不出来？② 哪个词想不到？③ 哪里特别卡？只修改这三处，不重写全文。</p>'+enField(r,'fix1','① 一句话说不出来 → 换个简单说法','text',' maxlength="300"')+enField(r,'fix2','② 一个词想不到 → 记一个能用的表达','text',' maxlength="300"')+enField(r,'fix3','③ 一处特别卡 → 缩短 / 重组','text',' maxlength="300"');
+    if(randomDay)html+='<details class="ex-sample"><summary>我已经先说过，现在可以参考 AI</summary><p class="ex-muted">把同一道题和你卡住的三处交给平时使用的 AI，修改这三处后再说。这里不自动生成逐字稿，也不连接 AI。</p></details>';
+    html+=enAudioHTML(r,2)+enNum(r,'stalls2','第二遍：明显卡顿几次？（最低版 / D14 第二遍选填）',1000);
+  }
+  if(!recording&&(!randomDay||r.prepReady))html+='<details class="ex-sample"><summary>用外部录音工具完成？上传或记录时长</summary><p class="ex-muted">上传音频仍只保存在这个浏览器；可进入 D1/D14 回听对照。只填时长会保存为自报数据，不会生成录音。</p><div class="ex-actions">'+[1,2].map(function(n){return '<label class="btn en-upload">上传第 '+n+' 遍<input type="file" accept="audio/*,.m4a,.mp3,.wav,.webm,.ogg" data-en-upload="'+n+'" aria-label="上传第'+n+'遍音频"></label>';}).join('')+'</div><div class="ex-fields">'+enNum(r,'manualSeconds1','外部第一遍时长（秒）',600)+enNum(r,'manualSeconds2','外部第二遍时长（秒）',600)+'</div><p class="ex-muted">需要记录卡顿数时，填完时长点击下面的刷新。</p>'+enBtn('refresh','刷新口语记录')+'</details>';
+  return html+'<div class="ex-actions">'+enBtn('step','今天会了什么？',true,' data-value="feedback"')+'</div>';
+}
+function enWinOptions(r) {
+  const options=[];
+  if(expHas(r.wordSecond))options.push('我今天能主动说出 '+r.wordSecond+' 个词。');
+  if(expHas(r.recallScore))options.push('过了一夜，我仍记住了 '+r.recallScore+' 个词。');
+  if(expHas(r.inputBefore)&&expHas(r.inputAfter)&&r.inputAfter>r.inputBefore)options.push('第二遍理解从 '+r.inputBefore+'% 到 '+r.inputAfter+'%。');
+  if(expHas(r.stalls1)&&expHas(r.stalls2)&&r.stalls2<r.stalls1)options.push('第二遍卡顿比第一遍少了 '+(r.stalls1-r.stalls2)+' 次。');
+  const seconds=Math.max(Number(enSeconds(r,1)||0),Number(enSeconds(r,2)||0));
+  if(seconds>=30)options.push('我自己讲了 '+seconds+' 秒英语。');
+  options.push('我今天回来，开始了一次主动练习。');
+  return options;
+}
+function enFeedback(r) {
+  return '<h3>今天会了什么，是昨天不会的？</h3><p class="ex-muted">一小句就够了。不需要写学习日记。结果没有上升时，也可以记录自己独立尝试、换个说法或中断后回来的事实。</p><div class="en-chips">'+enWinOptions(r).map(function(s){return enBtn('win',escapeHTML(s),false,' data-value="'+escapeAttr(s)+'"');}).join('')+'</div>'+enField(r,'win','今天的一点收获','textarea',' maxlength="500" placeholder="例如：忘了一个词时，我找到了更简单的说法。"')+'<div class="ex-actions">'+enBtn('finish',r.mode==='minimum'?'✅ 完成今天的最低版':'✅ 完成今天的有效训练',true)+enBtn('close','保存今天做到的部分')+'</div><p class="ex-notice">最低版同样算完成。今天到这里，不欠明天额外训练。未满足最低版时也能保留已有记录，不会显示惩罚分。</p>';
+}
+function enComparison(run) {
+  const d1=enLog(run,1,false),d14=enLog(run,14,false);
+  const first=expHas(d1.wordSecond)?d1.wordSecond:d1.wordFirst;
+  let html='<section class="ex-card"><div class="ex-head"><h3>D1 ↔ D14 · 听见两周的距离</h3><span class="ex-pill">不加新任务</span></div><p class="ex-muted">重测的是本周期 D1 实际保存的词、材料和话题。分数没有变化，也可以观察是否更能完成自己的表达。</p>';
+  if(!d1.id)html+='<p class="ex-instruction">D1 没有个人训练记录；D14 采用内置 D1 材料，无法据此进行个人前后效果比较。</p>';
+  html+='<div class="ex-table-wrap"><table class="ex-table"><thead><tr><th>项目</th><th>D1</th><th>D14</th></tr></thead><tbody><tr><td>D1 的 8 词</td><td>'+enScore(first,8)+'</td><td>'+enScore(d14.recallScore,8)+'</td></tr><tr><td>材料理解（第一遍）</td><td>'+enScore(d1.inputBefore)+'%</td><td>'+enScore(d14.inputBefore)+'%</td></tr><tr><td>口语第一遍卡顿</td><td>'+enScore(d1.stalls1)+'</td><td>'+enScore(d14.stalls1)+'</td></tr><tr><td>口语第一遍秒数</td><td>'+enScore(enSeconds(d1,1))+'</td><td>'+enScore(enSeconds(d14,1))+'</td></tr></tbody></table></div><div class="en-compare"><div><h3>D1 · '+escapeHTML(d1.date)+'</h3>'+enAudioHTML(d1,1)+enAudioHTML(d1,2)+'</div><div><h3>D14 · '+escapeHTML(d14.date)+'</h3>'+enAudioHTML(d14,1)+enAudioHTML(d14,2)+'</div></div><p class="ex-notice">先播放一段，再播放另一段。自报时长不等于已保存音频；音频不在此浏览器时，需要导入包含录音的备份。</p></section>';
+  return html;
+}
+function renderEnglishRecords() {
+  const run=enRun();if(!run)return enEmpty();
+  const elapsed=enElapsed(run);
+  let html='<div class="ex-shell en-shell">'+enHeader(run,'把一次有效训练，算作一次成功。','没有连胜惩罚，也没有补课队列。空白是没有记录，不是 0 分。')+'<section class="ex-card"><div class="ex-head"><h3>每天只记五项反馈</h3>'+enBtn('setup','开启新周期')+'</div><div class="ex-table-wrap"><table class="ex-table"><thead><tr><th>日期</th><th>昨日 / D1回忆</th><th>今日8词回忆</th><th>输入理解</th><th>口语卡顿</th><th>今日完成</th></tr></thead><tbody>';
+  for(let day=1;day<=14;day++){
+    const r=enLog(run,day,false);
+    html+='<tr><td><button type="button" data-action="en-day" data-value="'+day+'"'+(day>elapsed?' disabled':'')+'>D'+day+'</button> · '+formatDateShort(r.date)+'</td><td>'+enScore(r.recallScore,8)+'</td><td>'+(day===14?'不学新词':enScore(r.wordFirst)+' → '+enScore(r.wordSecond,8))+'</td><td>'+enScore(r.inputBefore)+'% → '+enScore(r.inputAfter)+'%</td><td>'+enScore(r.stalls1)+' → '+enScore(r.stalls2)+'</td><td>'+(r.completed?'✅ '+(r.completedMode==='minimum'?'最低版':'标准版'):day<elapsed?'未记录 / 部分记录':day===elapsed?'进行中':'未开始')+'</td></tr>';
+  }
+  html+='</tbody></table></div><p class="ex-notice">点日期回看，过去的日子不补做。最低版没有新词和第二遍输出时，对应项目留空，同样可以完成。</p></section>';
+  if(elapsed>=14)html+=enComparison(run);
+  else html+='<section class="ex-card soft"><h3>D14 留给一次清楚的对照</h3><p class="ex-muted">届时自动取回 D1 的原始材料与录音。现在不用每天判断英语有没有“明显变强”。</p></section>';
+  const logs=coll('englishLogs').filter(function(r){return r.runId===run.id&&r.id;});
+  html+='<section class="ex-card"><h3>这些天，我会了什么</h3>'+logs.filter(function(r){return r.win;}).map(function(r){return '<div class="en-good"><span class="ex-muted">D'+r.day+(r.completed?' · ✅':'')+'</span><p>'+escapeHTML(r.win)+'</p></div>';}).join('')+(logs.some(function(r){return r.win;})?'':'<p class="ex-muted">今天的一小句收获，会留在这里。</p>')+'</section><section class="ex-card soft"><h3>录音与备份</h3><p class="ex-muted">音频保存在本机 IndexedDB，文字在浏览器 localStorage。导出完整 JSON 时会加入本机可读取的录音；更换设备后在设置中导入。没有自动跨设备同步。</p><div class="ex-actions">'+enBtn('export','导出记录与本机录音',true)+'</div></section></div>';
+  return html;
+}
+function enSaveInput(el) {
+  const run=enRun();if(!run||!enEditable(run,enDay(run)))return;
+  const r=enLog(run,enDay(run),true);if(!enWritable(r))return;
+  const key=el.getAttribute('data-en-field');
+  const allowed=['minReviewDone','minInputDone','recallScore','recallDone','customWords','offlineFirst','offlineSecond','inputBefore','inputAfter','what','why','soWhat','customTitle','customReading','customURL','topicDraft','anchors','stalls1','stalls2','fix1','fix2','fix3','manualSeconds1','manualSeconds2','win'];
+  if(!allowed.includes(key))return;
+  let value=el.type==='checkbox'?el.checked:el.value;
+  if(el.type==='number'){
+    if(value==='')value=null;
+    else {const n=Number(value);if(!Number.isInteger(n)||n<Number(el.min)||n>Number(el.max)){el.setCustomValidity('请填写范围内的整数，未记录可留空');el.reportValidity();return;}value=n;}
+  }
+  el.setCustomValidity('');r[key]=value;
+  if(!r.timerStarted&&key!=='win'&&!r.capped){enResume(r);const btn=document.querySelector('[data-action="en-resume"]');if(btn){btn.setAttribute('data-action','en-pause');btn.textContent='暂停计时';}}
+  enSaved(r);
+  const metrics=document.querySelector('.en-shell aside .en-metrics');if(metrics)metrics.outerHTML=enFiveMetrics(r);
+  const status=document.getElementById('en-save-status');if(status)status.textContent=storageAvailable?'已自动保存在此浏览器':'文字保存失败，请导出备份';
+}
+function enReadyToFinish(run,r) {
+  const source=enRecallSource(run,r),minimum=r.mode==='minimum';
+  if(!String(r.win||'').trim())return '留下一小句今天的收获，就够了。';
+  if(source.available&&(!r.recallDone||!expHas(r.recallScore)))return '还没有记录本次词汇回测；可以先回测，也可以在回测页记下线下结果。';
+  if(minimum){
+    if(!source.available&&!r.minReviewDone)return '最低版还需要约 3 分钟的词组熟悉。';
+    if(!r.minInputDone&&!expHas(r.inputBefore))return '最低版还需要一小段约 3 分钟的听 / 读。';
+    if(Number(enSeconds(r,1)||0)<30&&Number(enSeconds(r,2)||0)<30)return '最低版还需要一次至少 30 秒的独立表达；可录音、上传或记录外部时长。';
+  }else{
+    if(r.day!==14&&(!expHas(r.wordFirst)||!expHas(r.wordSecond)))return '标准版还没有两次 8 词提取记录；忙的话可以切换最低版。';
+    if(!expHas(r.inputBefore)||!expHas(r.inputAfter))return '记录两遍输入的理解程度；这是自我估计，不是考试。';
+    if(r.day===14){if(Number(enSeconds(r,1)||0)<60||!expHas(r.stalls1))return 'D14 重讲一次 D1 话题，至少 60 秒，并记下这次卡顿数。';}
+    else if(Number(enSeconds(r,1)||0)<1||Number(enSeconds(r,2)||0)<60||!expHas(r.stalls1)||!expHas(r.stalls2))return '标准版还需要两遍输出、第二遍至少 60 秒，以及两次卡顿记录；第一遍允许短、允许卡顿。';
+  }
+  return '';
+}
+async function englishAction(action,el) {
+  try {
+    if(action==='en-setup'){enSetup();return;}
+    if(action==='en-export'){exportAllData();return;}
+    if(action==='en-record-stop'){await enStopRecording();return;}
+    if(action==='en-download-unsaved'){if(enUI.unsaved){downloadBlob(enUI.unsaved.blob,'英语未保存录音.webm');enUI.unsaved=null;renderCurrentRoute();}return;}
+    if(action==='en-audio-download'){await enDownloadAudio(el.getAttribute('data-key'));return;}
+    const run=enRun();if(!run)return;
+    const value=el.getAttribute('data-value');
+    if(action==='en-records'){navigate('english-records');return;}
+    if(action==='en-today'){enPauseCurrent();if(enRecorder)await enStopRecording();enUI.day=null;enUI.step='review';enUI.expired=false;navigate('english');return;}
+    if(action==='en-day'){
+      if(Number(value)>enElapsed(run))return;enPauseCurrent();if(enRecorder)await enStopRecording();enUI.day=Number(value);enUI.step='review';enUI.expired=false;navigate('english');return;
+    }
+    if(!enEditable(run,enDay(run))){showToast('过去的训练只回看，今天不补课。','info');return;}
+    const r=enLog(run,enDay(run),true);
+    if(action==='en-step'){
+      if(enRecorder)await enStopRecording();enSettle(r);r.activeModule=value;enUI.step=value;if(!r.timerStarted&&value!=='feedback')enResume(r);enSaved(r);renderCurrentRoute();return;
+    }
+    if(!enWritable(r))return;
+    if(action==='en-pause'){enPause(r);renderCurrentRoute();return;}
+    if(action==='en-mode'){
+      if(enRecorder)await enStopRecording();enSettle(r);r.mode=value==='minimum'?'minimum':'full';if(r.mode==='minimum'&&enUI.step==='words')enUI.step='review';r.activeModule=enUI.step;enSaved(r);renderCurrentRoute();return;
+    }
+    if(action==='en-win'){r.win=value;enSaved(r);renderCurrentRoute();return;}
+    if(action==='en-finish'){
+      if(enRecorder){showToast('请先停止并保存当前录音','info');return;}
+      const reason=enReadyToFinish(run,r);if(reason){showToast(reason,'info',5000);return;}
+      enPause(r);r.completed=true;r.completedMode=r.mode;r.completedAt=nowISO();enSaved(r);showToast('✅ 今天完成了一次有效训练。到这里就好。');renderCurrentRoute();return;
+    }
+    if(action==='en-close'){
+      if(enRecorder)await enStopRecording();enPause(r);r.closed=true;enSaved(r);showToast('已经保留今天做到的部分。明天只做明天。');renderCurrentRoute();return;
+    }
+    if(action==='en-refresh'){renderCurrentRoute();return;}
+    if(!enResume(r)){showToast('今天已到 45 分钟，留下收获就收尾吧。','info');return;}
+    switch(action){
+      case 'en-resume':break;
+      case 'en-custom-words':{
+        if(r.wordsStudied||r.quiz){showToast('开始提取后本日词组已固定','info');return;}
+        const rows=String(r.customWords||'').trim().split('\n').map(function(line){const p=line.split('|');return {en:(p[0]||'').trim(),zh:(p[1]||'').trim(),example:(p[2]||'').trim()};});
+        if(rows.length!==8||rows.some(function(w){return !w.en||!w.zh||!w.example;})||new Set(rows.map(function(w){return w.en.toLowerCase();})).size!==8){showToast('请填写 8 个不同词组，每行包含英文 | 中文 | 例句','warning');return;}r.words=rows;break;
+      }
+      case 'en-custom-input':{
+        if(r.day===14||expHas(r.inputBefore))return;
+        const text=String(r.customReading||'').trim(),url=String(r.customURL||'').trim();
+        if((url&&!safeUrl(url))||(!text&&!url)){showToast('请粘贴短文，或填写有效的 http(s) 材料链接','warning');return;}
+        r.reading={title:r.customTitle||'我的英语材料',text:text,url:url?safeUrl(url):''};break;
+      }
+      case 'en-offline-words':if(r.day===14)return;if(!expHas(r.offlineFirst)||!expHas(r.offlineSecond)){showToast('请填写实际完成的两次得分（0–8）','warning');return;}r.wordFirst=r.offlineFirst;r.wordSecond=r.offlineSecond;r.wordsStudied=true;r.offlineWords=true;break;
+      case 'en-quiz-start':{
+        if(r.quiz)return;
+        const source=enRecallSource(run,r);
+        if(value==='recall'&&(!source.available||r.recallDone))return;
+        if(value!=='recall'&&r.day===14)return;
+        if(value==='first'&&expHas(r.wordFirst))return;
+        if(value==='second'&&(!r.firstRecallAt||Date.now()-r.firstRecallAt<300000||expHas(r.wordSecond)))return;
+        const order=[0,1,2,3,4,5,6,7];for(let i=7;i>0;i--){const j=expRandomIndex(i+1),tmp=order[i];order[i]=order[j];order[j]=tmp;}
+        r.quiz={kind:value,index:0,hits:0,revealed:false,missed:[],order:order};if(value==='first')r.wordsStudied=true;break;
+      }
+      case 'en-quiz-reveal':if(r.quiz)r.quiz.revealed=true;break;
+      case 'en-quiz-rate':{
+        const q=r.quiz;if(!q||!q.revealed)return;const hit=value==='1';q.hits+=hit?1:0;if(!hit)q.missed.push(q.order?q.order[q.index]:q.index);q.index++;q.revealed=false;
+        if(q.index===8){
+          if(q.kind==='recall'){r.recallScore=q.hits;r.recallDone=true;r.recallMissed=q.missed;}
+          else if(q.kind==='first'){r.wordFirst=q.hits;r.firstRecallAt=Date.now();}
+          else r.wordSecond=q.hits;
+          delete r.quiz;
+        }break;
+      }
+      case 'en-topic':if(r.day>=10||enTake(r,1)||expHas(r.manualSeconds1))return;if(!String(r.topicDraft||'').trim()){showToast('请填一个熟悉的话题','info');return;}r.topic=String(r.topicDraft).trim();break;
+      case 'en-draw':{
+        if(r.day<10||r.day>13||r.topic)return;
+        const used=coll('englishLogs').filter(function(x){return x.runId===run.id;}).map(function(x){return x.topic;});
+        const options=EN_RANDOM_TOPICS.filter(function(q){return !used.includes(q);});r.topic=options[expRandomIndex(options.length)];r.prepStartedAt=Date.now();r.prepReady=false;break;
+      }
+      case 'en-record-start':enSaved(r);await enStartRecording(r,Number(value));return;
+      default:return;
+    }
+    enSaved(r);renderCurrentRoute();
+  }catch(error){console.error(error);showToast('操作未完成：'+(error.message||'请重试'),'error',5000);}
+}
+
+// 音频不放入 localStorage，避免少量录音就占满文字存储空间。
+function enAudioDB() {
+  if(!window.indexedDB)return Promise.reject(new Error('这个浏览器不支持本机音频保存，可用外部录音并记录时长。'));
+  if(!enAudioDBPromise)enAudioDBPromise=new Promise(function(resolve,reject){
+    const req=indexedDB.open('muan_english_audio',1);
+    req.onupgradeneeded=function(){if(!req.result.objectStoreNames.contains('clips'))req.result.createObjectStore('clips',{keyPath:'id'});};
+    req.onsuccess=function(){req.result.onversionchange=function(){req.result.close();enAudioDBPromise=null;};resolve(req.result);};
+    req.onerror=function(){enAudioDBPromise=null;reject(new Error('本机音频数据库无法打开，请使用外部录音并自行保存。'));};
+    req.onblocked=function(){enAudioDBPromise=null;reject(new Error('音频数据库被其他页面占用，请关闭旧页面后重试。'));};
+  });
+  return enAudioDBPromise;
+}
+async function enAudioAll() {const db=await enAudioDB();return new Promise(function(resolve,reject){const tx=db.transaction('clips','readonly'),req=tx.objectStore('clips').getAll();tx.oncomplete=function(){resolve(req.result||[]);};tx.onerror=tx.onabort=function(){reject(new Error('无法读取本机录音'));};});}
+async function enAudioPut(items) {const db=await enAudioDB();return new Promise(function(resolve,reject){const tx=db.transaction('clips','readwrite');items.forEach(function(item){tx.objectStore('clips').put(item);});tx.oncomplete=function(){resolve();};tx.onerror=tx.onabort=function(){reject(new Error('音频保存失败，可能是本机存储空间不足，请下载保留。'));};});}
+async function enClearAudio() {
+  if(!window.indexedDB)return;
+  const db=await enAudioDB();await new Promise(function(resolve,reject){const tx=db.transaction('clips','readwrite');tx.objectStore('clips').clear();tx.oncomplete=resolve;tx.onerror=tx.onabort=function(){reject(new Error('录音未能清空，请重试'));};});
+}
+function enBlobDataURL(blob) {return new Promise(function(resolve,reject){const reader=new FileReader();reader.onload=function(){resolve(reader.result);};reader.onerror=function(){reject(new Error('录音备份读取失败'));};reader.readAsDataURL(blob);});}
+async function enExportAudio(logs) {
+  const keys=Array.from(new Set(logs.flatMap(function(r){return [r.take1,r.take2].filter(Boolean).map(function(t){return t.key;});}).filter(Boolean)));
+  if(!keys.length)return {version:1,items:[],missing:[]};
+  let all;
+  try { all=await enAudioAll(); } catch (error) { return {version:1,items:[],missing:keys,audioError:error.message}; }
+  const map=new Map(all.map(function(a){return [a.id,a];})),items=[],missing=[];
+  for(const key of keys){const item=map.get(key);if(!item){missing.push(key);continue;}items.push({id:key,createdAt:item.createdAt,data:await enBlobDataURL(item.blob)});}
+  return {version:1,items:items,missing:missing};
+}
+async function enImportAudio(archive,logs,mode) {
+  if(archive===undefined||archive===null)return;
+  if(archive.version!==1||!Array.isArray(archive.items))throw new Error('备份中的音频格式无法识别');
+  if(!archive.items.length)return;
+  const allowed=new Set(logs.flatMap(function(r){return [r.take1,r.take2].filter(Boolean).map(function(t){return t.key;});}));
+  const existing=await enAudioAll(),map=new Map(existing.map(function(a){return [a.id,a];})),items=[];
+  for(const item of archive.items){
+    if(!isPlainObject(item)||typeof item.id!=='string'||typeof item.data!=='string')throw new Error('备份含无效的音频条目');
+    if(!allowed.has(item.id))continue;
+    const m=/^data:(audio\/[a-zA-Z0-9.+;=_-]+);base64,([A-Za-z0-9+/]*={0,2})$/.exec(item.data);
+    if(!m)throw new Error('录音不是有效的音频数据');
+    const binary=atob(m[2]),bytes=new Uint8Array(binary.length);for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+    const old=map.get(item.id);if(mode!=='replace'&&old&&String(old.createdAt||'')>String(item.createdAt||''))continue;
+    items.push({id:item.id,createdAt:item.createdAt||'',blob:new Blob([bytes],{type:m[1]})});
+  }
+  if(items.length)await enAudioPut(items);
+}
+function enReleaseAudioURLs() {enUI.audioURLs.forEach(function(url){URL.revokeObjectURL(url);});enUI.audioURLs=[];}
+let enAudioGeneration=0;
+async function enHydrateAudio() {
+  enReleaseAudioURLs();const generation=++enAudioGeneration,players=Array.from(document.querySelectorAll('[data-en-audio]'));if(!players.length)return;
+  try {
+    const all=await enAudioAll();if(generation!==enAudioGeneration)return;
+    const map=new Map(all.map(function(item){return [item.id,item];})),urls=new Map();
+    players.forEach(function(player){
+      if(!document.contains(player))return;const key=player.getAttribute('data-en-audio'),item=map.get(key);
+      if(item){if(!urls.has(key)){const url=URL.createObjectURL(item.blob);urls.set(key,url);enUI.audioURLs.push(url);}player.src=urls.get(key);}
+      player.parentElement.querySelectorAll('[data-en-audio-status]').forEach(function(label){label.textContent=item?'录音保存在此浏览器，可回听或下载。':'此浏览器没有这段录音，请导入包含音频的备份；自报时长不会生成音频。';});
+    });
+  }catch(error){if(generation===enAudioGeneration)document.querySelectorAll('[data-en-audio-status]').forEach(function(el){el.textContent=error.message;});}
+}
+async function enDownloadAudio(key) {
+  const item=(await enAudioAll()).find(function(a){return a.id===key;});if(!item){showToast('这段录音不在当前浏览器，请导入含录音的备份','info');return;}
+  const ext=item.blob.type.includes('mp4')?'m4a':item.blob.type.includes('mpeg')?'mp3':item.blob.type.includes('wav')?'wav':item.blob.type.includes('ogg')?'ogg':'webm';
+  downloadBlob(item.blob,'英语训练_'+key.replace(/[^a-zA-Z0-9_-]/g,'_')+'.'+ext);
+}
+function enRecordingAllowed(r) {
+  if(!enWritable(r)||r.capped)return false;
+  if(r.day>=10&&r.day<=13&&(!r.topic||!r.prepReady)){showToast('先独立准备满 60 秒，再开始表达。','info');return false;}
+  return true;
+}
+async function enStartRecording(r,n) {
+  if(enRecorder||enUI.pendingMic||!enRecordingAllowed(r)||![1,2].includes(n))return;
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||typeof MediaRecorder==='undefined'){showToast('当前浏览器无法录音，可上传外部录音或记录时长。','info',5000);return;}
+  if(n===2&&!enTake(r,1)&&!expHas(r.manualSeconds1)){showToast('先完成第一遍，再进行第二遍。','info');return;}
+  if(r.day<10&&!enTake(r,1)&&!expHas(r.manualSeconds1)){
+    const points=String(r.anchors||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
+    if(points.length<3||points.length>5||points.some(function(s){return s.length>80;})){showToast('请先填写 3–5 个简短关键词锚点，每行一个，不写逐字稿。','info',5000);return;}
+  }
+  if(enUI.unsaved){showToast('有一段录音尚未保存，请先下载保留。','warning');return;}
+  enUI.pendingMic=true;renderCurrentRoute();
+  let stream;
+  try {
+    await enAudioDB();stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    if(ui.route!=='english'||!enRecordingAllowed(r)){stream.getTracks().forEach(function(t){t.stop();});return;}
+    const mime=['audio/webm;codecs=opus','audio/mp4','audio/ogg;codecs=opus'].find(function(t){return MediaRecorder.isTypeSupported(t);});
+    const recorder=new MediaRecorder(stream,mime?{mimeType:mime}:undefined);
+    let resolveDone;
+    const current={r:r,n:n,recorder:recorder,stream:stream,chunks:[],startedAt:Date.now(),done:new Promise(function(resolve){resolveDone=resolve;})};
+    enRecorder=current;
+    recorder.ondataavailable=function(e){if(e.data&&e.data.size)current.chunks.push(e.data);};
+    recorder.onerror=function(){showToast('录音被中断，正在尝试保存已有部分。','warning');enStopRecording();};
+    recorder.onstop=async function(){
+      stream.getTracks().forEach(function(t){t.stop();});
+      const seconds=Math.max(1,Math.min(90,Math.round((Date.now()-current.startedAt)/1000))),key=r.runId+':D'+r.day+':take'+n;
+      const blob=new Blob(current.chunks,{type:recorder.mimeType||mime||'audio/webm'});
+      try {
+        if(!blob.size)throw new Error('没有收到音频，请检查麦克风后重试。');
+        await enAudioPut([{id:key,createdAt:nowISO(),blob:blob}]);r['take'+n]={key:key,seconds:seconds,createdAt:nowISO(),type:blob.type};enSaved(r);showToast('第 '+n+' 遍录音已保存在本机。');
+      }catch(error){
+        if(blob.size)enUI.unsaved={blob:blob,key:key,seconds:seconds};showToast(error.message,'error',5000);
+      }finally{if(enRecorder===current)enRecorder=null;resolveDone();if(ui.route.indexOf('english')===0)renderCurrentRoute();}
+    };
+    recorder.start(500);
+  }catch(error){if(stream)stream.getTracks().forEach(function(t){t.stop();});if(enRecorder&&enRecorder.stream===stream)enRecorder=null;showToast(error.name==='NotAllowedError'?'麦克风未授权。可以上传外部录音，或只记录在外部完成的时长。':error.message||'无法开始录音','info',6000);}
+  finally{enUI.pendingMic=false;if(ui.route==='english')renderCurrentRoute();}
+}
+async function enStopRecording() {
+  const current=enRecorder;if(!current)return;
+  if(current.recorder.state!=='inactive')current.recorder.stop();
+  await current.done;
+}
+async function enUploadAudio(input) {
+  const file=input.files&&input.files[0],run=enRun();if(!file||!run)return;
+  const r=enLog(run,enDay(run),true),n=Number(input.getAttribute('data-en-upload'));
+  if(!enRecordingAllowed(r)||enRecorder)return;
+  if(!file.size){showToast('音频文件是空的，请选择已经录制的文件','warning');return;}
+  if(file.size>20*1024*1024){showToast('请选择 20MB 以内的短录音','warning');return;}
+  if(!file.type.startsWith('audio/')&&!/\.(m4a|mp3|wav|webm|ogg)$/i.test(file.name)){showToast('请选择音频文件','warning');return;}
+  try {
+    const blob=file.type.startsWith('audio/')?file:new Blob([file],{type:/\.m4a$/i.test(file.name)?'audio/mp4':'audio/webm'});
+    const seconds=await new Promise(function(resolve){const audio=new Audio(),url=URL.createObjectURL(blob);let done=false;const finish=function(value){if(done)return;done=true;URL.revokeObjectURL(url);audio.removeAttribute('src');resolve(value);};audio.onloadedmetadata=function(){finish(Number.isFinite(audio.duration)?Math.round(audio.duration):null);};audio.onerror=function(){finish(null);};audio.src=url;setTimeout(function(){finish(null);},3000);});
+    const key=r.runId+':D'+r.day+':take'+n;
+    await enAudioPut([{id:key,createdAt:nowISO(),blob:blob}]);r['take'+n]={key:key,seconds:seconds,createdAt:nowISO(),type:blob.type};enSaved(r);showToast(seconds===null?'音频已保存在本机；未能读取时长，请补填外部时长。':'音频已保存在本机');renderCurrentRoute();
+  }catch(error){showToast(error.message||'音频未保存，请保留原文件','error',5000);}
+}
+function enTick() {
+  const run=enRun();if(!run)return;
+  const r=enLog(run,enDay(run),false);let redraw=false;
+  if(r.id&&r.sessionStartedAt&&enTotal(r)>=2700&&!r.capped){enPause(r);r.capped=true;enSaved(r);if(enRecorder)enStopRecording();redraw=true;}
+  if(r.id&&r.prepStartedAt&&!r.prepReady&&Date.now()-r.prepStartedAt>=60000){r.prepReady=true;enSaved(r);redraw=true;}
+  if(r.firstRecallAt&&!r.retestReady&&Date.now()-r.firstRecallAt>=300000){r.retestReady=true;enSaved(r);redraw=true;}
+  if(r.sessionStartedAt&&Date.now()-Number(r.lastCheckpointAt||r.sessionStartedAt)>=15000){enSettle(r);r.lastCheckpointAt=Date.now();enSaved(r);}
+  if(enRecorder&&Date.now()-enRecorder.startedAt>=90000)enStopRecording();
+  if(ui.route==='english'){
+    if(!enEditable(run,r.day)&&!enUI.expired){enUI.expired=true;enPause(r);if(enRecorder)enStopRecording();redraw=true;}
+    if(redraw)renderCurrentRoute();
+    const budget=document.querySelector('[data-en-budget]');if(budget&&budget.textContent!==expClock(enTotal(r)))budget.textContent=expClock(enTotal(r));
+    const prep=document.querySelector('[data-en-prep]');if(prep)prep.textContent=expClock(Math.max(0,60-(Date.now()-r.prepStartedAt)/1000));
+    const retest=document.querySelector('[data-en-retest]');if(retest)retest.textContent='第二次提取还需 '+expClock(Math.max(0,300-(Date.now()-r.firstRecallAt)/1000))+'。可以先做输入模块。';
+    const rec=document.querySelector('[data-en-record-clock]');if(rec&&enRecorder)rec.textContent=expClock((Date.now()-enRecorder.startedAt)/1000);
+    if(!r.warned40&&enTotal(r)>=2400){r.warned40=true;enSaved(r);showToast('已经 40 分钟，记录收获并准备收尾，不用加量。','info',6000);}
+  }
+}
+setInterval(enTick,1000);
+window.addEventListener('pagehide',function(){enPauseCurrent();if(enRecorder)enStopRecording();});
+window.addEventListener('beforeunload',function(e){if(enRecorder||enUI.unsaved){e.preventDefault();e.returnValue='';}});
+
+/* ==========================================================================
    区域 21：绑定与启动
    ========================================================================== */
 function bindEvents() {
@@ -2579,6 +3332,7 @@ function bindEvents() {
 
 function boot() {
   loadState();
+  coll('englishLogs').forEach(function(r){r.sessionStartedAt=null;});
   applyAppearance();
   if (!state.meta.createdAt) state.meta.createdAt = nowISO();
   saveState(true);
