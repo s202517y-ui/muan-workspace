@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<meta name="description" content="不要蕉绿 · 个人工作台，本地保存的任务、时间、单词、秋招与生活记录管理工具">
+<meta name="description" content="木案 · 14天认知恢复与AI使用习惯实验，每日训练、状态记录与阶段复盘，本地保存。">
 <title>不要蕉绿 · 个人工作台</title>
 <style>
 /* ==========================================================================
@@ -413,8 +413,8 @@ input[type="date"],input[type="time"]{min-height:38px}
 }
 
 /* 底部抽屉（更多菜单） */
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--surface);border-radius:20px 20px 0 0;box-shadow:var(--shadow-3);transform:translateY(102%);transition:transform .24s cubic-bezier(.2,.8,.3,1);padding-bottom:calc(10px + var(--safe-b));max-height:80dvh;overflow-y:auto}
-body.sheet-open .sheet{transform:none}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;background:var(--surface);border-radius:20px 20px 0 0;box-shadow:var(--shadow-3);transform:translateY(102%);visibility:hidden;pointer-events:none;transition:transform .24s cubic-bezier(.2,.8,.3,1);padding-bottom:calc(10px + var(--safe-b));max-height:80dvh;overflow-y:auto}
+body.sheet-open .sheet{transform:none;visibility:visible;pointer-events:auto}
 .sheet-handle{width:38px;height:4px;border-radius:999px;background:var(--border-strong);margin:9px auto 4px}
 .sheet h3{font-size:.86rem;padding:6px 18px 8px;color:var(--text-secondary)}
 .sheet-list{padding:0 10px 8px}
@@ -638,6 +638,71 @@ table.tbl td.tc-actions{white-space:nowrap;text-align:right}
 .danger-zone .card-head{background:var(--danger-soft);color:var(--danger)}
 .kv{font-size:.74rem;color:var(--text-muted)}
 .badge-ver{font-size:.68rem;background:var(--surface-3);border-radius:999px;padding:1px 8px;color:var(--text-secondary)}
+
+/* 14 天实验：留白、低刺激，不用单日成绩评价状态。 */
+body[data-route^="experiment"]{--accent:var(--teal);--accent-dark:var(--teal-dark)}
+.ex-shell{max-width:1080px;margin:auto;--ex-line:var(--border);font-size:.86rem;line-height:1.65}
+.ex-shell h2{font-size:1.35rem;line-height:1.4;letter-spacing:-.02em}
+.ex-shell h3{font-size:1rem;line-height:1.5}
+.ex-eyebrow{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--teal-dark);font-weight:700;margin-bottom:8px}
+.ex-muted{font-size:.76rem;color:var(--text-secondary);line-height:1.7}
+.ex-hero{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;padding:26px 0 22px}
+.ex-hero p{margin-top:8px;max-width:540px}
+.ex-hero-side{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:flex-end;max-width:280px}
+.ex-pill{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:.72rem;color:var(--text-secondary);white-space:nowrap}
+.ex-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;min-width:0;margin-bottom:16px;box-shadow:var(--shadow-1)}
+.ex-card.soft{background:var(--surface-warm)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.ex-days{display:grid;grid-template-columns:repeat(14,minmax(0,1fr));gap:6px;margin-bottom:12px}
+.ex-day{padding:9px 2px;border:1px solid var(--border);border-radius:10px;font-size:.75rem;line-height:1.5;text-align:center;min-height:52px;position:relative}
+.ex-day small{display:block;font-size:.61rem;color:var(--text-muted)}
+.ex-day.selected{background:var(--primary-soft);border-color:var(--teal);color:var(--teal-dark);font-weight:700}
+.ex-day.done:after{content:'';position:absolute;width:4px;height:4px;bottom:3px;left:calc(50% - 2px);border-radius:50%;background:var(--teal-dark)}
+.ex-day:disabled{opacity:.5;cursor:default}
+.ex-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(290px,1fr);gap:18px;align-items:start}
+.ex-tabs{display:flex;gap:5px;padding-bottom:16px;flex-wrap:wrap}
+.ex-tabs button{padding:8px 10px;border-radius:8px;font-size:.76rem;color:var(--text-secondary);border:1px solid var(--border)}
+.ex-tabs button.on{background:var(--teal-soft);border-color:var(--teal);color:var(--teal-dark);font-weight:700}
+.ex-instruction{padding:12px 14px;background:var(--surface-3);border-radius:10px;font-size:.8rem;line-height:1.8;margin:12px 0}
+.ex-timer{font-size:clamp(2.5rem,7vw,4rem);font-variant-numeric:tabular-nums;font-weight:600;letter-spacing:-.05em;line-height:1.3;margin:18px 0 8px;color:var(--teal-dark)}
+.ex-clock{text-align:center;padding:16px 0}
+.ex-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:16px}
+.ex-actions .btn{min-height:42px;white-space:normal}
+.ex-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.ex-field{display:flex;flex-direction:column;gap:5px;min-width:0;font-size:.75rem;color:var(--text-secondary);margin:8px 0}
+.ex-field.wide{grid-column:1/-1}
+.ex-field .input,.ex-field .select{width:100%;min-width:0;min-height:42px}
+.ex-field textarea{min-height:105px;resize:vertical;width:100%;line-height:1.7}
+.ex-divider{border:0;border-top:1px solid var(--border);margin:18px 0}
+.ex-words{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:16px auto;max-width:360px}
+.ex-words span{text-align:center;padding:9px;background:var(--surface-3);border-radius:8px;font-size:1rem;letter-spacing:.12em}
+.ex-banner{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:12px 16px;border:1px solid var(--teal);background:var(--teal-soft);border-radius:10px;margin-bottom:16px;font-size:.78rem}
+.ex-banner .btn{margin-left:auto}
+.ex-save{font-size:.68rem;color:var(--teal-dark);min-height:20px}
+.ex-statrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}
+.ex-stat{border-left:2px solid var(--teal);padding-left:12px;min-width:0}
+.ex-stat strong{display:block;font-size:1.35rem;font-variant-numeric:tabular-nums}
+.ex-stat small{font-size:.7rem;color:var(--text-secondary)}
+.ex-summary{white-space:pre-wrap;font-family:inherit;font-size:.8rem;line-height:1.9;background:var(--surface-3);padding:16px;border-radius:10px;overflow-wrap:anywhere}
+.ex-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.ex-table{width:100%;border-collapse:collapse;font-size:.75rem;white-space:nowrap}
+.ex-table th,.ex-table td{padding:11px 12px;text-align:left;border-bottom:1px solid var(--border)}
+.ex-table th{font-weight:500;color:var(--text-secondary);background:var(--surface-warm)}
+.ex-table button{color:var(--teal-dark);text-decoration:underline}
+.ex-check{display:flex;align-items:flex-start;gap:8px;font-size:.76rem;padding:6px 0;cursor:pointer}
+.ex-check input{margin-top:4px;width:16px;height:16px;accent-color:var(--teal-dark);flex:none}
+.ex-sample{padding:12px;border:1px solid var(--border);border-radius:10px;margin-top:8px;font-size:.78rem}
+.ex-sample summary{cursor:pointer;color:var(--text-secondary)}
+.ex-empty{text-align:center;padding:42px 18px}
+.ex-empty h2{margin-bottom:12px}
+.ex-empty .btn{margin-top:18px}
+.ex-plot{width:100%;height:auto;display:block;margin:10px 0}
+.ex-plot text{fill:var(--text-secondary);font-size:10px}
+.ex-review-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ex-anchor-display{font-size:1.2rem;line-height:2.2;white-space:pre-wrap;background:var(--teal-soft);padding:18px;border-radius:12px;margin:14px 0}
+.ex-notice{color:var(--text-secondary);font-size:.73rem;border-left:2px solid var(--teal);padding-left:10px;margin-top:12px}
+@media(max-width:1000px){.ex-layout{grid-template-columns:minmax(0,1fr)}.ex-hero{padding-top:12px}.ex-hero-side{max-width:210px}}
+@media(max-width:640px){.ex-hero{display:block}.ex-hero-side{justify-content:flex-start;max-width:none;margin-top:14px}.ex-hero h2{font-size:1.4rem}.ex-card{padding:16px;border-radius:12px}.ex-days{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.ex-day{min-height:47px;padding:6px 1px}.ex-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.ex-tabs button{padding:9px 5px}.ex-review-grid{grid-template-columns:1fr}.ex-statrow{gap:6px}.ex-stat{padding-left:7px}.ex-stat strong{font-size:1.12rem}.ex-actions .btn{flex:1;justify-content:center}.ex-banner .btn{margin-left:0}.ex-shell{font-size:.82rem}.ex-fields{gap:10px}}
 </style>
 </head>
 <body>
@@ -709,7 +774,7 @@ table.tbl td.tc-actions{white-space:nowrap;text-align:right}
    区域 1：常量与默认数据
    ========================================================================== */
 const STORAGE_KEY = 'muan_workspace_state';
-const APP_VERSION = 1;
+const APP_VERSION = 2;
 
 const ICON = {
   home:'<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/>',
@@ -756,6 +821,9 @@ function svg(name, size, extra) {
 }
 
 const ROUTES = [
+  { key:'experiment', label:'14天实验', mobile:'今日训练', desc:'先让大脑搜索，再让 AI 补充', icon:'target' },
+  { key:'experiment-records', label:'实验记录', mobile:'记录', desc:'只记录事实，不给自己下判断', icon:'calendar' },
+  { key:'experiment-review', label:'阶段复盘', mobile:'复盘', desc:'D7 看均值，D14 看趋势', icon:'chart' },
   { key:'dashboard', label:'总览',     mobile:'总览', desc:'今天的整体情况一览',           icon:'home' },
   { key:'today',     label:'今日待办', mobile:'今日', desc:'管理具体任务与完成情况',       icon:'check' },
   { key:'planner',   label:'时间规划', mobile:'规划', desc:'安排一天中每个时间段做什么',   icon:'clock' },
@@ -767,8 +835,8 @@ const ROUTES = [
   { key:'settings',  label:'设置',     mobile:'设置', desc:'偏好设置与数据管理',           icon:'gear' }
 ];
 const ROUTE_KEYS = ROUTES.map(function (r) { return r.key; });
-const MOBILE_TABS = ['dashboard', 'today', 'matrix', 'jobs'];
-const MORE_ROUTES = ['planner', 'words', 'milktea', 'review', 'settings'];
+const MOBILE_TABS = ['experiment', 'experiment-records', 'experiment-review', 'jobs'];
+const MORE_ROUTES = ['dashboard', 'today', 'matrix', 'planner', 'words', 'milktea', 'review', 'settings'];
 
 const TASK_CATEGORIES = ['求职', '论文', '学习', '工作', '生活', '其他'];
 const TASK_STATUSES  = ['未开始', '进行中', '已完成', '已延期', '已取消'];
@@ -839,7 +907,7 @@ const defaultState = {
   settings: {
     appName:'不要蕉绿',
     nickname:'',
-    defaultRoute:'dashboard',
+    defaultRoute:'experiment',
     weekStartsOn:1,
     dateFormat:'YYYY-MM-DD',
     theme:'system',
@@ -881,9 +949,11 @@ const defaultState = {
   wordLogs: [],
   jobApplications: [],
   milkTeaLogs: [],
-  weeklyReviews: []
+  weeklyReviews: [],
+  experimentRuns: [],
+  experimentLogs: []
 };
-const COLLECTIONS = ['tasks', 'timeBlocks', 'wordLogs', 'jobApplications', 'milkTeaLogs', 'weeklyReviews'];
+const COLLECTIONS = ['tasks', 'timeBlocks', 'wordLogs', 'jobApplications', 'milkTeaLogs', 'weeklyReviews', 'experimentRuns', 'experimentLogs'];
 
 /* ==========================================================================
    区域 2：基础工具（id、转义、深合并、日期）
@@ -1235,6 +1305,12 @@ function migrateState(raw) {
     };
   });
 
+  merged.experimentRuns = merged.experimentRuns.filter(function (r) { return isValidDateStr(r.startDate); });
+  merged.experimentLogs = merged.experimentLogs.filter(function (r) { return r.day >= 1 && r.day <= 14 && typeof r.runId === 'string'; });
+  if (!merged.meta.experimentUpgrade) {
+    if (merged.settings.defaultRoute === 'dashboard') merged.settings.defaultRoute = 'experiment';
+    merged.meta.experimentUpgrade = true;
+  }
   if (!merged.meta.createdAt) merged.meta.createdAt = nowISO();
   merged.meta.version = APP_VERSION;
   return merged;
@@ -1851,6 +1927,9 @@ function navBadges() {
 }
 
 const RENDERERS = {
+  experiment: function () { return renderExperiment(); },
+  'experiment-records': function () { return renderExperimentRecords(); },
+  'experiment-review': function () { return renderExperimentReview(); },
   dashboard: function () { return renderDashboard(); },
   today: function () { return renderToday(); },
   planner: function () { return renderPlanner(); },
@@ -3724,7 +3803,9 @@ function exportAllData() {
       wordLogs: clone(state.wordLogs),
       jobApplications: clone(state.jobApplications),
       milkTeaLogs: clone(state.milkTeaLogs),
-      weeklyReviews: clone(state.weeklyReviews)
+      weeklyReviews: clone(state.weeklyReviews),
+      experimentRuns: clone(state.experimentRuns),
+      experimentLogs: clone(state.experimentLogs)
     }
   };
   try {
@@ -3769,7 +3850,7 @@ function validateImport(parsed) {
 function importAllData(parsed, mode) {
   const check = validateImport(parsed);
   if (!check.ok) { showToast('导入失败：' + check.msg, 'error', 3600); return false; }
-  const incoming = migrateState({ meta: check.data.meta || {}, settings: check.data.settings || {} , tasks:check.data.tasks || [], timeBlocks:check.data.timeBlocks || [], wordLogs:check.data.wordLogs || [], jobApplications:check.data.jobApplications || [], milkTeaLogs:check.data.milkTeaLogs || [], weeklyReviews:check.data.weeklyReviews || [] });
+  const incoming = migrateState(check.data);
   const backup = clone(state);
   try {
     if (mode === 'replace') {
@@ -3822,7 +3903,7 @@ function handleImportFile(file) {
     if (!check.ok) { showToast('导入失败：' + check.msg, 'error', 3600); return; }
     const d = check.data;
     const summary = COLLECTIONS.map(function (k) {
-      const labels = { tasks:'任务', timeBlocks:'时间块', wordLogs:'单词记录', jobApplications:'秋招岗位', milkTeaLogs:'奶茶记录', weeklyReviews:'每周复盘' };
+      const labels = { tasks:'任务', timeBlocks:'时间块', wordLogs:'单词记录', jobApplications:'秋招岗位', milkTeaLogs:'奶茶记录', weeklyReviews:'每周复盘', experimentRuns:'实验周期', experimentLogs:'实验日记录' };
       return labels[k] + ' ' + (Array.isArray(d[k]) ? d[k].length : 0) + ' 条';
     }).join('，');
     showModal({
@@ -3844,7 +3925,7 @@ function handleImportFile(file) {
 function clearAllData() {
   showConfirm({
     title:'清空全部数据',
-    message:'该操作会删除所有任务、时间安排、单词记录、秋招岗位、奶茶记录与复盘内容，且无法撤销。建议先导出备份。',
+    message:'该操作会删除所有实验周期、实验记录、任务、时间安排、单词记录、秋招岗位、奶茶记录与复盘内容，且无法撤销。建议先导出备份。',
     confirmText:'确认清空', danger:true, requireText:'确认清空'
   }).then(function (ok) {
     if (!ok) return;
@@ -3932,6 +4013,7 @@ function submitTopModal() {
 
 /* --------- 主分发 --------- */
 function dispatch(action, el) {
+  if (action.indexOf('exp-') === 0) { experimentAction(action, el); return; }
   const id = el.getAttribute('data-id');
   const value = el.getAttribute('data-value');
   switch (action) {
@@ -4071,6 +4153,7 @@ function handleClick(e) {
   const el = getActionEl(e.target);
   if (!el) return;
   const action = el.getAttribute('data-action');
+  if (el.matches('[data-exp-field], [data-exp-run]')) return;
   if (action === 'matrix-range' && el.tagName === 'SELECT') return;
   if (action === 'today-search' || action === 'jobs-search' || action === 'tea-search' || action === 'planner-date') return;
   closeModalIfNeeded(el);
@@ -4080,6 +4163,7 @@ function handleClick(e) {
 /* --------- 输入 / 变更托管 --------- */
 function handleLiveInput(e) {
   const t = e.target;
+  if (t.hasAttribute('data-exp-field')) { saveExperimentInput(t); return; }
   if (t.id === 'todaySearch') { ui.today.q = t.value; renderCurrentRoute(); }
   else if (t.id === 'jobsSearch') { ui.jobs.q = t.value; renderCurrentRoute(); }
   else if (t.id === 'teaSearch') { ui.milktea.q = t.value; renderCurrentRoute(); }
@@ -4087,6 +4171,8 @@ function handleLiveInput(e) {
 function handleChange(e) {
   const t = e.target;
   if (!t || !t.getAttribute) return;
+  if (t.hasAttribute('data-exp-field')) { saveExperimentInput(t); return; }
+  if (t.hasAttribute('data-exp-run')) { state.settings.activeExperimentId = t.value; expUI.day = null; saveState(true); renderCurrentRoute(); return; }
   if (t.getAttribute('data-action') === 'matrix-range') { ui.matrix.range = t.value; renderCurrentRoute(); return; }
   // 设置页控件
   if (climb(t, '[data-action="setting"]')) {
@@ -4324,6 +4410,380 @@ function carryOverTasks() {
 }
 
 /* ==========================================================================
+   14 天认知恢复与 AI 使用习惯实验
+   所有计时保存绝对时间；刷新、后台切换后按真实经过时间恢复。
+   ========================================================================== */
+const expUI = { day:null, step:'memory' };
+const EXP_WORD_CATEGORIES = [
+  ['苹果','葡萄','草莓','西瓜','橘子','桃子','梨','香蕉','芒果','樱桃'],
+  ['火车','轮船','飞机','马车','地铁','帆船','卡车','电车','客车','自行车'],
+  ['镜子','沙发','台灯','枕头','椅子','杯子','地毯','闹钟','花瓶','牙刷'],
+  ['河流','沙漠','火山','森林','瀑布','湖泊','山峰','海洋','草原','峡谷'],
+  ['钥匙','锤子','剪刀','扳手','钳子','螺丝','铲子','锯子','针','手电筒'],
+  ['医生','厨师','教师','司机','画家','护士','警察','农民','演员','园丁'],
+  ['蜡烛','风筝','足球','钢琴','帐篷','围棋','鼓','秋千','哨子','气球'],
+  ['老虎','鲸鱼','蝴蝶','企鹅','松鼠','骆驼','金鱼','狮子','麻雀','海豚'],
+  ['信封','铅笔','橡皮','邮票','报纸','地图','日历','课本','书签','卡片'],
+  ['楼梯','桥梁','灯塔','机场','隧道','城堡','车站','码头','寺庙','仓库']
+];
+function expRandomIndex(length) {
+  const v = new Uint32Array(1); crypto.getRandomValues(v); return v[0] % length;
+}
+const EXP_QUESTIONS = [
+  '一个高端旅游品牌想吸引 25—35 岁中国消费者，你会从哪些方面分析？',
+  '某电商产品销量突然下降，你会怎样一步步排查？',
+  '为什么某品牌能在中国年轻消费者中增长？请提出几个可验证的解释。',
+  '一个新咖啡品牌预算有限，怎样选择首批目标用户和传播渠道？',
+  '一场线上活动报名很多、到场很少，你会如何查找原因？',
+  '一家老字号想吸引年轻消费者，哪些应该改变，哪些值得保留？',
+  '如何判断一次内容营销带来的是短期热度还是实际增长？',
+  '如果用户第一次体验产品后不再回来，你会先研究什么？',
+  '同一商品在两个渠道的转化率差异很大，你会如何分析？',
+  '一个博物馆想让年轻人愿意二次到访，可以从哪些角度考虑？',
+  '品牌准备进入陌生城市，你会如何设计一个低成本验证方案？',
+  '如何为一款没有明显差异的新产品找到可信的卖点？',
+  '一次促销提高了销量但降低了利润，你会如何评估是否继续？',
+  '面对不熟悉的业务面试题，你会如何把问题拆成可分析的部分？'
+];
+function expRun() {
+  return coll('experimentRuns').find(function (r) { return r.id === state.settings.activeExperimentId; }) || coll('experimentRuns').slice(-1)[0] || null;
+}
+function expElapsed(run) { return diffDays(run.startDate, todayStr()) + 1; }
+function expDay(run) { return expUI.day || Math.max(1, Math.min(14, expElapsed(run))); }
+function expBlank(run, day) { return { runId:run.id, day:day, date:addDays(run.startDate, day - 1), wordMode:'random' }; }
+function expLog(run, day, create) {
+  let r = coll('experimentLogs').find(function (x) { return x.runId === run.id && Number(x.day) === Number(day); });
+  if (!r && create) { r = insertRecord('experimentLogs', expBlank(run, day)); }
+  return r || expBlank(run, day);
+}
+function expHas(v) { return v !== null && v !== undefined && v !== '' && Number.isFinite(Number(v)); }
+function expValue(v, suffix) { return expHas(v) ? escapeHTML(v) + (suffix || '') : '—'; }
+function expSaved(r) { r.updatedAt = nowISO(); saveState(true); }
+function expButton(action, label, primary, extra) { return '<button type="button" class="btn' + (primary ? ' primary' : '') + '" data-action="exp-' + action + '"' + (extra || '') + '>' + label + '</button>'; }
+function expField(r, key, label, type, extra) {
+  const id = 'exp-' + key, v = r[key] === undefined || r[key] === null ? '' : r[key];
+  const attr = ' id="' + id + '" data-exp-field="' + key + '"';
+  let control;
+  if (type === 'textarea') control = '<textarea class="input"' + attr + (extra || '') + '>' + escapeHTML(v) + '</textarea>';
+  else control = '<input class="input"' + attr + ' type="' + (type || 'text') + '" value="' + escapeAttr(v) + '"' + (extra || '') + '>';
+  return '<label class="ex-field' + (type === 'textarea' ? ' wide' : '') + '" for="' + id + '">' + label + control + '</label>';
+}
+function expNum(r,key,label,max,step) { return expField(r,key,label,'number',' min="0" max="' + max + '" step="' + (step || 1) + '" inputmode="decimal"'); }
+function expCheck(r,key,label) { return '<label class="ex-check"><input type="checkbox" data-exp-field="' + key + '"' + (r[key] ? ' checked' : '') + '><span>' + label + '</span></label>'; }
+function expClock(seconds) { const s = Math.max(0,Math.ceil(seconds)); return Math.floor(s / 60) + ':' + pad2(s % 60); }
+function expRemaining(r, key, duration) { return Math.max(0, duration - (Date.now() - Number(r[key])) / 1000); }
+function expTimer(r,key,duration,label) { return '<div class="ex-clock"><div class="ex-timer" data-exp-clock="' + key + '" data-exp-duration="' + duration + '">' + expClock(expRemaining(r,key,duration)) + '</div><p class="ex-muted">' + label + '</p></div>'; }
+function expNormalizeWords(text) { return Array.from(new Set(String(text || '').split(/[\s,，、;；。]+/).map(function (x) { return x.trim(); }).filter(Boolean))); }
+function expScore(words, answer) { return expNormalizeWords(answer).filter(function (w) { return words.indexOf(w) >= 0; }).length; }
+function expStageSync(r) {
+  let changed = false;
+  if (r.memoryStage === 'memorize' && Date.now() >= r.wordStartedAt + 60000) { r.memoryStage = 'immediate'; changed = true; }
+  if (r.interviewStage === 'preview' && Date.now() >= r.anchorStartedAt + 30000) { r.interviewStage = 'ready'; changed = true; }
+  if (r.interviewStage === 'speak' && Date.now() >= r.speakStartedAt + 90000) { r.interviewStage = 'done'; r.spokenSeconds = 90; changed = true; }
+  if (r.thinkStartedAt && !r.thinkDone && Date.now() >= r.thinkStartedAt + 480000) { r.thinkDone = true; changed = true; }
+  if (changed) expSaved(r);
+  return changed;
+}
+function expWakeOpportunity(r) {
+  if (!r.bedTime || !r.wakeTime) return null;
+  const b = timeToMinutes(r.bedTime), w = timeToMinutes(r.wakeTime);
+  return b === null || w === null ? null : ((w - b + 1440) % 1440 / 60).toFixed(1);
+}
+function expEmpty() {
+  return '<div class="ex-shell"><div class="ex-hero"><div><div class="ex-eyebrow">A little space to think · 14 days</div><h2>让思考，先从自己开始。</h2><p class="ex-muted">每天约 25–35 分钟。正常秋招，正常使用 AI；只留出一小段时间，练习先检索、再生成、再组织。</p></div><span class="ex-pill">不是戒 AI</span></div>' +
+    '<section class="ex-card ex-empty"><div class="ex-eyebrow">14 天 · 一个小实验</div><h2>把自己当观察对象，不当被告。</h2><p class="ex-muted">记录睡眠、精神状态、记忆提取、独立思考和 AI 使用习惯。<br>不排名，不用一天的成绩评价自己。</p>' + expButton('setup','开始我的 14 天',true) + '</section>' +
+    '<div class="ex-review-grid"><section class="ex-card"><h3>每天跟着四步走</h3><p class="ex-instruction">① 看 10 词 60 秒 → 即时回忆<br>② 8 分钟独立思考 → 再与 AI 对照<br>③ 看面试锚点 30 秒 → 脱稿说 60–90 秒<br>④ 即时回忆提交 15 分钟后 → 延迟回忆</p></section><section class="ex-card"><h3>把分析留给固定的日子</h3><p class="ex-instruction">D1–D6：只记录事实<br>D7：主动查看一次阶段均值<br>D8–D13：继续记录<br>D14：统一看趋势，完成复盘</p></section></div><p class="ex-notice">这是个人状态记录工具，不用于医学诊断。数据仅留在当前浏览器；换设备或清理浏览器前请导出 JSON 备份。</p></div>';
+}
+function expHeader(run, title, description) {
+  const day = expDay(run), elapsed = expElapsed(run);
+  const logs = coll('experimentLogs').filter(function (r) { return r.runId === run.id; });
+  return '<div class="ex-hero"><div><div class="ex-eyebrow">14 days · 先自己想，再用 AI</div><h2>' + title + '</h2><p class="ex-muted">' + description + '</p></div><div class="ex-hero-side"><span class="ex-pill">' + (elapsed < 1 ? '尚未开始' : elapsed > 14 ? '14 天已结束 · 可补记' : '实验 D' + elapsed) + '</span>' + expButton('export','导出 JSON 备份') + '</div></div>' +
+    '<section class="ex-card soft"><div class="ex-head"><span class="ex-muted">' + escapeHTML(run.startDate) + ' — ' + addDays(run.startDate,13) + ' · 已记录 ' + logs.filter(function (r) { return !!r.recorded; }).length + '/14 天</span>' +
+    '<label class="ex-muted">实验周期 <select class="select" data-exp-run aria-label="切换实验周期">' + coll('experimentRuns').map(function (r) { return '<option value="' + escapeAttr(r.id) + '"' + (r.id === run.id ? ' selected' : '') + '>' + escapeHTML(r.startDate) + ' 开始</option>'; }).join('') + '</select></label></div>' +
+    '<div class="ex-days" aria-label="选择实验日">' + Array.from({length:14},function (_,i) { const n = i + 1, r = logs.find(function (x) { return Number(x.day) === n; }); return '<button type="button" class="ex-day' + (day === n ? ' selected' : '') + (r && r.recorded ? ' done' : '') + '" data-action="exp-day" data-value="' + n + '"' + (n > elapsed ? ' disabled' : '') + (day === n ? ' aria-current="date"' : '') + '>D' + n + '<small>' + formatDateShort(addDays(run.startDate,i)) + '</small></button>'; }).join('') + '</div><p class="ex-muted">D1–D6 只记录。D7 看一次均值，D14 统一复盘。漏记可以补，不必重来。</p></section>';
+}
+function renderExperiment() {
+  const run = expRun(); if (!run) return expEmpty();
+  if (expUI.day === null) expUI.day = Math.max(1, Math.min(14, expElapsed(run)));
+  const day = expDay(run), r = expLog(run,day,false);
+  expStageSync(r);
+  let html = '<div class="ex-shell">' + expHeader(run,'把今天的一小段时间，还给自己。','每天约 25–35 分钟。不追求完美答案，只练习先让大脑独立工作。');
+  if (expElapsed(run) < 1) return html + '<section class="ex-card ex-empty"><h3>实验将在 ' + escapeHTML(run.startDate) + ' 开始</h3><p class="ex-muted">今天可以先准备面试题与安静的练习环境。</p></section></div>';
+  if (r.immediateSubmittedAt && r.memoryStage !== 'done') {
+    const remaining = expRemaining(r,'immediateSubmittedAt',900);
+    html += '<div class="ex-banner">' + svg('clock',18) + '<span data-exp-delay-banner>' + (remaining ? '延迟回忆还需 ' + expClock(remaining) + '，可以先完成思考和面试练习。' : '15 分钟已到，可以进行延迟回忆。') + '</span>' + expButton('step','去延迟回忆',false,' data-value="delayed"') + '</div>';
+  }
+  html += '<div class="ex-layout"><div><section class="ex-card"><div class="ex-head"><h3>D' + day + ' · 今日练习</h3><span class="ex-muted">' + r.date + (r.date !== todayStr() ? ' · 补记日' : '') + '</span></div><div class="ex-tabs" role="tablist" aria-label="训练步骤">' +
+    [['memory','① 10 词回忆'],['thinking','② 独立思考'],['interview','③ 面试锚点'],['delayed','④ 延迟回忆']].map(function (s) { return '<button type="button" role="tab" aria-selected="' + (expUI.step === s[0]) + '" class="' + (expUI.step === s[0] ? 'on' : '') + '" data-action="exp-step" data-value="' + s[0] + '">' + s[1] + '</button>'; }).join('') + '</div>';
+  html += expUI.step === 'thinking' ? expThinking(r) : expUI.step === 'interview' ? expInterview(r) : expUI.step === 'delayed' ? expDelayed(r) : expMemory(r);
+  html += '</section><section class="ex-card soft"><div class="ex-head"><h3>今天的简短记录</h3>' + expButton('copy','复制文字') + '</div><pre class="ex-summary" id="exp-summary">' + escapeHTML(expSummary(r)) + '</pre><div class="ex-actions">' + expButton('record',r.recorded ? '已记录 · 更新完成标记' : '今天就记录到这里',true) + '</div><p class="ex-muted" style="margin-top:10px">每一项都会自动保存。完成标记不要求满分，也不要求填满所有空格。</p></section></div><aside>' + expDailyForm(r,run) + '</aside></div>' +
+    '<p class="ex-notice">这是个人观察记录，不是诊断。D1–D7 不为单日表现下结论。计时在切换页面后继续；页面关闭时不会发出提醒，重新打开会恢复进度。</p></div>';
+  return html;
+}
+function expMemory(r) {
+  if (r.paperMemory && !r.memoryStage) return expPaperMemory(r);
+  if (!r.memoryStage) return '<h3>只看今天这一组，60 秒后盖住。</h3><p class="ex-instruction">系统只在你按开始后生成今天的 10 个常见名词，不预先展示后续日期。词组为随机抽样，并非标准化认知测验。也可以使用亲友当天提供的词组，只在这里计时和记分。</p><div class="ex-actions">' + expButton('word-start','随机词组 · 开始 60 秒',true,' data-value="random"') + expButton('word-start','亲友提供 · 只计时记分',false,' data-value="external"') + '</div><p class="ex-notice">开始后不会重新抽词。提前中止、查词等情况请在备注中如实记录。</p>';
+  if (r.memoryStage === 'memorize') return '<h3>安静地看词，不必追求技巧。</h3>' + expTimer(r,'wordStartedAt',60,'60 秒结束后，词组自动遮盖') + (r.wordMode === 'random' ? '<div class="ex-words">' + (r.words || []).map(function (w) { return '<span>' + escapeHTML(w) + '</span>'; }).join('') + '</div>' : '<p class="ex-instruction">现在查看亲友提供的词组；计时结束后请盖住纸张或关掉文档。</p>') + expButton('word-hide','已看完，提前盖住') + '<p class="ex-muted">提前盖住会记录实际看词秒数。</p>';
+  if (r.immediateSubmittedAt) return '<h3>即时回忆已记录。</h3><p class="ex-instruction">原词继续遮盖。先完成 8 分钟独立思考，再做面试练习；15 分钟到后做延迟回忆。</p>' + expButton('step','继续 · 独立思考',true,' data-value="thinking"');
+  return '<h3>盖住了。写下你现在能记起的词。</h3><p class="ex-muted">词语用空格、逗号或换行分隔；重复词只计一次。不查看原词。</p>' + expField(r,'immediateAnswer','即时回忆','textarea',' autocomplete="off" placeholder="只写能想起来的词；想不起来也可以提交。"') + (r.wordMode === 'external' ? expNum(r,'immediateScore','自行核对即时得分（0–10）',10) : '') + '<div class="ex-actions">' + expButton('immediate-submit','提交即时回忆，开始 15 分钟间隔',true) + '</div>';
+}
+function expDelayed(r) {
+  if (r.paperMemory && !r.memoryStage) return expPaperMemory(r);
+  if (!r.immediateSubmittedAt) return '<h3>先做即时回忆，再等待 15 分钟。</h3><p class="ex-instruction">计时从提交即时回忆开始。可以用这段时间独立思考和练习面试，不再看词组或第一次的答案。</p>' + expButton('step','去 10 词回忆',true,' data-value="memory"');
+  if (r.memoryStage === 'done') return '<h3>两次回忆都已记录。</h3><p class="ex-instruction">即时 ' + expValue(r.immediateScore,'/10') + ' · 延迟 ' + expValue(r.delayedScore,'/10') + '<br>只记事实，不用一天的分数给自己下结论。</p>' + (r.wordMode === 'random' ? '<details class="ex-sample"><summary>测试结束 · 查看原词和自己的回答</summary><p>原词：' + escapeHTML((r.words || []).join('、')) + '</p><p>即时：' + escapeHTML(r.immediateAnswer || '未写出') + '</p><p>延迟：' + escapeHTML(r.delayedAnswer || '未写出') + '</p><p class="ex-muted">按完全一致的词语自动计分，重复不计。若使用同义词，可在下方手动校正并注明。</p></details>' : '') + '<div class="ex-fields">' + expNum(r,'immediateScore','即时得分（可校正）',10) + expNum(r,'delayedScore','延迟得分（可校正）',10) + '</div>' + expField(r,'memoryNote','测试偏差 / 分数校正说明','textarea');
+  const remaining = expRemaining(r,'immediateSubmittedAt',900);
+  if (remaining > 0) return '<h3>还没到延迟回忆，先让大脑换个任务。</h3>' + expTimer(r,'immediateSubmittedAt',900,'满 15 分钟后开放输入；原词与即时回答保持隐藏') + expButton('step','去独立思考',true,' data-value="thinking"') + '<p class="ex-notice">切换其他页面也会继续计时。</p>';
+  return '<h3>不再看原词，再回忆一次。</h3><p class="ex-muted">能记住几个就写几个，满分 10。提交后才会显示原词与第一次答案。</p>' + expField(r,'delayedAnswer','延迟回忆','textarea',' autocomplete="off"') + (r.wordMode === 'external' ? expNum(r,'delayedScore','自行核对延迟得分（0–10）',10) : '') + '<div class="ex-actions">' + expButton('delayed-submit','提交延迟回忆',true) + '</div>';
+}
+function expThinking(r) {
+  let html = '<h3>8 分钟，只让自己先想。</h3><p class="ex-muted">不能问 AI、搜索或翻旧答案。允许卡住、推翻自己，或暂时只有几个词。</p>';
+  if (!r.thinkStartedAt) return html + expField(r,'question','今天的陌生题（可修改）','textarea',' placeholder="' + escapeAttr(EXP_QUESTIONS[r.day - 1]) + '"') + '<div class="ex-actions">' + expButton('think-start','开始 8 分钟',true) + '</div><p class="ex-muted" style="margin-top:10px">留空会采用当天题目。优先选择你现实中可能遇到、尚未看过答案的问题。</p>';
+  html += '<p class="ex-instruction">' + escapeHTML(r.question) + '</p>';
+  if (!r.thinkDone) html += expTimer(r,'thinkStartedAt',480,'独立搜索 → 生成 → 组织') + (!expHas(r.urgeSeconds) ? expButton('urge','第一次强烈想问 AI · 记下此刻') : '<p class="ex-muted">第一次求助冲动已记录：' + expClock(r.urgeSeconds) + '</p>');
+  html += expField(r,'ownAnswer','自己的思考 · 不需要写漂亮','textarea',' placeholder="想到什么先写什么，可以用要点。"') + expCheck(r,'helpUsed','这 8 分钟内曾求助 AI / 搜索 / 旧答案（如实标注）');
+  if (!r.thinkDone) return html + '<p class="ex-notice">满 8 分钟后开放 AI 对照区。这里不连接 AI，也不会发送你的内容。</p>';
+  html += '<p class="ex-instruction">8 分钟已完成。现在可以把同一道题交给你平时用的 AI，然后回来做三种标记：<br>✓ 我已经想到的　＋ AI 新补充的　→ 我想到但组织不好的</p>';
+  if (!expHas(r.urgeSeconds)) html += '<div class="ex-actions">' + expButton('no-urge','8 分钟内没有强烈求助冲动') + '</div>';
+  html += expField(r,'aiAnswer','AI 的回答（选填，手动粘贴）','textarea') + expField(r,'ownMatched','✓ 我自己已经想到的','textarea') + expField(r,'aiAdded','＋ AI 新增的关键点','textarea') + expField(r,'needsOrganization','→ 我想到但组织得不好的','textarea') + '<div class="ex-fields">' + expNum(r,'independentPoints','独立有效点（个）',100) + expNum(r,'aiNewPoints','AI 新增关键点（个）',100) + '</div><details class="ex-sample"><summary>补记第一次求助冲动时间</summary><p class="ex-muted">填 0:00 到 8:00；“无冲动”不等于在 8:00 出现冲动。</p><div class="ex-fields">' + expNum(r,'urgeMinutesManual','分钟',8) + expNum(r,'urgeSecondsManual','秒',59) + '</div>' + expButton('urge-manual','保存补记时间') + '</details>';
+  return html;
+}
+function expInterview(r) {
+  let html = '<h3>记住结构，不背整段。</h3><p class="ex-muted">把一道面试题压缩成 3–5 个关键词。看 30 秒，然后藏起锚点，脱稿说 60–90 秒。</p>';
+  if (!r.interviewStage) return html + expField(r,'interviewQuestion','今天的面试题','text',' placeholder="例如：请做一下自我介绍。"') + expField(r,'anchors','3–5 个关键词锚点（每行一个）','textarea',' placeholder="经历\n做了什么\n结果\n为什么匹配岗位"') + expButton('anchor-start','开始看锚点 · 30 秒',true);
+  html += '<p class="ex-instruction">' + escapeHTML(r.interviewQuestion || '请做一下自我介绍。') + '</p>';
+  if (r.interviewStage === 'preview') return html + expTimer(r,'anchorStartedAt',30,'30 秒后锚点自动隐藏') + '<div class="ex-anchor-display">' + escapeHTML(r.anchors) + '</div>' + expButton('anchor-hide','准备好了，藏起锚点');
+  if (r.interviewStage === 'ready') return html + '<div class="ex-instruction">锚点已隐藏。只凭结构讲下去，不求逐字一致。</div>' + expButton('speak-start','开始脱稿讲述',true);
+  if (r.interviewStage === 'speak') return html + expTimer(r,'speakStartedAt',90,'90 秒倒计时；讲满 60 秒后可以提前结束') + expButton('speak-end','我讲完了') + '<p class="ex-notice">不录音，不使用提词器。讲述结束后再检查核心意思。</p>';
+  return html + '<p class="ex-instruction">已独立讲述 ' + expValue(r.spokenSeconds,' 秒') + '。只检查核心点有没有漏，不检查原话有没有说对。</p><details class="ex-sample"><summary>讲述结束 · 查看锚点核对</summary><p style="white-space:pre-wrap">' + escapeHTML(r.anchors) + '</p></details><div class="ex-fields">' + expNum(r,'anchorsRecalled','记住的核心点（个）',5) + expNum(r,'anchorsTotal','全部核心点（个）',5) + '</div>' + expField(r,'interviewNote','哪些意思漏了？（选填）','textarea');
+}
+function expPaperMemory(r) {
+  return '<h3>纸上回忆测试已补记。</h3><p class="ex-instruction">即时 ' + expValue(r.immediateScore,'/10') + ' · 延迟 ' + expValue(r.delayedScore,'/10') + '<br>今天不再重复抽词，以免影响观察。可在每日记录里继续校正补记数据。</p>' + expButton('step','继续 · 独立思考',true,' data-value="thinking"');
+}
+function expDailyForm(r,run) {
+  const opportunity = expWakeOpportunity(r);
+  let planned = '';
+  if (run.baselineBedtime) {
+    const b = timeToMinutes(run.baselineBedtime), w = timeToMinutes(run.wakeTarget);
+    if (b !== null && w !== null && (w-b+1440)%1440 < 540) planned = minutesToTime((w-Math.min(540,(w-b+1440)%1440+Math.floor((r.day-1)/3)*25)+1440)%1440);
+  }
+  let html = '<section class="ex-card"><div class="ex-head"><h3>每日五项记录</h3><span class="ex-save" id="exp-save-status" role="status">' + (r.id ? '已保存在此浏览器' : '填写即自动保存') + '</span></div>';
+  html += '<h4>01 / 睡眠</h4><p class="ex-muted">固定起床参考：' + escapeHTML(run.wakeTarget || '未设置') + '，尽量在前后 1 小时内。' + (planned ? '<br>按每 3 天提前 25 分钟，今天入睡参考 ' + planned + '（最多提前到 9 小时机会）。' : '') + '</p>' +
+    '<div class="ex-fields">' + expField(r,'bedTime','昨晚几点睡','time') + expField(r,'wakeTime','今天几点起','time') + expNum(r,'sleepHours','估计实际睡了几小时',24,0.1) + '</div><p class="ex-muted" id="exp-sleep-window">' + (opportunity === null ? '睡眠机会与实际睡眠分开记录。' : '上述时间区间约 ' + opportunity + 'h，仅表示睡眠机会。') + '</p>';
+  html += '<hr class="ex-divider"><h4>02 / 精神状态</h4><div class="ex-fields">' + expNum(r,'clarity','清醒度（0–10）',10) + expNum(r,'fog','脑雾（0–10）',10) + '</div>';
+  html += '<hr class="ex-divider"><h4>03 / 记忆提取</h4><p class="ex-muted">' + (r.memoryStage === 'done' || r.paperMemory ? '即时 ' + expValue(r.immediateScore,'/10') + ' · 延迟 ' + expValue(r.delayedScore,'/10') : '在训练区跟随 10 词流程记录。') + '</p>';
+  if (!r.memoryStage) html += '<details class="ex-sample"><summary>已在纸上完成？手动补记得分</summary><p class="ex-muted">未开始应用内测试时，可以补记纸上结果。</p><div class="ex-fields">' + expNum(r,'immediateScore','即时（0–10）',10) + expNum(r,'delayedScore','延迟（0–10）',10) + '</div>' + expCheck(r,'paperMemory','已在纸上按 60 秒 / 15 分钟流程完成') + '</details>';
+  else if (r.memoryStage === 'done') html += '<p class="ex-muted">需要校正得分？在“④ 延迟回忆”中核对并修改。</p>';
+  html += '<hr class="ex-divider"><h4>04 / 独立思考</h4><p class="ex-muted">' + (r.thinkDone || r.paperThinking ? '8 分钟已完成' : '先独立 8 分钟，再与 AI 对照。') + '</p>';
+  html += '<details class="ex-sample"><summary>补记纸上完成的思考与面试</summary>' + expCheck(r,'paperThinking','已在纸上独立思考 8 分钟') +
+    '<div class="ex-fields">' + expNum(r,'paperIndependentPoints','独立有效点（补记）',100) + expNum(r,'paperAiNewPoints','AI 新增点（补记）',100) + '</div>' +
+    expField(r,'paperQuestion','独立思考题（补记）','text') + expField(r,'paperInterviewQuestion','面试题（补记）','text') + expField(r,'paperAnchors','面试锚点（补记，每行一个）','textarea') +
+    '<div class="ex-fields">' + expNum(r,'paperSpokenSeconds','独立讲述秒数（补记）',600) + expNum(r,'paperAnchorsRecalled','记住的核心点（补记）',5) + expNum(r,'paperAnchorsTotal','全部核心点（补记）',5) + '</div>' +
+    expNum(r,'paperUrgeSeconds','首次求助冲动（秒，2m40s = 160）',480) + expCheck(r,'noUrge','8 分钟内没有强烈求助冲动') + '</details>';
+  html += '<hr class="ex-divider"><h4>05 / AI 使用习惯</h4>' + expNum(r,'aiDirect','今天没先想就直接问 AI（次）',1000) + '<p class="ex-muted">正常使用 AI 不需要惩罚；只观察“遇到稍难问题便直接求助”的次数。</p>';
+  html += '<hr class="ex-divider"><h4>影响状态的情况</h4>' + expCheck(r,'caffeine','咖啡 / 奶茶') + expCheck(r,'longNap','午睡超过 1 小时') + expCheck(r,'insomnia','前一晚严重失眠') + expCheck(r,'lowMood','情绪特别低落 / 焦虑') + expField(r,'note','简单备注（选填）','textarea',' placeholder="如：昨夜醒过几次、测试被打断。写事实就好。"') + '</section>';
+  return html;
+}
+function expPoints(r) { return expHas(r.independentPoints) ? r.independentPoints : r.paperIndependentPoints; }
+function expAiPoints(r) { return expHas(r.aiNewPoints) ? r.aiNewPoints : r.paperAiNewPoints; }
+function expSummary(r) {
+  const urge = r.noUrge ? '8 分钟内无强烈冲动' : expHas(r.urgeSeconds) ? expClock(r.urgeSeconds) : r.paperUrge || '—';
+  const factors = [['caffeine','咖啡/奶茶'],['longNap','午睡>1h'],['insomnia','严重失眠'],['lowMood','低落/焦虑'],['helpUsed','独立时段曾求助']].filter(function (x) { return r[x[0]]; }).map(function (x) { return x[1]; });
+  return 'D' + r.day + ' · ' + r.date + '\n睡眠：' + (r.bedTime || '—') + '–' + (r.wakeTime || '—') + '，约 ' + (expHas(r.sleepHours) ? r.sleepHours : '—') + 'h\n清醒：' + (expHas(r.clarity) ? r.clarity : '—') + '/10｜脑雾：' + (expHas(r.fog) ? r.fog : '—') + '/10\n10词：即时 ' + (expHas(r.immediateScore) && (r.memoryStage === 'done' || r.paperMemory) ? r.immediateScore : '—') + '｜延迟 ' + (expHas(r.delayedScore) && (r.memoryStage === 'done' || r.paperMemory) ? r.delayedScore : '—') + '\n独立题：' + (r.thinkDone || r.paperThinking ? '8min' : '未完成') + '，自己 ' + (expHas(expPoints(r)) ? expPoints(r) : '—') + ' 点｜AI新增 ' + (expHas(expAiPoints(r)) ? expAiPoints(r) : '—') + ' 点\n第一次想问AI：' + urge + '\n面试题：记住 ' + (r.anchorsRecalled === undefined ? r.paperAnchorsRecalled === undefined ? '—' : r.paperAnchorsRecalled : r.anchorsRecalled) + '/' + (r.anchorsTotal || r.paperAnchorsTotal || '—') + ' 个核心点，独立讲 ' + (r.spokenSeconds === undefined ? r.paperSpokenSeconds === undefined ? '—' : r.paperSpokenSeconds : r.spokenSeconds) + 's\n今天没想就问AI：' + (expHas(r.aiDirect) ? r.aiDirect : '—') + ' 次' + (factors.length ? '\n影响因素：' + factors.join('、') : '') + (r.note ? '\n备注：' + r.note : '');
+}
+
+function expSetup() {
+  const run = expRun();
+  showModal({title:run ? '开始新的 14 天' : '设置我的 14 天实验', subtitle:run ? '已有周期与记录会保留，新周期单独记录。' : '先确定开始日与起床参考时间，之后每天跟着步骤走。', submitText:'创建实验', body:
+    '<label class="field">开始日期<input class="input" type="date" data-field="startDate" value="' + todayStr() + '"></label>' +
+    '<label class="field">固定起床参考<input class="input" type="time" data-field="wakeTarget" value="08:30"></label>' +
+    '<label class="field">目前通常几点睡（选填）<input class="input" type="time" data-field="baselineBedtime"></label>' +
+    '<p class="ex-muted">每天留出约 25–35 分钟。按你的计划争取 7–9 小时睡眠机会；如果填入当前入睡时间，会按每 3 天提前 25 分钟提供参考。实际情况仍以当天记录为准。</p>', onSubmit:function (data) {
+      if (!isValidDateStr(data.startDate) || !/^\d{2}:\d{2}$/.test(data.wakeTarget)) { showToast('请填写有效的开始日期和起床参考时间','warning'); return false; }
+      const r = insertRecord('experimentRuns',{startDate:data.startDate,wakeTarget:data.wakeTarget,baselineBedtime:data.baselineBedtime || ''});
+      state.settings.activeExperimentId = r.id; state.settings.defaultRoute = 'experiment'; expUI.day = null; expUI.step = 'memory'; saveState(true); navigate('experiment'); renderCurrentRoute();
+    }});
+}
+function saveExperimentInput(el) {
+  const run = expRun(); if (!run) return;
+  const key = el.getAttribute('data-exp-field');
+  if (ui.route === 'experiment-review') {
+    if (expElapsed(run) < 14 || !['reflectionSleep','reflectionMemory','reflectionThinking','reflectionUrge'].includes(key)) return;
+    run[key] = el.value; expSaved(run);
+  } else {
+    if (expElapsed(run) < expDay(run)) return;
+    const r = expLog(run,expDay(run),true);
+    let value = el.type === 'checkbox' ? el.checked : el.value;
+    if (el.type === 'number') {
+      if (value === '') value = null;
+      else { const n = Number(value), step = Number(el.step || 1); if (!Number.isFinite(n) || n < Number(el.min) || n > Number(el.max) || (step === 1 && !Number.isInteger(n))) { el.setCustomValidity('请填写范围内的有效数字'); el.reportValidity(); return; } value = n; }
+    }
+    el.setCustomValidity('');
+    r[key] = value;
+    if (key === 'paperUrgeSeconds') {
+      r.urgeSeconds = value; r.noUrge = false;
+      const check = document.querySelector('[data-exp-field="noUrge"]'); if (check) check.checked = false;
+    }
+    if (key === 'noUrge' && value) {
+      r.urgeSeconds = null; r.paperUrgeSeconds = null;
+      const seconds = document.querySelector('[data-exp-field="paperUrgeSeconds"]'); if (seconds) seconds.value = '';
+    }
+    expSaved(r);
+  }
+  const status = document.getElementById('exp-save-status'); if (status) status.textContent = storageAvailable ? '已自动保存在此浏览器' : '保存失败，请导出备份';
+  const r = expLog(run,expDay(run),false);
+  const summary = document.getElementById('exp-summary'); if (summary) summary.textContent = expSummary(r);
+  const sleep = document.getElementById('exp-sleep-window'); if (sleep) { const h = expWakeOpportunity(r); sleep.textContent = h === null ? '睡眠机会与实际睡眠分开记录。' : '上述时间区间约 ' + h + 'h，仅表示睡眠机会。'; }
+}
+function experimentAction(action, el) {
+  if (action === 'exp-setup') { expSetup(); return; }
+  if (action === 'exp-export') { exportAllData(); return; }
+  const run = expRun(); if (!run) return;
+  const val = el.getAttribute('data-value');
+  if (action === 'exp-day') { expUI.day = Number(val); if (ui.route !== 'experiment') navigate('experiment'); else renderCurrentRoute(); return; }
+  if (action === 'exp-step') { expUI.step = val; renderCurrentRoute(); return; }
+  if (action === 'exp-checkpoint') { expOpenCheckpoint(run); return; }
+  if (action === 'exp-records') { navigate('experiment-records'); return; }
+  const r = expLog(run,expDay(run),true); expStageSync(r);
+  if (r.day > expElapsed(run)) return;
+  switch (action) {
+    case 'exp-word-start': {
+      if (r.memoryStage || r.paperMemory) { showToast('今天已有回忆测试记录，请继续当前进度','info'); return; }
+      r.wordMode = val === 'external' ? 'external' : 'random';
+      if (r.wordMode === 'random') {
+        const words = EXP_WORD_CATEGORIES.map(function (group) {return group[expRandomIndex(group.length)];});
+        for (let i=words.length-1;i>0;i--) { const j = expRandomIndex(i+1), tmp = words[i]; words[i]=words[j]; words[j]=tmp; }
+        r.words = words;
+      }
+      r.wordStartedAt = Date.now(); r.memoryStage = 'memorize'; break;
+    }
+    case 'exp-word-hide': if (r.memoryStage !== 'memorize') return; r.wordViewedSeconds = Math.min(60,Math.round((Date.now()-r.wordStartedAt)/1000)); r.memoryStage = 'immediate'; break;
+    case 'exp-immediate-submit':
+      if (r.memoryStage !== 'immediate') return;
+      if (r.wordMode === 'external' && !expHas(r.immediateScore)) { showToast('请填写即时回忆得分，未记起可填 0','warning'); return; }
+      if (r.wordMode === 'random') r.immediateScore = expScore(r.words || [],r.immediateAnswer);
+      r.immediateSubmittedAt = Date.now(); r.memoryStage = 'waiting'; expUI.step = 'thinking'; break;
+    case 'exp-delayed-submit':
+      if (!r.immediateSubmittedAt || expRemaining(r,'immediateSubmittedAt',900) > 0 || r.memoryStage === 'done') return;
+      if (r.wordMode === 'external' && !expHas(r.delayedScore)) { showToast('请填写延迟回忆得分，未记起可填 0','warning'); return; }
+      if (r.wordMode === 'random') r.delayedScore = expScore(r.words || [],r.delayedAnswer);
+      r.memoryStage = 'done'; r.delayedSubmittedAt = Date.now(); break;
+    case 'exp-think-start': if (r.thinkStartedAt) return; r.question = String(r.question || '').trim() || EXP_QUESTIONS[r.day-1]; r.thinkStartedAt = Date.now(); break;
+    case 'exp-urge': if (!r.thinkStartedAt || r.thinkDone || expHas(r.urgeSeconds)) return; r.urgeSeconds = Math.min(480,Math.floor((Date.now()-r.thinkStartedAt)/1000)); r.noUrge = false; break;
+    case 'exp-no-urge': if (!r.thinkDone) return; r.noUrge = true; r.urgeSeconds = null; break;
+    case 'exp-urge-manual': {
+      if (!expHas(r.urgeMinutesManual) && !expHas(r.urgeSecondsManual)) { showToast('请填写补记时间','warning'); return; }
+      const s = Number(r.urgeMinutesManual || 0)*60+Number(r.urgeSecondsManual || 0); if (s > 480) { showToast('请填写 0:00 到 8:00 之间的时间','warning'); return; } r.urgeSeconds=s; r.noUrge=false; break;
+    }
+    case 'exp-anchor-start': {
+      const anchors = String(r.anchors || '').split(/\n/).map(function (s) {return s.trim();}).filter(Boolean);
+      if (anchors.length < 3 || anchors.length > 5) { showToast('请每行一个，填写 3–5 个关键词锚点','warning'); return; }
+      if (r.interviewStage) return; r.anchors = anchors.join('\n'); r.anchorsTotal = anchors.length; r.anchorStartedAt = Date.now(); r.interviewStage = 'preview'; break;
+    }
+    case 'exp-anchor-hide': if (r.interviewStage !== 'preview') return; r.interviewStage = 'ready'; break;
+    case 'exp-speak-start': if (r.interviewStage !== 'ready') return; r.speakStartedAt = Date.now(); r.interviewStage = 'speak'; break;
+    case 'exp-speak-end': {
+      if (r.interviewStage !== 'speak') return;
+      const s = Math.floor((Date.now()-r.speakStartedAt)/1000); if (s < 60) { showToast('还未到 60 秒，允许停顿，继续把核心意思讲完','info'); return; } r.spokenSeconds = Math.min(s,90); r.interviewStage = 'done'; break;
+    }
+    case 'exp-record':
+      if (expHas(r.anchorsRecalled) && Number(r.anchorsRecalled) > Number(r.anchorsTotal || 0) || expHas(r.paperAnchorsRecalled) && Number(r.paperAnchorsRecalled) > Number(r.paperAnchorsTotal || 0)) { showToast('记住的核心点不能大于全部核心点','warning'); return; }
+      r.recorded = true; showToast('今天的事实已记录。到这里就好。'); break;
+    case 'exp-copy': {
+      const text = expSummary(r);
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(function () {showToast('已复制今日记录');}).catch(function () {expShowCopy(text);}); else expShowCopy(text);
+      return;
+    }
+    default:return;
+  }
+  expSaved(r); renderCurrentRoute();
+}
+function expShowCopy(text) { showModal({title:'复制今日记录',body:'<textarea class="input" readonly rows="12" style="width:100%">' + escapeHTML(text) + '</textarea>',hideSubmit:true,cancelText:'关闭'}); }
+
+function renderExperimentRecords() {
+  const run = expRun(); if (!run) return expEmpty();
+  let html = '<div class="ex-shell">' + expHeader(run,'只记录事实，不急着解释。','点选某一天，可以继续训练或补记。空白代表尚未记录，0 才代表实际记录为零。');
+  html += '<section class="ex-card"><div class="ex-head"><h3>14 天记录</h3>' + expButton('setup','开启新周期') + '</div><div class="ex-table-wrap"><table class="ex-table"><thead><tr><th>日期</th><th>睡眠 h</th><th>清醒 / 脑雾</th><th>即时 / 延迟</th><th>独立点 / AI新增</th><th>首次求助冲动</th><th>直接问 AI 次数</th><th>状态</th></tr></thead><tbody>';
+  for (let day=1;day<=14;day++) {
+    const r = expLog(run,day,false), future = day > expElapsed(run);
+    html += '<tr><td>' + (future ? 'D'+day : '<button type="button" data-action="exp-day" data-value="' + day + '">D' + day + '</button>') + ' · ' + formatDateShort(r.date) + '</td><td>' + expValue(r.sleepHours) + '</td><td>' + expValue(r.clarity) + ' / ' + expValue(r.fog) + '</td><td>' + (r.memoryStage === 'done' || r.paperMemory ? expValue(r.immediateScore) + ' / ' + expValue(r.delayedScore) : '— / —') + '</td><td>' + expValue(expPoints(r)) + ' / ' + expValue(expAiPoints(r)) + '</td><td>' + (r.noUrge ? '8 分钟内无冲动' : expHas(r.urgeSeconds) ? expClock(r.urgeSeconds) : escapeHTML(r.paperUrge || '—')) + '</td><td>' + expValue(r.aiDirect) + '</td><td>' + (future ? '未开始' : r.recorded ? '已记录' : r.id ? '记录中' : '待记录') + '</td></tr>';
+  }
+  return html + '</tbody></table></div><p class="ex-notice">横向滑动查看完整表格。统计会排除缺失值；训练中产生的回忆得分在两次回忆结束前不展示。</p></section><section class="ex-card soft"><h3>记录安全地留在你这边</h3><p class="ex-muted">数据只保存在当前浏览器，不会上传到 GitHub。电脑和手机不自动同步；换设备前导出 JSON，到另一台设备的“设置 → 导入数据”恢复。备份包含原有工作台数据和所有实验周期。</p><div class="ex-actions">' + expButton('export','导出完整 JSON 备份',true) + '<button class="btn" data-action="go" data-route="settings">打开设置与导入</button></div></section></div>';
+}
+function expLogs(run,maxDay) { return coll('experimentLogs').filter(function (r) {return r.runId === run.id && r.day <= maxDay;}).sort(function (a,b) {return a.day-b.day;}); }
+function expMetric(r,key) {
+  if (['immediateScore','delayedScore'].includes(key) && r.memoryStage !== 'done' && !r.paperMemory) return null;
+  if (key === 'independentPoints') return expPoints(r);
+  if (key === 'aiNewPoints') return expAiPoints(r);
+  if (key === 'urgeSeconds' && r.noUrge) return null;
+  return r[key];
+}
+function expAverage(logs,key) { const vals = logs.map(function (r) {return expMetric(r,key);}).filter(expHas).map(Number); return {n:vals.length,mean:vals.length ? vals.reduce(function (a,b) {return a+b;},0)/vals.length : null}; }
+const EXP_METRICS = [['sleepHours','实际睡眠','h'],['clarity','清醒度','/10'],['fog','脑雾','/10'],['immediateScore','即时回忆','/10'],['delayedScore','延迟回忆','/10'],['independentPoints','独立有效点','个'],['aiNewPoints','AI 新增关键点','个'],['aiDirect','没想就问 AI','次'],['urgeSeconds','首次求助冲动','秒']];
+function expMeanTable(stats) { return '<div class="ex-table-wrap"><table class="ex-table"><thead><tr><th>指标</th><th>均值</th><th>有效记录数</th></tr></thead><tbody>' + EXP_METRICS.map(function (m) { const s=stats[m[0]] || {n:0,mean:null}; return '<tr><td>' + m[1] + '</td><td>' + (s.n ? Number(s.mean).toFixed(1) + ' ' + m[2] : '—') + '</td><td>n = ' + s.n + '</td></tr>';}).join('') + '</tbody></table></div>'; }
+function expStats(logs) { const stats={}; EXP_METRICS.forEach(function (m) {stats[m[0]]=expAverage(logs,m[0]);}); return stats; }
+function expOpenCheckpoint(run) {
+  if (expElapsed(run)<7 || run.checkpoint7) return;
+  const logs=expLogs(run,7); if (!logs.length) {showToast('先记录一些事实，再看阶段均值','info');return;}
+  run.checkpoint7={openedAt:nowISO(),stats:expStats(logs),noUrgeDays:logs.filter(function (r) {return r.noUrge;}).length}; expSaved(run); renderCurrentRoute();
+}
+function expCorrelation(logs) {
+  const pairs=logs.filter(function (r) {return expHas(r.sleepHours)&&expHas(r.fog);});
+  if (pairs.length<5) return '睡眠与脑雾只有 ' + pairs.length + ' 对有效记录；暂不计算相关系数。';
+  const mx=pairs.reduce(function (s,r) {return s+Number(r.sleepHours);},0)/pairs.length, my=pairs.reduce(function (s,r) {return s+Number(r.fog);},0)/pairs.length;
+  let cov=0,vx=0,vy=0; pairs.forEach(function (r) {const x=Number(r.sleepHours)-mx,y=Number(r.fog)-my;cov+=x*y;vx+=x*x;vy+=y*y;});
+  if (!vx||!vy) return '有效配对 n = ' + pairs.length + '，但一个指标没有变化，无法计算相关系数。';
+  return '睡眠时长与脑雾的 Pearson r = ' + (cov/Math.sqrt(vx*vy)).toFixed(2) + '（有效配对 n = ' + pairs.length + '）。负值表示这些记录中，睡得较长的日子往往脑雾较低；只是观察关联，不能推断原因或诊断。';
+}
+function expInterviewTable(logs) {
+  return '<section class="ex-card"><h3>安静回忆与面试提取 · 原始对照</h3><p class="ex-muted">两项任务的计分不同，不能直接比较分数高低。结合紧张、失眠等备注，看自己在什么情境下更容易提取核心意思。</p><div class="ex-table-wrap"><table class="ex-table"><thead><tr><th>日期</th><th>即时 / 延迟（满分10）</th><th>面试核心点</th><th>脱稿讲述</th><th>低落 / 焦虑标记</th></tr></thead><tbody>' + logs.map(function(r) {
+    const recalled = expHas(r.anchorsRecalled) ? r.anchorsRecalled : r.paperAnchorsRecalled;
+    const total = expHas(r.anchorsTotal) ? r.anchorsTotal : r.paperAnchorsTotal;
+    const seconds = expHas(r.spokenSeconds) ? r.spokenSeconds : r.paperSpokenSeconds;
+    return '<tr><td>D' + r.day + '</td><td>' + expValue(expMetric(r,'immediateScore')) + ' / ' + expValue(expMetric(r,'delayedScore')) + '</td><td>' + expValue(recalled) + ' / ' + expValue(total) + '</td><td>' + expValue(seconds,'s') + '</td><td>' + (r.lowMood ? '当天有标记' : '未标记') + '</td></tr>';
+  }).join('') + '</tbody></table></div></section>';
+}
+function expPlot(logs,key,label,max) {
+  const vals=Array.from({length:14},function (_,i) {const r=logs.find(function (x) {return Number(x.day)===i+1;});const v=r?expMetric(r,key):null;return expHas(v)?Number(v):null;});
+  const top=Math.max(max||1,...vals.filter(function (v) {return v!==null;}));
+  const x=function(i){return 30+i*30;}, y=function(v){return 115-v/top*90;};
+  let lines=''; for(let i=1;i<14;i++) if(vals[i-1]!==null&&vals[i]!==null) lines+='<line x1="'+x(i-1)+'" y1="'+y(vals[i-1])+'" x2="'+x(i)+'" y2="'+y(vals[i])+'" stroke="var(--teal-dark)" stroke-width="2"/>';
+  return '<figure><figcaption class="ex-muted">'+label+' · 缺失日留空</figcaption><svg class="ex-plot" viewBox="0 0 440 145" role="img" aria-label="'+label+' 的14天趋势"><line x1="30" y1="115" x2="420" y2="115" stroke="var(--border)"/><text x="4" y="30">'+Math.round(top)+'</text><text x="10" y="118">0</text>'+lines+vals.map(function(v,i){return (v===null?'':'<circle cx="'+x(i)+'" cy="'+y(v)+'" r="3.5" fill="var(--teal-dark)"><title>D'+(i+1)+'：'+v+'</title></circle>')+'<text x="'+(x(i)-7)+'" y="138">'+(i+1)+'</text>';}).join('')+'</svg></figure>';
+}
+function renderExperimentReview() {
+  const run=expRun();if(!run)return expEmpty();
+  const elapsed=expElapsed(run);
+  let html='<div class="ex-shell">'+expHeader(run,'把判断，留给足够长的观察。','一天的表现不是结论。我们只在约定的时间，看看这些事实放在一起是什么样子。');
+  if(elapsed<7)return html+'<section class="ex-card ex-empty">'+svg('moon',32)+'<h2 style="margin-top:16px">现在，只需要记录。</h2><p class="ex-muted">阶段均值将在 '+addDays(run.startDate,6)+'（D7）开放。<br>先收集事实，不用反复检查自己有没有进步。</p>'+expButton('records','查看原始记录')+'</section></div>';
+  html+='<section class="ex-card"><div class="ex-head"><h3>D7 · 一次阶段均值</h3><span class="ex-pill">不作诊断与排名</span></div>';
+  if(!run.checkpoint7)html+='<p class="ex-muted">主动打开后，保存当时 D1–D7 的均值快照。后续补记不会反复刷新这份快照。</p><div class="ex-actions">'+expButton('checkpoint','查看并保存 D7 均值',true)+'</div>';
+  else html+='<p class="ex-muted">快照保存于 '+escapeHTML(new Date(run.checkpoint7.openedAt).toLocaleDateString())+'。空白不按 0 计算；“8 分钟内无冲动”单独计数，不视作 8:00 出现冲动。</p>'+expMeanTable(run.checkpoint7.stats)+'<p class="ex-muted">8 分钟内无强烈求助冲动：'+run.checkpoint7.noUrgeDays+' 天。</p>';
+  html+='</section>';
+  if(elapsed<14)return html+'<section class="ex-card soft ex-empty"><h3>D14 再统一复盘</h3><p class="ex-muted">'+addDays(run.startDate,13)+' 开放完整趋势与四个复盘问题。现在继续你的生活与秋招，不需要每天分析自己。</p></section></div>';
+  const logs=expLogs(run,14), stats=expStats(logs), invalid=logs.filter(function(r){return r.helpUsed;}).length;
+  html += expInterviewTable(logs);
+  html+='<section class="ex-card"><div class="ex-head"><h3>D14 · 14 天完整回顾</h3>'+expButton('export','导出备份')+'</div><p class="ex-instruction">结果是个人状态的线索，不是认知能力的判决。不同题目的难度、测试环境、失眠、咖啡因和情绪都会影响可比性。以下统计包含有数值的记录，不替缺失日填 0。</p>'+expMeanTable(stats)+'<p class="ex-muted">独立时段曾求助的记录：'+invalid+' 天（仍保留在原始统计中，请结合备注判断）。8 分钟内无强烈冲动：'+logs.filter(function(r){return r.noUrge;}).length+' 天。</p></section>';
+  html+='<div class="ex-review-grid"><section class="ex-card"><h3>01 / 睡眠与脑雾</h3><p class="ex-muted">'+expCorrelation(logs)+'</p>'+expPlot(logs,'sleepHours','实际睡眠 / 小时',9)+expPlot(logs,'fog','脑雾 / 0–10',10)+expField(run,'reflectionSleep','睡眠较足的日子，脑雾与回忆表现有什么不同？','textarea')+'</section><section class="ex-card"><h3>02 / 记忆的情境</h3><p class="ex-muted">比较安静环境回忆与面试时的核心点提取，只记录观察到的差异，不据此判断病因。</p>'+expPlot(logs,'immediateScore','即时回忆 / 0–10',10)+expPlot(logs,'delayedScore','延迟回忆 / 0–10',10)+expField(run,'reflectionMemory','安静回忆和面试提取有什么差别？','textarea')+'</section><section class="ex-card"><h3>03 / 独立生成</h3><p class="ex-muted">观察能否坚持完整 8 分钟、写出自己的框架。每天题目不同，点数不能直接当作能力分数。</p>'+expPlot(logs,'independentPoints','独立有效点 / 个',5)+expField(run,'reflectionThinking','比起 D1，我现在能否独立搭出粗框架？','textarea')+'</section><section class="ex-card"><h3>04 / 容忍暂时不知道</h3><p class="ex-muted">无冲动日单独记录；没有按 8 分钟填入曲线。观察是否更能留在问题里，而不是立刻寻求答案。</p>'+expPlot(logs,'urgeSeconds','第一次强烈求助冲动 / 秒',480)+expPlot(logs,'aiDirect','没想就直接问 AI / 次',5)+expField(run,'reflectionUrge','我能否在不知道时，先留一点时间给自己？','textarea')+'</section></div><section class="ex-card soft"><p class="ex-muted">四段复盘文字自动保存。你可以继续补记本周期，或开启新周期；已有数据会保留。</p><div class="ex-actions">'+expButton('setup','开始新的 14 天')+expButton('records','回看原始记录')+'</div></section></div>';
+  return html;
+}
+
+// 只更新钟面，不周期性重绘输入表单；阶段切换才重绘当前训练视图。
+let expDelayWasReady = false;
+setInterval(function () {
+  const run=expRun();if(!run)return;
+  let changed=false;
+  expLogs(run,14).forEach(function(r){if(expStageSync(r))changed=true;});
+  const r=expLog(run,expDay(run),false);
+  const delayReady=!!r.immediateSubmittedAt&&expRemaining(r,'immediateSubmittedAt',900)<=0;
+  if(ui.route==='experiment') {
+    if(changed || (delayReady&&!expDelayWasReady&&expUI.step==='delayed'&&r.memoryStage!=='done'))renderCurrentRoute();
+    document.querySelectorAll('[data-exp-clock]').forEach(function(el){el.textContent=expClock(expRemaining(r,el.getAttribute('data-exp-clock'),Number(el.getAttribute('data-exp-duration'))));});
+    const banner=document.querySelector('[data-exp-delay-banner]');if(banner)banner.textContent=delayReady?'15 分钟已到，可以进行延迟回忆。':'延迟回忆还需 '+expClock(expRemaining(r,'immediateSubmittedAt',900))+'，可以先完成思考和面试练习。';
+  }
+  expDelayWasReady=delayReady;
+},1000);
+window.addEventListener('pagehide',function(){if(saveTimer)saveState(true);});
+
+/* ==========================================================================
    区域 21：绑定与启动
    ========================================================================== */
 function bindEvents() {
@@ -4351,7 +4811,9 @@ function bindEvents() {
 
 function boot() {
   loadState();
-  if (!state.meta.createdAt) { state.meta.createdAt = nowISO(); saveState(true); }
+  applyAppearance();
+  if (!state.meta.createdAt) state.meta.createdAt = nowISO();
+  saveState(true);
   carryOverTasks();
   ensureAutoWordTask();
   bindEvents();
