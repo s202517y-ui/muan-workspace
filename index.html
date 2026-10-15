@@ -74,12 +74,6 @@
 
 /* 各页面主题色（蓝绿为主，暖色点缀） */
 body[data-route="dashboard"]{ --accent:var(--teal);    --accent-dark:var(--teal-dark); }
-body[data-route="today"]{      --accent:var(--blue);    --accent-dark:var(--blue-dark); }
-body[data-route="planner"]{    --accent:var(--green);   --accent-dark:var(--green-dark); }
-body[data-route="words"]{      --accent:var(--purple);  --accent-dark:#8A78A0; }
-body[data-route="matrix"]{     --accent:var(--teal);    --accent-dark:var(--teal-dark); }
-body[data-route="jobs"]{       --accent:var(--blue);    --accent-dark:var(--blue-dark); }
-body[data-route="milktea"]{    --accent:var(--brown);   --accent-dark:var(--coffee); }
 body[data-route="review"]{     --accent:var(--orange);  --accent-dark:#B9843F; }
 body[data-route="settings"]{   --accent:var(--coffee);  --accent-dark:#574539; }
 
@@ -441,178 +435,6 @@ table.tbl td.tc-actions{white-space:nowrap;text-align:right}
 /* ==========================================================================
    5. 业务模块样式
    ========================================================================== */
-/* 总览 */
-.hero{background:linear-gradient(120deg,#86AA99 0%,#829CAD 100%);color:#fff;border-radius:var(--radius);padding:18px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap;box-shadow:var(--shadow-2)}
-.hero h2{font-size:1.15rem;font-weight:700}
-.hero p{font-size:.78rem;color:rgba(255,255,255,.82)}
-[data-theme="dark"] .hero{background:linear-gradient(120deg,#4E6B62 0%,#5A6E84 100%)}
-.hero .hero-ring{flex:none;width:74px;height:74px;position:relative;border-radius:50%;border:2px solid rgba(255,255,255,.42)}
-.hero .hero-ring svg{transform:rotate(-90deg)}
-.hero .hero-ring .rv{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.86rem;font-weight:700}
-.quick-add{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:9px}
-.quick-add button{display:flex;flex-direction:column;align-items:center;gap:6px;padding:13px 8px;border-radius:var(--radius-sm);background:var(--surface-2);border:1px solid var(--border);font-size:.76rem;color:var(--text-secondary);min-height:66px;justify-content:center}
-.quick-add button:hover{border-color:var(--primary);color:var(--primary-dark);background:var(--primary-ghost)}
-
-/* 任务项 */
-.task-item{display:flex;gap:11px;padding:11px 2px;align-items:flex-start}
-.task-check{width:20px;height:20px;flex:none;border-radius:6px;border:1.8px solid var(--border-strong);background:var(--surface);display:flex;align-items:center;justify-content:center;margin-top:2px;transition:all .14s;color:transparent}
-.task-check:hover{border-color:var(--primary)}
-.task-check.on{background:var(--primary);border-color:var(--primary);color:#fff}
-.task-main{flex:1;min-width:0}
-.task-title{font-size:.86rem;font-weight:600;overflow-wrap:anywhere;line-height:1.45}
-.task-item.done .task-title{text-decoration:line-through;color:var(--text-muted);font-weight:500}
-.task-desc{font-size:.74rem;color:var(--text-secondary);margin-top:2px;overflow-wrap:anywhere}
-.task-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;align-items:center}
-.task-acts{display:flex;gap:2px;flex:none;align-items:center}
-.task-sel{width:18px;height:18px;accent-color:var(--primary);margin-top:3px;flex:none}
-.bulkbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:10px var(--pad);background:var(--primary-soft);border-bottom:1px solid var(--border)}
-.bulkbar .bb-txt{font-size:.79rem;color:var(--primary-dark);font-weight:600;flex:1;min-width:100px}
-
-/* 时间规划 */
-.tl{position:relative;display:flex;flex-direction:column;gap:9px}
-.tl-item{display:flex;gap:11px;align-items:stretch}
-.tl-time{flex:none;width:52px;text-align:right;font-size:.74rem;color:var(--text-secondary);padding-top:10px;font-variant-numeric:tabular-nums}
-.tl-time b{display:block;font-size:.8rem;color:var(--text-primary);font-weight:700}
-.tl-line{flex:none;width:12px;display:flex;flex-direction:column;align-items:center;padding-top:14px}
-.tl-line .tl-dot{width:10px;height:10px;border-radius:50%;background:var(--primary);flex:none;box-shadow:0 0 0 3px var(--primary-soft)}
-.tl-line .tl-bar{flex:1;width:2px;background:var(--border);margin-top:3px}
-.tl-card{flex:1;min-width:0;background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--primary);border-radius:var(--radius-sm);padding:10px 12px;box-shadow:var(--shadow-1)}
-.tl-card.done{opacity:.68}
-.tl-card.done .tl-title{text-decoration:line-through}
-.tl-title{font-size:.85rem;font-weight:600;overflow-wrap:anywhere}
-.tl-sub{font-size:.72rem;color:var(--text-muted);margin-top:2px;overflow-wrap:anywhere}
-.tl-conflict{border-left-color:var(--warning)}
-.week-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
-.week-col{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:8px;min-height:110px;display:flex;flex-direction:column;gap:6px}
-.week-col.today{border-color:var(--primary);background:var(--primary-ghost)}
-.week-col h4{font-size:.72rem;color:var(--text-secondary);display:flex;justify-content:space-between;align-items:center;gap:4px}
-.week-col h4 b{font-size:.82rem;color:var(--text-primary)}
-.wk-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--primary);border-radius:7px;padding:5px 7px;font-size:.7rem;text-align:left;width:100%;overflow-wrap:anywhere}
-.wk-block.done{opacity:.6;text-decoration:line-through}
-.wk-block b{display:block;font-size:.72rem;font-weight:600}
-@media (max-width:899px){ .week-grid{grid-template-columns:1fr} .week-col{min-height:0} }
-
-/* 单词 */
-.bars7{display:flex;align-items:flex-end;gap:8px;height:118px;padding-top:6px}
-.bars7 .b7{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
-.bars7 .b7 .b7-track{width:100%;max-width:34px;flex:1;background:var(--surface-3);border-radius:7px;display:flex;align-items:flex-end;overflow:hidden;position:relative}
-.bars7 .b7 .b7-fill{width:100%;background:var(--primary);border-radius:7px;transition:height .3s;min-height:3px}
-.bars7 .b7 .b7-fill.miss{background:var(--warning)}
-.bars7 .b7 .b7-fill.zero{background:var(--border-strong)}
-.bars7 .b7 .b7-lb{font-size:.66rem;color:var(--text-muted);text-align:center;line-height:1.25}
-.bars7 .b7 .b7-vl{font-size:.66rem;color:var(--text-secondary);font-variant-numeric:tabular-nums}
-.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
-.cal .cal-h{text-align:center;font-size:.68rem;color:var(--text-muted);padding-bottom:2px}
-.cal .cal-d{aspect-ratio:1;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:.7rem;color:var(--text-secondary);min-height:30px;gap:1px}
-.cal .cal-d.blank{background:transparent;border-color:transparent}
-.cal .cal-d.ok{background:var(--success);border-color:var(--success);color:#fff;font-weight:600}
-.cal .cal-d.part{background:var(--purple-soft);border-color:var(--purple);color:var(--purple);font-weight:600}
-.cal .cal-d.today{outline:2px solid var(--primary);outline-offset:1px}
-
-/* 四象限 */
-.matrix{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:var(--gap)}
-.quad{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;overflow:hidden;box-shadow:var(--shadow-1);min-height:190px}
-.quad-head{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--border)}
-.quad-head .qh-num{font-weight:800;font-size:.9rem;flex:none;font-family:"Times New Roman",Georgia,serif}
-.quad-head .qh-name{flex:1;min-width:0;font-size:.83rem;font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.quad-head .qh-count{font-size:.7rem;opacity:.8;flex:none}
-.quad-head .qh-add{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex:none;background:rgba(255,255,255,.55)}
-[data-theme="dark"] .quad-head .qh-add{background:rgba(255,255,255,.1)}
-.quad-body{flex:1;padding:10px;display:flex;flex-direction:column;gap:8px;background:var(--surface);max-height:330px;overflow-y:auto}
-.quad[data-q="1"] .quad-head{background:var(--q1-soft);color:var(--q1)}
-.quad[data-q="2"] .quad-head{background:var(--q2-soft);color:var(--q2)}
-.quad[data-q="3"] .quad-head{background:var(--q3-soft);color:var(--q3)}
-.quad[data-q="4"] .quad-head{background:var(--q4-soft);color:var(--q4)}
-.quad.dragover{outline:2px dashed var(--primary);outline-offset:-4px}
-.qcard{background:var(--surface-2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:9px 10px;display:flex;gap:8px;align-items:flex-start;cursor:grab}
-.qcard:active{cursor:grabbing}
-.qcard.dragging{opacity:.42}
-.qcard.done{opacity:.62}
-.qcard.done .qc-title{text-decoration:line-through;color:var(--text-muted)}
-.qc-main{flex:1;min-width:0}
-.qc-title{font-size:.81rem;font-weight:600;overflow-wrap:anywhere;line-height:1.4;min-width:0;text-align:left;width:100%;writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word}
-.qc-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:5px}
-.qc-action-label{display:none}
-.qc-mobile-more{display:none}
-.matrix-mobile-controls{display:none}
-.qempty{text-align:center;color:var(--text-muted);font-size:.76rem;padding:20px 6px}
-@media (max-width:899px){ .quad-body{max-height:260px} .qcard{cursor:default} }
-@media (max-width:640px){
-  .matrix{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(210px,auto));gap:4px}
-  .quad{min-width:0;min-height:210px;overflow:hidden}
-  .quad-head{padding:6px;gap:3px;min-width:0}
-  .quad-head .qh-num{font-size:.78rem}
-  .quad-head .qh-name{font-size:clamp(13px,3.5vw,14px);overflow:visible;text-overflow:clip;white-space:nowrap;word-break:keep-all;overflow-wrap:normal;line-height:1.25}
-  .quad-head .qh-count{font-size:.64rem}
-  .quad-head .qh-add{width:24px;height:24px;border-radius:7px}
-  .quad-body{max-height:none;overflow:visible;padding:6px;gap:5px;min-width:0}
-  .qempty{padding:14px 4px;font-size:.68rem;line-height:1.4}
-  .qcard{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:5px;padding:7px;min-width:0;align-items:start}
-  .qcard .task-check{width:18px;height:18px;margin-top:1px;flex:0 0 auto}
-  .qc-main{min-width:0;flex:1 1 auto;width:auto}
-  .qc-title,.task-title{display:-webkit-box;-webkit-line-clamp:3;line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;writing-mode:horizontal-tb;text-orientation:mixed;white-space:normal;word-break:break-word;overflow-wrap:anywhere;line-height:1.4;min-width:0;width:auto}
-  .qc-meta{margin-top:3px;gap:3px;min-width:0}
-  .qc-meta .tag{font-size:.61rem;padding:0 5px;line-height:1.55}
-  .qc-meta .tag:nth-child(n+2){display:none}
-  .qcard .task-acts{display:none}
-  .qc-mobile-more{display:flex;width:28px;height:28px;flex:0 0 auto;border-radius:7px;align-items:center;justify-content:center;color:var(--text-secondary)}
-  .qc-mobile-more:active{background:var(--surface-3);color:var(--text-primary)}
-  .matrix-filter-card{background:transparent;border:0;box-shadow:none;margin-bottom:6px}
-  .matrix-filter-card .card-body{padding:0}
-  .matrix-toolbar{align-items:center;min-height:32px}
-  .matrix-toolbar .seg,.matrix-toolbar > .row.tight,.matrix-filter-card p{display:none}
-  .matrix-mobile-controls{display:flex;align-items:center;gap:4px;margin-left:auto}
-  .matrix-mobile-range{width:auto;min-width:78px;min-height:32px;padding:4px 25px 4px 8px;font-size:.76rem;white-space:nowrap}
-  .matrix-mobile-more{width:32px;height:32px;display:flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:var(--radius-xs);color:var(--text-secondary)}
-}
-@media (max-width:360px){ .quad-head{padding:5px} .quad-head .qh-name{font-size:13px} .quad-head .qh-add{width:22px;height:22px} }
-
-/* 总览中的紧凑四象限概览 */
-.dashboard-matrix-card .card-head{gap:8px}
-.dashboard-matrix-title{font-size:.92rem;font-weight:700;flex:1;min-width:0;text-align:left}
-.dashboard-matrix-open,.dashboard-matrix-grid,.dashboard-quad{cursor:pointer}
-.dashboard-matrix-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
-.dashboard-quad{min-width:0;text-align:left;border:1px solid transparent;border-radius:var(--radius-sm);padding:9px 10px;display:flex;flex-direction:column;gap:4px;color:var(--text-primary)}
-.dashboard-quad[data-q="1"]{background:var(--q1-soft);border-color:color-mix(in srgb,var(--q1) 22%,var(--border));}
-.dashboard-quad[data-q="2"]{background:var(--q2-soft);border-color:color-mix(in srgb,var(--q2) 22%,var(--border));}
-.dashboard-quad[data-q="3"]{background:var(--q3-soft);border-color:color-mix(in srgb,var(--q3) 22%,var(--border));}
-.dashboard-quad[data-q="4"]{background:var(--q4-soft);border-color:color-mix(in srgb,var(--q4) 22%,var(--border));}
-.dashboard-quad .dmq-top{display:flex;align-items:center;gap:5px;min-width:0}
-.dashboard-quad .dmq-num{font-family:"Times New Roman",Georgia,serif;font-weight:800;flex:none}
-.dashboard-quad .dmq-name{font-size:.72rem;font-weight:700;min-width:0;overflow-wrap:anywhere;line-height:1.3}
-.dashboard-quad .dmq-count{margin-left:auto;font-size:.78rem;font-weight:700;flex:none}
-.dashboard-quad .dmq-task{font-size:.72rem;color:var(--text-secondary);line-height:1.4;overflow-wrap:anywhere}
-
-/* 秋招 */
-.job-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:12px 13px;box-shadow:var(--shadow-1);display:flex;flex-direction:column;gap:8px}
-.job-card .jc-top{display:flex;gap:8px;align-items:flex-start}
-.job-card .jc-name{flex:1;min-width:0}
-.job-card .jc-company{font-size:.88rem;font-weight:700;overflow-wrap:anywhere}
-.job-card .jc-pos{font-size:.76rem;color:var(--text-secondary);overflow-wrap:anywhere}
-.job-card .jc-tags{display:flex;gap:5px;flex-wrap:wrap}
-.job-card .jc-rows{display:flex;flex-direction:column;gap:3px;font-size:.74rem;color:var(--text-secondary)}
-.job-card .jc-rows span b{color:var(--text-primary);font-weight:600}
-.job-card .jc-acts{display:flex;gap:6px;flex-wrap:wrap;border-top:1px dashed var(--border);padding-top:8px}
-.link-cell{max-width:190px;display:inline-block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}
-.prog-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:999px;font-size:.71rem;font-weight:600;white-space:nowrap}
-.prog-pill.p-todo{background:var(--surface-3);color:var(--text-secondary)}
-.prog-pill.p-sent{background:var(--info-soft);color:var(--info)}
-.prog-pill.p-test{background:var(--warning-soft);color:var(--warning)}
-.prog-pill.p-itv{background:var(--purple-soft);color:var(--purple)}
-[data-theme="dark"] .prog-pill.p-itv{background:#2B2140;color:#B694FF}
-.prog-pill.p-offer{background:var(--success-soft);color:var(--success)}
-.prog-pill.p-end{background:var(--danger-soft);color:var(--danger)}
-
-/* 奶茶 */
-.tea-item{display:flex;gap:11px;padding:11px 2px;align-items:flex-start}
-.tea-ic{width:36px;height:36px;border-radius:11px;background:var(--brown-soft);color:var(--brown);display:flex;align-items:center;justify-content:center;flex:none}
-.tea-main{flex:1;min-width:0}
-.stars{color:var(--yellow);font-size:.74rem;letter-spacing:1px;white-space:nowrap}
-.hbar{display:flex;align-items:center;gap:8px;font-size:.74rem}
-.hbar .hb-n{width:72px;flex:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-secondary)}
-.hbar .hb-t{flex:1;height:9px;border-radius:999px;background:var(--surface-3);overflow:hidden}
-.hbar .hb-t i{display:block;height:100%;background:var(--warning);border-radius:999px}
-.hbar .hb-v{flex:none;width:44px;text-align:right;color:var(--text-secondary);font-variant-numeric:tabular-nums}
 
 /* 复盘 */
 .rev-snap{display:grid;grid-template-columns:repeat(auto-fit,minmax(118px,1fr));gap:8px}
@@ -825,18 +647,12 @@ const ROUTES = [
   { key:'experiment-records', label:'实验记录', mobile:'记录', desc:'只记录事实，不给自己下判断', icon:'calendar' },
   { key:'experiment-review', label:'阶段复盘', mobile:'复盘', desc:'D7 看均值，D14 看趋势', icon:'chart' },
   { key:'dashboard', label:'总览',     mobile:'总览', desc:'今天的整体情况一览',           icon:'home' },
-  { key:'today',     label:'今日待办', mobile:'今日', desc:'管理具体任务与完成情况',       icon:'check' },
-  { key:'planner',   label:'时间规划', mobile:'规划', desc:'安排一天中每个时间段做什么',   icon:'clock' },
-  { key:'words',     label:'每日单词', mobile:'单词', desc:'记录每天的单词背诵情况',       icon:'book' },
-  { key:'matrix',    label:'四象限',   mobile:'四象限', desc:'按重要与紧急管理任务优先级', icon:'grid' },
-  { key:'jobs',      label:'秋招投递', mobile:'求职', desc:'管理岗位、投递进度与面试安排', icon:'brief' },
-  { key:'milktea',   label:'奶茶记录', mobile:'奶茶', desc:'记录每一杯奶茶与消费情况',     icon:'cup' },
   { key:'review',    label:'每周复盘', mobile:'复盘', desc:'每周回顾总结与下周计划',       icon:'review' },
   { key:'settings',  label:'设置',     mobile:'设置', desc:'偏好设置与数据管理',           icon:'gear' }
 ];
 const ROUTE_KEYS = ROUTES.map(function (r) { return r.key; });
-const MOBILE_TABS = ['experiment', 'experiment-records', 'experiment-review', 'jobs'];
-const MORE_ROUTES = ['dashboard', 'today', 'matrix', 'planner', 'words', 'milktea', 'review', 'settings'];
+const MOBILE_TABS = ['experiment', 'experiment-records', 'experiment-review', 'settings'];
+const MORE_ROUTES = ['dashboard', 'review'];
 
 const TASK_CATEGORIES = ['求职', '论文', '学习', '工作', '生活', '其他'];
 const TASK_STATUSES  = ['未开始', '进行中', '已完成', '已延期', '已取消'];
@@ -1313,6 +1129,7 @@ function migrateState(raw) {
   }
   if (!merged.meta.createdAt) merged.meta.createdAt = nowISO();
   merged.meta.version = APP_VERSION;
+  if (ROUTE_KEYS.indexOf(merged.settings.defaultRoute) < 0) merged.settings.defaultRoute = 'experiment';
   return merged;
 }
 
@@ -1386,13 +1203,7 @@ function removeRecord(name, id) {
    区域 4：界面状态（不持久化的筛选与视图状态）
    ========================================================================== */
 const ui = {
-  route: 'dashboard',
-  today: { tab:'today', q:'', category:'', status:'', importance:'', sort:'priority', selected:{} },
-  planner: { mode:'day', date: todayStr() },
-  words: { month: currentMonthStr() },
-  matrix: { range:'all', showCompleted:false },
-  jobs: { q:'', campus:'', industry:'', direction:'', region:'', priority:'', progress:'', quick:'', sort:'deadline' },
-  milktea: { q:'', month: currentMonthStr(), brand:'' },
+  route: 'experiment',
   review: { weekStart:'', year:'' },
   moreOpen: false
 };
@@ -1678,183 +1489,6 @@ function emptyBlock(text, actionLabel, actionAttr) {
 }
 
 /* ==========================================================================
-   区域 7：业务计算（任务 / 单词 / 秋招 / 奶茶 / 复盘统计）
-   ========================================================================== */
-/* ---------- 任务 ---------- */
-function taskIsActive(t) { return !t.completed && t.status !== '已取消'; }
-function taskIsOverdue(t) {
-  if (!taskIsActive(t)) return false;
-  const today = todayStr();
-  if (!t.planDate) return false;
-  if (t.planDate < today) return true;
-  if (t.planDate === today && t.dueTime) return nowTimeStr() > t.dueTime;
-  return false;
-}
-function taskQuadrant(t) { return t.important ? (t.urgent ? 1 : 2) : (t.urgent ? 3 : 4); }
-function taskPriorityRank(t) {
-  if (taskIsOverdue(t)) return 0;
-  if (t.important && t.urgent) return 1;
-  const d = diffDays(todayStr(), t.planDate);
-  if (d !== null && d >= 0 && d <= 1) return 2;
-  if (t.important) return 3;
-  if (t.urgent) return 4;
-  return 5;
-}
-function sortTasks(list, mode) {
-  const arr = list.slice();
-  if (mode === 'due') {
-    arr.sort(function (a, b) {
-      const ka = (a.planDate || '9999-12-31') + ' ' + (a.dueTime || '99:99');
-      const kb = (b.planDate || '9999-12-31') + ' ' + (b.dueTime || '99:99');
-      return ka < kb ? -1 : (ka > kb ? 1 : 0);
-    });
-  } else if (mode === 'created') {
-    arr.sort(function (a, b) { return (b.createdAt || '') < (a.createdAt || '') ? -1 : 1; });
-  } else if (mode === 'title') {
-    arr.sort(function (a, b) { return String(a.title).localeCompare(String(b.title), 'zh-Hans-CN'); });
-  } else { // priority
-    arr.sort(function (a, b) {
-      const ra = taskPriorityRank(a), rb = taskPriorityRank(b);
-      if (ra !== rb) return ra - rb;
-      const ka = (a.planDate || '9999-12-31') + ' ' + (a.dueTime || '99:99');
-      const kb = (b.planDate || '9999-12-31') + ' ' + (b.dueTime || '99:99');
-      return ka < kb ? -1 : (ka > kb ? 1 : 0);
-    });
-  }
-  // 已完成永远沉底
-  arr.sort(function (a, b) { return (a.completed ? 1 : 0) - (b.completed ? 1 : 0); });
-  return arr;
-}
-function setTaskCompleted(task, done) {
-  if (!task) return;
-  if (done) {
-    if (task.completed) return;             // 避免重复写入完成时间
-    task.completed = true;
-    task.status = '已完成';
-    task.completedAt = nowISO();
-  } else {
-    task.completed = false;
-    task.completedAt = '';
-    if (task.status === '已完成') task.status = '未开始';
-  }
-  task.updatedAt = nowISO();
-  saveState();
-}
-function todayTasks() { const d = todayStr(); return coll('tasks').filter(function (t) { return t.planDate === d; }); }
-
-/* ---------- 单词 ---------- */
-function wordLogOf(dateStr) {
-  const list = coll('wordLogs').filter(function (w) { return w.date === dateStr; });
-  if (!list.length) return null;
-  // 若历史数据同一天存在多条，取更新时间最新的一条作为主记录
-  list.sort(function (a, b) { return (a.updatedAt || '') < (b.updatedAt || '') ? 1 : -1; });
-  return list[0];
-}
-function wordAchieved(w) { return !!w && num(w.goal) > 0 && num(w.done) >= num(w.goal); }
-function wordStreak() {
-  let streak = 0;
-  let cursor = todayStr();
-  const todayLog = wordLogOf(cursor);
-  if (!wordAchieved(todayLog)) cursor = addDays(cursor, -1); // 今天还没达标不算中断
-  for (let i = 0; i < 3650; i++) {
-    const log = wordLogOf(cursor);
-    if (wordAchieved(log)) { streak++; cursor = addDays(cursor, -1); }
-    else break;
-  }
-  return streak;
-}
-function wordSum(start, end, field) {
-  return coll('wordLogs').reduce(function (s, w) { return inRange(w.date, start, end) ? s + num(w[field]) : s; }, 0);
-}
-function wordGoalDays(start, end) {
-  return coll('wordLogs').filter(function (w) { return inRange(w.date, start, end) && wordAchieved(w); }).length;
-}
-
-/* ---------- 秋招 ---------- */
-function jobDeadlineInfo(job) {
-  if (job.deadlineType === 'rolling') return { text:'招满即止', cls:'orange', days:null, kind:'rolling' };
-  if (job.deadlineType === 'unknown' || !job.deadlineDate) return { text: job.deadlineText || '未公布', cls:'gray', days:null, kind:'unknown' };
-  const d = diffDays(todayStr(), job.deadlineDate);
-  const active = ['待确认', '待投递'].indexOf(job.progress) >= 0;
-  if (d === null) return { text:'未公布', cls:'gray', days:null, kind:'unknown' };
-  if (d < 0) return { text: active ? '已截止' : formatDate(job.deadlineDate), cls: active ? 'red' : 'gray', days:d, kind:'date' };
-  if (d === 0) return { text:'今天截止', cls:'red', days:0, kind:'date' };
-  if (d <= 3) return { text:'还有 ' + d + ' 天', cls:'red', days:d, kind:'date' };
-  if (d <= 7) return { text:'还有 ' + d + ' 天', cls:'orange', days:d, kind:'date' };
-  return { text: formatDate(job.deadlineDate), cls:'gray', days:d, kind:'date' };
-}
-function jobDeadlineSortKey(job) {
-  if (job.deadlineType === 'date' && job.deadlineDate) return job.deadlineDate;
-  if (job.deadlineType === 'rolling') return '9999-01-01';
-  return '9999-12-31';
-}
-function jobProgressClass(p) { return 'p-' + (PROGRESS_GROUP[p] || 'todo'); }
-function jobStats() {
-  const list = coll('jobApplications');
-  const g = function (name) { return list.filter(function (j) { return PROGRESS_GROUP[j.progress] === name; }).length; };
-  const submitted = list.filter(function (j) { return ['todo'].indexOf(PROGRESS_GROUP[j.progress]) < 0; }).length;
-  return {
-    total: list.length,
-    todo: g('todo'),
-    submitted: submitted,
-    running: g('sent') + g('test'),
-    interview: g('itv'),
-    offer: g('offer'),
-    ended: g('end')
-  };
-}
-function jobTitleText(j) { return (j.company || '未填公司') + (j.position ? '｜' + j.position : ''); }
-
-/* ---------- 奶茶 ---------- */
-function teaInRange(start, end) { return coll('milkTeaLogs').filter(function (m) { return inRange(m.date, start, end); }); }
-function teaSum(list, field) { return list.reduce(function (s, m) { return s + num(m[field]); }, 0); }
-function topBy(list, keyFn) {
-  const map = {};
-  list.forEach(function (x) { const k = (keyFn(x) || '').trim(); if (!k) return; map[k] = (map[k] || 0) + 1; });
-  const keys = Object.keys(map);
-  if (!keys.length) return null;
-  keys.sort(function (a, b) { return map[b] - map[a]; });
-  return { key: keys[0], count: map[keys[0]], map: map };
-}
-
-/* ---------- 复盘统计快照 ---------- */
-function buildWeekSnapshot(start, end) {
-  const tasks = coll('tasks');
-  const created = tasks.filter(function (t) { return t.createdAt && getLocalDateString(new Date(t.createdAt)) >= start && getLocalDateString(new Date(t.createdAt)) <= end; }).length;
-  const planned = tasks.filter(function (t) { return inRange(t.planDate, start, end); });
-  const done = planned.filter(function (t) { return t.completed; }).length;
-  const overdue = planned.filter(function (t) { return taskIsOverdue(t); }).length;
-  const blocks = coll('timeBlocks').filter(function (b) { return inRange(b.date, start, end); });
-  const jobs = coll('jobApplications');
-  const teas = teaInRange(start, end);
-  return {
-    taskCreated: created,
-    taskPlanned: planned.length,
-    taskDone: done,
-    taskRate: pct(done, planned.length),
-    taskOverdue: overdue,
-    blockPlanned: blocks.length,
-    blockDone: blocks.filter(function (b) { return b.completed; }).length,
-    wordTotal: wordSum(start, end, 'done'),
-    wordGoalDays: wordGoalDays(start, end),
-    wordMinutes: wordSum(start, end, 'minutes'),
-    jobAdded: jobs.filter(function (j) { const d = j.createdAt ? getLocalDateString(new Date(j.createdAt)) : ''; return d >= start && d <= end; }).length,
-    jobApplied: jobs.filter(function (j) { return inRange(j.appliedDate, start, end); }).length,
-    jobTests: jobs.filter(function (j) { return inRange(j.assessDate, start, end); }).length,
-    jobInterviews: jobs.filter(function (j) { return inRange(j.interviewDate, start, end); }).length,
-    teaCups: teas.length,
-    teaSpend: Number(teaSum(teas, 'price').toFixed(2))
-  };
-}
-const SNAPSHOT_LABELS = [
-  ['taskCreated', '本周新建任务'], ['taskDone', '本周完成任务'], ['taskRate', '任务完成率', '%'], ['taskOverdue', '逾期任务'],
-  ['blockPlanned', '计划时间块'], ['blockDone', '完成时间块'],
-  ['wordTotal', '单词累计'], ['wordGoalDays', '单词达标天数'],
-  ['jobAdded', '新增岗位'], ['jobApplied', '实际投递'], ['jobTests', '测评／笔试'], ['jobInterviews', '面试场次'],
-  ['teaCups', '奶茶杯数'], ['teaSpend', '奶茶消费', '¥']
-];
-
-/* ==========================================================================
    区域 8：应用外壳与路由
    ========================================================================== */
 const $app = document.getElementById('app');
@@ -1919,42 +1553,18 @@ function renderNav() {
     return '<button type="button" class="' + (ui.route === k ? 'active' : '') + '" data-action="go" data-route="' + k + '">' + svg(r.icon, 19) + '<span>' + escapeHTML(r.label) + '</span></button>';
   }).join('');
 }
-function navBadges() {
-  const t = todayStr();
-  const tasks = coll('tasks');
-  const todayPending = tasks.filter(function (x) { return taskIsActive(x) && (x.planDate === t || taskIsOverdue(x)); }).length;
-  return { today: todayPending };
-}
+function navBadges() { return {}; }
 
 const RENDERERS = {
   experiment: function () { return renderExperiment(); },
   'experiment-records': function () { return renderExperimentRecords(); },
   'experiment-review': function () { return renderExperimentReview(); },
   dashboard: function () { return renderDashboard(); },
-  today: function () { return renderToday(); },
-  planner: function () { return renderPlanner(); },
-  words: function () { return renderWords(); },
-  matrix: function () { return renderMatrix(); },
-  jobs: function () { return renderJobs(); },
-  milktea: function () { return renderMilkTea(); },
   review: function () { return renderWeeklyReview(); },
   settings: function () { return renderSettings(); }
 };
-const TOPBAR_ACTIONS = {
-  dashboard: [],
-  today: [{ label:'新增任务', action:'task-new', primary:true, icon:'plus' }],
-  planner: [{ label:'新增安排', action:'block-new', primary:true, icon:'plus' }],
-  words: [{ label:'记录学习', action:'word-edit', primary:true, icon:'plus' }],
-  matrix: [{ label:'新增任务', action:'task-new', primary:true, icon:'plus' }],
-  jobs: [{ label:'导出 CSV', action:'export-jobs-csv', icon:'down_tray' }, { label:'新增岗位', action:'job-new', primary:true, icon:'plus' }],
-  milktea: [{ label:'记录一杯', action:'tea-new', primary:true, icon:'plus' }],
-  review: [],
-  settings: []
-};
-const FAB_ACTIONS = {
-  dashboard:'', today:'task-new', planner:'block-new', words:'word-edit',
-  matrix:'task-new', jobs:'job-new', milktea:'tea-new', review:'', settings:''
-};
+const TOPBAR_ACTIONS = {};
+const FAB_ACTIONS = {};
 
 function renderTopbar() {
   const meta = routeMeta(ui.route);
@@ -2022,374 +1632,22 @@ function openDrawer() { document.body.classList.add('drawer-open'); }
 function openMore() { document.body.classList.add('sheet-open'); ui.moreOpen = true; }
 function closeLayers() { document.body.classList.remove('drawer-open', 'sheet-open'); ui.moreOpen = false; }
 
-/* ==========================================================================
-   区域 9：任务通用渲染片段
-   ========================================================================== */
-const QUAD_META = {
-  1: { name:'重要且紧急', roman:'Ⅰ', important:true,  urgent:true  },
-  2: { name:'重要不紧急', roman:'Ⅱ', important:true,  urgent:false },
-  3: { name:'不重要但紧急', roman:'Ⅲ', important:false, urgent:true  },
-  4: { name:'不重要不紧急', roman:'Ⅳ', important:false, urgent:false }
-};
-function taskQuadTag(t) {
-  const q = taskQuadrant(t);
-  const cls = { 1:'red', 2:'orange', 3:'blue', 4:'green' }[q];
-  return '<span class="tag ' + cls + '">' + QUAD_META[q].roman + ' ' + QUAD_META[q].name + '</span>';
-}
-function taskMetaTags(t, opts) {
-  const o = opts || {};
-  const tags = [];
-  if (taskIsOverdue(t)) tags.push('<span class="tag solid-red">已逾期</span>');
-  if (o.showDate !== false) {
-    const rel = relativeDayLabel(t.planDate);
-    const isToday = t.planDate === todayStr();
-    tags.push('<span class="tag ' + (isToday ? 'green' : 'gray') + '">' + svg('calendar', 11) + escapeHTML(formatDateShort(t.planDate) + ' ' + rel) + '</span>');
-  }
-  if (t.dueTime) tags.push('<span class="tag gray">' + svg('clock', 11) + escapeHTML(t.dueTime) + ' 截止</span>');
-  if (o.showQuad !== false) tags.push(taskQuadTag(t));
-  tags.push('<span class="tag gray">' + escapeHTML(t.category || '其他') + '</span>');
-  if (t.status && t.status !== '未开始' && t.status !== '已完成') tags.push('<span class="tag ' + (t.status === '已取消' ? 'gray' : 'blue') + '">' + escapeHTML(t.status) + '</span>');
-  if (num(t.estimatedMinutes) > 0) tags.push('<span class="tag gray">预计 ' + escapeHTML(durationText(t.estimatedMinutes)) + '</span>');
-  if (t.sourceModule && t.sourceModule !== 'manual') tags.push('<span class="tag blue">' + escapeHTML(TASK_SOURCES[t.sourceModule] || t.sourceModule) + '</span>');
-  return tags.join('');
-}
-function taskItemHTML(t, opts) {
-  const o = opts || {};
-  const sel = o.selectable ? '<input type="checkbox" class="task-sel" data-action="task-select" data-id="' + t.id + '"' + (ui.today.selected[t.id] ? ' checked' : '') + ' aria-label="选择任务">' : '';
-  const acts = o.compact ? '' :
-    '<div class="task-acts">' +
-      '<button type="button" class="icon-btn sm" data-action="task-detail" data-id="' + t.id + '" aria-label="查看任务详情" title="详情">' + svg('info', 16) + '</button>' +
-      '<button type="button" class="icon-btn sm" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务" title="编辑">' + svg('edit', 16) + '</button>' +
-      '<button type="button" class="icon-btn sm danger" data-action="task-delete" data-id="' + t.id + '" aria-label="删除任务" title="删除">' + svg('trash', 16) + '</button>' +
-    '</div>';
-  return '<li><div class="task-item' + (t.completed ? ' done' : '') + '">' + sel +
-    '<button type="button" class="task-check' + (t.completed ? ' on' : '') + '" data-action="task-toggle" data-id="' + t.id + '" aria-label="' + (t.completed ? '标记为未完成' : '标记为完成') + '" aria-pressed="' + (t.completed ? 'true' : 'false') + '">' +
-      svg('tick', 13, 'stroke-width="3"') + '</button>' +
-    '<div class="task-main">' +
-      '<div class="task-title">' + escapeHTML(t.title) + '</div>' +
-      (t.description ? '<div class="task-desc clamp2">' + escapeHTML(t.description) + '</div>' : '') +
-      '<div class="task-meta">' + taskMetaTags(t, o) + '</div>' +
-    '</div>' + acts + '</div></li>';
-}
-
-/* ==========================================================================
-   区域 10：总览页
-   ========================================================================== */
 function renderDashboard() {
-  const s = state.settings;
-  const t = todayStr();
-  const tasks = coll('tasks');
-  const todays = tasks.filter(function (x) { return x.planDate === t; });
-  const overdueAll = tasks.filter(taskIsOverdue);
-  const doneCount = todays.filter(function (x) { return x.completed; }).length;
-  const undone = todays.length - doneCount;
-  const rate = pct(doneCount, todays.length);
-  const nick = s.nickname ? '，' + s.nickname : '';
-
-  // 环形进度
-  const R = 30, C = 2 * Math.PI * R;
-  const ring = '<div class="hero-ring"><svg width="74" height="74" viewBox="0 0 74 74" aria-hidden="true">' +
-    '<circle cx="37" cy="37" r="' + R + '" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="7"/>' +
-    '<circle cx="37" cy="37" r="' + R + '" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C * (1 - rate / 100)).toFixed(1) + '"/>' +
-    '</svg><span class="rv">' + rate + '%</span></div>';
-
-  let html = '';
-  html += '<section class="section hero">' +
-    '<div style="flex:1;min-width:180px">' +
-      '<h2>' + escapeHTML(greetingText() + nick) + '</h2>' +
-      '<p>' + escapeHTML(formatDate(t) + ' · ' + weekdayOf(t)) + ' · 今天有 ' + todays.length + ' 项安排，已完成 ' + doneCount + ' 项</p>' +
-    '</div>' + ring + '</section>';
-
-  // 今日任务概况
-  html += '<section class="section grid grid-4">' +
-    statBox('今日任务', todays.length, '共计划的任务数', '') +
-    statBox('已完成', doneCount, '今日完成数量', 'accent') +
-    statBox('未完成', undone, '还需要处理', undone > 0 ? 'orange' : '') +
-    statBox('逾期任务', overdueAll.length, '包含往日未完成', overdueAll.length > 0 ? 'red' : '') +
-    '</section>';
-
-  html += '<section class="section card"><div class="card-body">' +
-    '<div class="row between" style="margin-bottom:8px"><span style="font-size:.8rem;font-weight:600">今日完成率</span><span style="font-size:.8rem;color:var(--text-secondary)">' + doneCount + ' / ' + todays.length + '</span></div>' +
-    '<div class="bar"><i style="width:' + rate + '%" class="' + (rate >= 80 ? '' : (rate >= 40 ? 'orange' : 'red')) + '"></i></div>' +
-    '</div></section>';
-
-  html += '<div class="grid grid-2 section">';
-
-  // 今日重点任务
-  const focus = sortTasks(todays.concat(overdueAll.filter(function (x) { return x.planDate !== t; })), 'priority')
-    .filter(function (x) { return !x.completed; }).slice(0, 5);
-  html += '<section class="card"><div class="card-head"><h2>今日重点</h2><span class="ch-sub">按优先级排序</span>' +
-    '<button type="button" class="btn ghost xs" data-action="go" data-route="today">全部 ' + svg('right', 13) + '</button></div>' +
-    (focus.length
-      ? '<ul class="list" style="padding:4px 14px 10px">' + focus.map(function (x) { return taskItemHTML(x, { compact:true }); }).join('') + '</ul>'
-      : '<div class="card-body">' + emptyBlock(todays.length ? '今日任务都已完成，做得很好。' : EMPTY_TEXT.dashboard, '新增任务', 'data-action="task-new"') + '</div>') +
-    '</section>';
-
-  // 四象限概览（默认统计全部未完成任务）
-  html += dashboardMatrixCard();
-
-  // 单词概况
-  const wlog = wordLogOf(t);
-  const goal = wlog ? num(wlog.goal) : num(s.dailyWordGoal);
-  const done = wlog ? num(wlog.done) : 0;
-  const wRate = pct(done, goal);
-  html += '<section class="card"><div class="card-head"><h2>单词学习</h2><span class="ch-sub">今日进度</span>' +
-    '<button type="button" class="btn ghost xs" data-action="go" data-route="words">详情 ' + svg('right', 13) + '</button></div>' +
-    '<div class="card-body">' +
-      '<div class="row between" style="margin-bottom:8px"><span style="font-size:1.25rem;font-weight:700">' + done + ' <span style="font-size:.8rem;color:var(--text-muted);font-weight:400">/ ' + goal + ' 个</span></span>' +
-      '<span class="tag ' + (wRate >= 100 ? 'green' : 'orange') + '">' + wRate + '%</span></div>' +
-      '<div class="bar" style="margin-bottom:12px"><i style="width:' + wRate + '%"></i></div>' +
-      '<div class="mini-stats">' +
-        miniBox(wlog ? num(wlog.newCount) : 0, '新学') +
-        miniBox(wlog ? num(wlog.reviewCount) : 0, '复习') +
-        miniBox(wlog ? num(wlog.minutes) : 0, '分钟') +
-        miniBox(wordStreak(), '连续天数') +
-      '</div>' +
-      (wlog ? '' : '<div style="margin-top:12px"><button type="button" class="btn soft sm block" data-action="word-edit">' + svg('plus', 15) + '记录今日单词学习</button></div>') +
-    '</div></section>';
-
-  // 秋招提醒
-  if (s.showJobsOnDashboard) html += dashboardJobsCard();
-
-  // 奶茶概况
-  if (s.showMilkTeaOnDashboard) html += dashboardTeaCard();
-
-  html += '</div>';
-
-  // 复盘提醒
-  if (s.showWeeklyReviewReminder) {
-    const wr = getWeekRange(t, s.weekStartsOn);
-    const rev = coll('weeklyReviews').find(function (r) { return r.weekStart === wr.start; });
-    if (!rev || !rev.completed) {
-      html += '<section class="section card" style="border-color:color-mix(in srgb,var(--warning) 40%,var(--border))">' +
-        '<div class="card-body row between">' +
-        '<div class="row" style="flex:1;min-width:180px"><span style="color:var(--warning)">' + svg('bell', 20) + '</span>' +
-        '<div><div style="font-size:.86rem;font-weight:600">本周复盘尚未完成。</div>' +
-        '<div style="font-size:.73rem;color:var(--text-muted)">' + escapeHTML(formatDate(wr.start) + ' 至 ' + formatDate(wr.end)) + '</div></div></div>' +
-        '<button type="button" class="btn primary sm" data-action="go" data-route="review">去复盘</button>' +
-        '</div></section>';
-    }
-  }
-
-  // 快速新增
-  html += '<section class="section card"><div class="card-head"><h2>快速新增</h2></div><div class="card-body"><div class="quick-add">' +
-    quickBtn('plus', '新增任务', 'task-new') +
-    quickBtn('clock', '新增时间安排', 'block-new') +
-    quickBtn('book', '记录单词', 'word-edit') +
-    quickBtn('brief', '新增秋招岗位', 'job-new') +
-    quickBtn('cup', '记录奶茶', 'tea-new') +
-    '</div></div></section>';
-
-  return html;
+  const run = expRun();
+  if (!run) return expEmpty();
+  const day = Math.max(1, Math.min(14, expElapsed(run)));
+  const logs = expLogs(run, 14), r = expLog(run, day, false);
+  return '<div class="ex-shell">' + expHeader(run, '留一点时间，给自己的思考。', '这里汇总实验进度，不用单日成绩评价自己。') +
+    '<section class="ex-card"><div class="ex-head"><h3>当前实验</h3><span class="ex-pill">已记录 ' + logs.filter(function(x) {return x.recorded;}).length + ' / 14 天</span></div>' +
+    '<p class="ex-muted">每天约 25–35 分钟。前 6 天只记录，D7 看一次阶段均值，D14 统一复盘。</p><div class="ex-actions">' +
+    '<button class="btn primary" data-action="go" data-route="experiment">继续今日训练</button><button class="btn" data-action="go" data-route="experiment-records">查看实验记录</button><button class="btn" data-action="go" data-route="experiment-review">阶段复盘</button></div></section>' +
+    '<section class="ex-card soft"><h3>D' + day + ' · 原始记录</h3><pre class="ex-summary" style="margin-top:12px">' + escapeHTML(expSummary(r)) + '</pre></section></div>';
 }
-function statBox(label, value, sub, cls) {
-  return '<div class="stat ' + (cls || '') + '"><span class="s-label">' + escapeHTML(label) + '</span>' +
-    '<span class="s-value">' + escapeHTML(String(value)) + '</span>' +
-    (sub ? '<span class="s-sub">' + escapeHTML(sub) + '</span>' : '') + '</div>';
-}
-function dashboardMatrixCard() {
-  const byQ = { 1:[], 2:[], 3:[], 4:[] };
-  coll('tasks').filter(function (t) { return !t.completed; }).forEach(function (t) { byQ[taskQuadrant(t)].push(t); });
-  let html = '<section class="card dashboard-matrix-card"><div class="card-head">' +
-    '<button type="button" class="dashboard-matrix-title" data-action="dashboard-matrix">四象限</button>' +
-    '<span class="ch-sub">全部 ·</span><button type="button" class="btn ghost xs" data-action="dashboard-matrix">详情 ' + svg('right', 13) + '</button></div>' +
-    '<div class="card-body dashboard-matrix-open" data-action="dashboard-matrix"><div class="dashboard-matrix-grid">';
-  [1, 2, 3, 4].forEach(function (q) {
-    const meta = QUAD_META[q];
-    const items = sortTasks(byQ[q], 'priority');
-    const lead = items[0];
-    html += '<button type="button" class="dashboard-quad" data-q="' + q + '" data-action="dashboard-matrix" aria-label="查看' + escapeAttr(meta.roman + ' ' + meta.name) + '详情">' +
-      '<span class="dmq-top"><span class="dmq-num">' + meta.roman + '</span><span class="dmq-name">' + escapeHTML(meta.name) + '</span><span class="dmq-count">' + items.length + '</span></span>' +
-      (lead ? '<span class="dmq-task clamp2">' + escapeHTML(lead.title) + '</span>' : '<span class="dmq-task">暂无未完成任务</span>') +
-      '</button>';
-  });
-  return html + '</div></div></section>';
-}
+
 function miniBox(v, l) {
   return '<div class="mini"><div class="m-v">' + escapeHTML(String(v)) + '</div><div class="m-l">' + escapeHTML(l) + '</div></div>';
 }
-function quickBtn(icon, label, action) {
-  return '<button type="button" data-action="' + action + '">' + svg(icon, 20) + '<span>' + escapeHTML(label) + '</span></button>';
-}
 
-function dashboardJobsCard() {
-  const s = state.settings;
-  const t = todayStr();
-  const jobs = coll('jobApplications');
-  const remindDays = Math.max(0, num(s.deadlineReminderDays, 3));
-  const items = [];
-
-  jobs.forEach(function (j) {
-    const isTodo = ['待确认', '待投递'].indexOf(j.progress) >= 0;
-    const info = jobDeadlineInfo(j);
-    if (isTodo && info.kind === 'date' && info.days !== null && info.days >= 0 && info.days <= remindDays) {
-      items.push({ cls:'red', icon:'warn', text: jobTitleText(j) + '：' + info.text, id:j.id, sort:0 });
-    } else if (isTodo && info.kind === 'date' && info.days !== null && info.days < 0) {
-      items.push({ cls:'gray', icon:'warn', text: jobTitleText(j) + '：已截止仍未投递', id:j.id, sort:5 });
-    }
-    if (isTodo && j.deadlineType === 'rolling') {
-      items.push({ cls:'orange', icon:'flame', text: jobTitleText(j) + '：招满即止，尽快投递', id:j.id, sort:1 });
-    }
-    if (j.nextAction && j.nextActionDate && j.nextActionDate <= t) {
-      items.push({ cls:'blue', icon:'target', text: jobTitleText(j) + '：' + j.nextAction + '（' + relativeDayLabel(j.nextActionDate) + '）', id:j.id, sort:2 });
-    }
-    if (j.assessDate && j.assessDate >= t && diffDays(t, j.assessDate) <= 7) {
-      items.push({ cls:'orange', icon:'clock', text: jobTitleText(j) + '：测评／笔试 ' + formatDateShort(j.assessDate) + (j.assessTime ? ' ' + j.assessTime : ''), id:j.id, sort:3 });
-    }
-    if (j.interviewDate && j.interviewDate >= t && diffDays(t, j.interviewDate) <= 7) {
-      items.push({ cls:'green', icon:'clock', text: jobTitleText(j) + '：面试 ' + formatDateShort(j.interviewDate) + (j.interviewTime ? ' ' + j.interviewTime : ''), id:j.id, sort:3 });
-    }
-    const staleDays = Math.max(1, num(s.staleApplicationDays, 14));
-    const grp = PROGRESS_GROUP[j.progress];
-    if (['sent', 'test', 'itv'].indexOf(grp) >= 0 && j.updatedAt) {
-      const d = diffDays(getLocalDateString(new Date(j.updatedAt)), t);
-      if (d !== null && d >= staleDays) items.push({ cls:'gray', icon:'info', text: jobTitleText(j) + '：已 ' + d + ' 天未更新进度', id:j.id, sort:6 });
-    }
-  });
-  items.sort(function (a, b) { return a.sort - b.sort; });
-
-  const st = jobStats();
-  return '<section class="card"><div class="card-head"><h2>秋招提醒</h2><span class="ch-sub">共 ' + st.total + ' 个岗位</span>' +
-    '<button type="button" class="btn ghost xs" data-action="go" data-route="jobs">管理 ' + svg('right', 13) + '</button></div>' +
-    '<div class="card-body">' +
-      '<div class="mini-stats" style="margin-bottom:12px">' +
-        miniBox(st.todo, '待投递') + miniBox(st.running, '进行中') + miniBox(st.interview, '面试中') + miniBox(st.offer, 'Offer') +
-      '</div>' +
-      (items.length
-        ? '<ul class="list">' + items.slice(0, 6).map(function (it) {
-            return '<li><button type="button" class="row" style="width:100%;text-align:left;padding:9px 0;gap:9px" data-action="job-detail" data-id="' + it.id + '">' +
-              '<span class="tag ' + it.cls + '" style="flex:none">' + svg(it.icon, 12) + '</span>' +
-              '<span class="break" style="flex:1;font-size:.79rem">' + escapeHTML(it.text) + '</span>' + svg('right', 14) + '</button></li>';
-          }).join('') + '</ul>'
-        : emptyBlock(st.total ? '暂时没有需要提醒的秋招事项。' : EMPTY_TEXT.jobs, '新增岗位', 'data-action="job-new"')) +
-    '</div></section>';
-}
-
-function dashboardTeaCard() {
-  const s = state.settings;
-  const t = todayStr();
-  const wr = getWeekRange(t, s.weekStartsOn);
-  const mr = monthRange(currentMonthStr());
-  const weekList = teaInRange(wr.start, wr.end);
-  const monthList = teaInRange(mr.start, mr.end);
-  const spend = teaSum(monthList, 'price');
-  const limit = num(s.weeklyMilkTeaLimit, 0);
-  const budget = num(s.monthlyMilkTeaBudget, 0);
-  const overWeek = limit > 0 && weekList.length > limit;
-  const overBudget = budget > 0 && spend > budget;
-  return '<section class="card"><div class="card-head"><h2>奶茶记录</h2><span class="ch-sub">本月概况</span>' +
-    '<button type="button" class="btn ghost xs" data-action="go" data-route="milktea">详情 ' + svg('right', 13) + '</button></div>' +
-    '<div class="card-body">' +
-      '<div class="mini-stats" style="margin-bottom:10px">' +
-        miniBox(weekList.length, '本周杯数') + miniBox(monthList.length, '本月杯数') +
-        miniBox(money(spend).replace('¥', '¥ '), '本月消费') +
-      '</div>' +
-      (limit > 0 ? '<div class="row between" style="font-size:.74rem;color:var(--text-secondary);margin-bottom:4px"><span>周上限 ' + limit + ' 杯</span><span>' + weekList.length + ' / ' + limit + '</span></div>' +
-        '<div class="bar thin" style="margin-bottom:10px"><i class="' + (overWeek ? 'red' : '') + '" style="width:' + pct(weekList.length, limit) + '%"></i></div>' : '') +
-      (budget > 0 ? '<div class="row between" style="font-size:.74rem;color:var(--text-secondary);margin-bottom:4px"><span>月预算 ' + money(budget) + '</span><span>' + money(spend) + '</span></div>' +
-        '<div class="bar thin"><i class="' + (overBudget ? 'red' : '') + '" style="width:' + pct(spend, budget) + '%"></i></div>' : '') +
-      (overWeek || overBudget ? '<p style="margin-top:10px;font-size:.75rem;color:var(--warning)">' + (overWeek ? '本周已超过设定的杯数上限。' : '') + (overBudget ? '本月消费已超过预算。' : '') + '</p>' : '') +
-      (monthList.length ? '' : '<div style="margin-top:10px">' + emptyBlock(EMPTY_TEXT.milktea, '记录一杯', 'data-action="tea-new"') + '</div>') +
-    '</div></section>';
-}
-
-/* ==========================================================================
-   区域 11：今日待办页
-   ========================================================================== */
-function filterTasks() {
-  const f = ui.today;
-  const t = todayStr();
-  let list = coll('tasks').slice();
-
-  // 快捷标签
-  if (f.tab === 'today') list = list.filter(function (x) { return x.planDate === t || taskIsOverdue(x); });
-  else if (f.tab === 'overdue') list = list.filter(taskIsOverdue);
-  else if (f.tab === 'upcoming') list = list.filter(function (x) { return taskIsActive(x) && x.planDate > t; });
-  else if (f.tab === 'done') list = list.filter(function (x) { return x.completed; });
-
-  if (f.category) list = list.filter(function (x) { return x.category === f.category; });
-  if (f.status) list = list.filter(function (x) { return x.status === f.status; });
-  if (f.importance === 'important') list = list.filter(function (x) { return x.important; });
-  else if (f.importance === 'urgent') list = list.filter(function (x) { return x.urgent; });
-  else if (f.importance === 'both') list = list.filter(function (x) { return x.important && x.urgent; });
-  else if (f.importance === 'normal') list = list.filter(function (x) { return !x.important && !x.urgent; });
-
-  if (f.tab !== 'done' && !state.settings.showCompletedTasks) list = list.filter(function (x) { return !x.completed; });
-
-  const q = f.q.trim().toLowerCase();
-  if (q) {
-    list = list.filter(function (x) {
-      return String(x.title).toLowerCase().indexOf(q) >= 0
-        || String(x.description).toLowerCase().indexOf(q) >= 0
-        || String(x.category).toLowerCase().indexOf(q) >= 0;
-    });
-  }
-  return sortTasks(list, f.sort);
-}
-function renderToday() {
-  const f = ui.today;
-  const list = filterTasks();
-  const t = todayStr();
-  const all = coll('tasks');
-  const counts = {
-    today: all.filter(function (x) { return x.planDate === t || taskIsOverdue(x); }).length,
-    overdue: all.filter(taskIsOverdue).length,
-    upcoming: all.filter(function (x) { return taskIsActive(x) && x.planDate > t; }).length,
-    done: all.filter(function (x) { return x.completed; }).length,
-    all: all.length
-  };
-  const selectedIds = Object.keys(f.selected).filter(function (id) { return f.selected[id] && findById('tasks', id); });
-
-  let html = '';
-  html += '<section class="section card">' +
-    '<div class="card-head" style="gap:8px">' +
-      '<div class="seg" role="tablist" aria-label="任务快捷筛选">' +
-        segBtn('today', '今天', counts.today, f.tab, 'today-tab') +
-        segBtn('overdue', '逾期', counts.overdue, f.tab, 'today-tab') +
-        segBtn('upcoming', '即将到来', counts.upcoming, f.tab, 'today-tab') +
-        segBtn('done', '已完成', counts.done, f.tab, 'today-tab') +
-        segBtn('all', '全部', counts.all, f.tab, 'today-tab') +
-      '</div>' +
-      '<div class="spacer"></div>' +
-      '<button type="button" class="btn primary sm only-mobile" data-action="task-new">' + svg('plus', 15) + '新增任务</button>' +
-    '</div>' +
-    '<div class="card-body tight">' +
-      '<div class="filters" style="margin-bottom:2px">' +
-        '<div class="searchbox">' + svg('search', 15) +
-          '<input class="input" id="todaySearch" type="search" value="' + escapeAttr(f.q) + '" placeholder="搜索任务名称、说明或分类" aria-label="搜索任务" data-action="today-search">' +
-        '</div>' +
-        selectFilter('today-filter', 'category', '全部分类', TASK_CATEGORIES, f.category) +
-        selectFilter('today-filter', 'status', '全部状态', TASK_STATUSES, f.status) +
-        selectFilter('today-filter', 'importance', '重要／紧急', [
-          { value:'important', label:'仅重要' }, { value:'urgent', label:'仅紧急' },
-          { value:'both', label:'重要且紧急' }, { value:'normal', label:'既不重要也不紧急' }
-        ], f.importance) +
-        selectFilter('today-filter', 'sort', '排序', [
-          { value:'priority', label:'按优先级' }, { value:'due', label:'按截止时间' },
-          { value:'created', label:'按创建时间' }, { value:'title', label:'按名称' }
-        ], f.sort, true) +
-        '<button type="button" class="btn sm" data-action="toggle-show-completed">' + (state.settings.showCompletedTasks ? '隐藏已完成' : '显示已完成') + '</button>' +
-        ((f.q || f.category || f.status || f.importance) ? '<button type="button" class="btn ghost sm" data-action="today-clear">清除筛选</button>' : '') +
-      '</div>' +
-    '</div>' +
-    (selectedIds.length ? '<div class="bulkbar"><span class="bb-txt">已选择 ' + selectedIds.length + ' 项</span>' +
-      '<button type="button" class="btn sm" data-action="bulk-complete">批量完成</button>' +
-      '<button type="button" class="btn sm" data-action="bulk-postpone">批量延期到明天</button>' +
-      '<button type="button" class="btn sm danger" data-action="bulk-delete">批量删除</button>' +
-      '<button type="button" class="btn ghost sm" data-action="bulk-clear">取消选择</button></div>' : '') +
-    '<div class="card-body tight">' +
-      (list.length
-        ? '<div class="row" style="padding:4px 0 2px"><label class="check-line" style="font-size:.75rem;color:var(--text-secondary)"><input type="checkbox" data-action="select-all"' + (selectedIds.length && selectedIds.length === list.length ? ' checked' : '') + ' aria-label="全选当前列表"><span>全选当前 ' + list.length + ' 项</span></label></div>' +
-          '<ul class="list">' + list.map(function (x) { return taskItemHTML(x, { selectable:true }); }).join('') + '</ul>'
-        : emptyBlock(f.tab === 'today' ? EMPTY_TEXT.today : '没有符合条件的任务。', '新增任务', 'data-action="task-new"')) +
-    '</div>' +
-  '</section>';
-  return html;
-}
-function segBtn(value, label, count, current, action) {
-  return '<button type="button" class="' + (current === value ? 'on' : '') + '" data-action="' + action + '" data-value="' + escapeAttr(value) + '" role="tab" aria-selected="' + (current === value) + '">' +
-    escapeHTML(label) + (count !== null && count !== undefined ? ' <span style="opacity:.65">' + count + '</span>' : '') + '</button>';
-}
 function selectFilter(action, key, placeholder, options, value, noEmpty) {
   const opts = (noEmpty ? '' : '<option value="">' + escapeHTML(placeholder) + '</option>') + options.map(function (o) {
     const v = (typeof o === 'string') ? o : o.value;
@@ -2397,1078 +1655,6 @@ function selectFilter(action, key, placeholder, options, value, noEmpty) {
     return '<option value="' + escapeAttr(v) + '"' + (String(value) === String(v) ? ' selected' : '') + '>' + escapeHTML(l) + '</option>';
   }).join('');
   return '<select class="select" data-action="' + action + '" data-key="' + escapeAttr(key) + '" aria-label="' + escapeAttr(placeholder) + '">' + opts + '</select>';
-}
-
-/* ---------- 任务表单 ---------- */
-function taskFormFields(task) {
-  const s = state.settings;
-  const t = task || {};
-  return [
-    { type:'text', name:'title', label:'任务名称', value:t.title || '', required:true, placeholder:'例如：修改简历并导出 PDF', full:true },
-    { type:'textarea', name:'description', label:'任务说明', value:t.description || '', placeholder:'补充说明、步骤或注意事项', full:true, rows:2 },
-    { type:'select', name:'category', label:'所属分类', value:t.category || s.defaultTaskCategory, options:TASK_CATEGORIES },
-    { type:'select', name:'status', label:'当前状态', value:t.status || '未开始', options:TASK_STATUSES },
-    { type:'date', name:'planDate', label:'计划日期', value:t.planDate || todayStr() },
-    { type:'time', name:'dueTime', label:'截止时间', value:t.dueTime || '', help:'留空表示当天内完成即可' },
-    { type:'number', name:'estimatedMinutes', label:'预计用时（分钟）', value:(t.estimatedMinutes !== undefined ? t.estimatedMinutes : s.defaultTaskDuration), min:0, step:5 },
-    { type:'html', name:'_flags', html:'<span class="flabel">重要程度与紧急程度</span><div class="check-grid" style="margin-top:4px">' +
-        '<label class="chip-check' + ((t.id ? t.important : s.defaultTaskImportant) ? ' on' : '') + '"><input type="checkbox" data-field="important" data-ftype="bool"' + ((t.id ? t.important : s.defaultTaskImportant) ? ' checked' : '') + '><span>重要</span></label>' +
-        '<label class="chip-check' + (t.urgent ? ' on' : '') + '"><input type="checkbox" data-field="urgent" data-ftype="bool"' + (t.urgent ? ' checked' : '') + '><span>紧急</span></label>' +
-        '</div><span class="fhelp">该组合决定任务在四象限中的位置</span>' },
-    { type:'checkbox', name:'completed', label:'已完成', value:!!t.completed }
-  ];
-}
-function openTaskModal(taskId, presets) {
-  const task = taskId ? findById('tasks', taskId) : null;
-  const base = task || Object.assign({}, presets || {});
-  showModal({
-    title: task ? '编辑任务' : '新增任务',
-    subtitle: task ? '修改后会同步到今日待办与四象限' : '任务会同时出现在今日待办与四象限中',
-    body: buildForm(taskFormFields(base)),
-    submitText: task ? '保存修改' : '创建任务',
-    onSubmit: function (data) {
-      if (!data.title) { showToast('请填写任务名称', 'error'); return false; }
-      if (!isValidDateStr(data.planDate)) { showToast('请选择有效的计划日期', 'error'); return false; }
-      const patch = {
-        title: data.title, description: data.description, category: data.category,
-        planDate: data.planDate, dueTime: data.dueTime || '', estimatedMinutes: num(data.estimatedMinutes),
-        important: !!data.important, urgent: !!data.urgent, status: data.status
-      };
-      if (task) {
-        const wasDone = task.completed;
-        Object.assign(task, patch);
-        if (data.completed && !wasDone) { task.completed = true; task.status = '已完成'; task.completedAt = nowISO(); }
-        else if (!data.completed && wasDone) { task.completed = false; task.completedAt = ''; if (task.status === '已完成') task.status = '未开始'; }
-        else if (data.completed) { task.completed = true; task.status = '已完成'; }
-        task.updatedAt = nowISO();
-        saveState();
-        showToast('任务已更新');
-      } else {
-        const rec = Object.assign({
-          completed: false, completedAt:'', sourceModule: (presets && presets.sourceModule) || 'manual',
-          sourceId: (presets && presets.sourceId) || ''
-        }, patch);
-        if (data.completed) { rec.completed = true; rec.status = '已完成'; rec.completedAt = nowISO(); }
-        insertRecord('tasks', rec);
-        showToast('任务已创建');
-      }
-      renderCurrentRoute();
-      return true;
-    }
-  });
-}
-function openTaskDetail(id) {
-  const t = findById('tasks', id);
-  if (!t) { showToast('任务不存在', 'error'); return; }
-  const rows = [
-    ['任务名称', t.title], ['任务说明', t.description || '—'], ['所属分类', t.category],
-    ['计划日期', formatDate(t.planDate) + ' ' + weekdayOf(t.planDate) + '（' + relativeDayLabel(t.planDate) + '）'],
-    ['截止时间', t.dueTime || '—'], ['预计用时', durationText(t.estimatedMinutes)],
-    ['重要程度', t.important ? '重要' : '不重要'], ['紧急程度', t.urgent ? '紧急' : '不紧急'],
-    ['所在象限', QUAD_META[taskQuadrant(t)].roman + ' ' + QUAD_META[taskQuadrant(t)].name],
-    ['当前状态', t.status], ['是否完成', t.completed ? '已完成' : '未完成'],
-    ['完成时间', t.completedAt ? formatDate(getLocalDateString(new Date(t.completedAt))) + ' ' + getLocalTimeString(new Date(t.completedAt)) : '—'],
-    ['来源模块', TASK_SOURCES[t.sourceModule] || t.sourceModule || '手动创建'],
-    ['创建时间', t.createdAt ? formatDate(getLocalDateString(new Date(t.createdAt))) : '—'],
-    ['更新时间', t.updatedAt ? formatDate(getLocalDateString(new Date(t.updatedAt))) : '—']
-  ];
-  const linkedJob = t.sourceModule === 'jobApplications' && t.sourceId ? findById('jobApplications', t.sourceId) : null;
-  const blocks = coll('timeBlocks').filter(function (b) { return b.taskId === t.id; });
-  showModal({
-    title:'任务详情', dirtyCheck:false, hideSubmit:true, cancelText:'关闭',
-    body:'<dl class="dl">' + rows.map(function (r) {
-        return '<div class="dl-item' + (r[0] === '任务说明' ? ' full' : '') + '"><dt>' + escapeHTML(r[0]) + '</dt><dd>' + escapeHTML(String(r[1] === undefined || r[1] === '' ? '—' : r[1])) + '</dd></div>';
-      }).join('') + '</dl>' +
-      (linkedJob ? '<div style="margin-top:12px"><button type="button" class="btn soft sm" data-action="job-detail" data-id="' + linkedJob.id + '" data-close-modal="1">查看关联岗位：' + escapeHTML(jobTitleText(linkedJob)) + '</button></div>' : '') +
-      (blocks.length ? '<div style="margin-top:12px"><span class="flabel">关联时间块</span><div style="margin-top:6px;display:flex;flex-direction:column;gap:6px">' +
-        blocks.map(function (b) { return '<div class="tag blue" style="align-self:flex-start">' + escapeHTML(formatDateShort(b.date) + ' ' + b.startTime + '–' + b.endTime + ' ' + b.title) + '</div>'; }).join('') + '</div></div>' : ''),
-    extraButtons: [
-      { key:'edit-task:' + t.id, label:'编辑', cls:'soft' },
-      { key:'toggle-task:' + t.id, label: t.completed ? '标记未完成' : '标记完成', cls:'soft' }
-    ]
-  });
-}
-
-/* ==========================================================================
-   区域 12：时间规划页
-   ========================================================================== */
-function blockColorValue(key) {
-  const c = BLOCK_COLORS.find(function (x) { return x.key === key; });
-  return c ? c.value : BLOCK_COLORS[0].value;
-}
-function blocksOfDate(dateStr) {
-  return coll('timeBlocks').filter(function (b) { return b.date === dateStr; })
-    .sort(function (a, b) {
-      const sa = timeToMinutes(a.startTime), sb = timeToMinutes(b.startTime);
-      if (sa !== sb) return (sa === null ? 9999 : sa) - (sb === null ? 9999 : sb);
-      return (timeToMinutes(a.endTime) || 0) - (timeToMinutes(b.endTime) || 0);
-    });
-}
-function findConflicts(dateStr, startTime, endTime, ignoreId) {
-  const s = timeToMinutes(startTime), e = timeToMinutes(endTime);
-  if (s === null || e === null) return [];
-  return blocksOfDate(dateStr).filter(function (b) {
-    if (b.id === ignoreId) return false;
-    const bs = timeToMinutes(b.startTime), be = timeToMinutes(b.endTime);
-    if (bs === null || be === null) return false;
-    return s < be && bs < e;
-  });
-}
-function renderPlanner() {
-  const p = ui.planner;
-  if (!isValidDateStr(p.date)) p.date = todayStr();
-  const isToday = p.date === todayStr();
-  let html = '';
-
-  html += '<section class="section card"><div class="card-head" style="gap:8px">' +
-    '<div class="seg" role="tablist" aria-label="视图切换">' +
-      '<button type="button" class="' + (p.mode === 'day' ? 'on' : '') + '" data-action="planner-mode" data-value="day" role="tab" aria-selected="' + (p.mode === 'day') + '">日视图</button>' +
-      '<button type="button" class="' + (p.mode === 'week' ? 'on' : '') + '" data-action="planner-mode" data-value="week" role="tab" aria-selected="' + (p.mode === 'week') + '">周视图</button>' +
-    '</div>' +
-    '<div class="row tight">' +
-      '<button type="button" class="icon-btn sm" data-action="planner-shift" data-value="-1" aria-label="上一' + (p.mode === 'day' ? '天' : '周') + '">' + svg('left', 17) + '</button>' +
-      '<input class="input" type="date" id="plannerDate" value="' + escapeAttr(p.date) + '" data-action="planner-date" aria-label="选择日期" style="width:auto;min-height:34px;padding:4px 8px;font-size:.78rem">' +
-      '<button type="button" class="icon-btn sm" data-action="planner-shift" data-value="1" aria-label="下一' + (p.mode === 'day' ? '天' : '周') + '">' + svg('right', 17) + '</button>' +
-      '<button type="button" class="btn sm' + (isToday ? '' : ' soft') + '" data-action="planner-today">回到今天</button>' +
-    '</div>' +
-    '<div class="spacer"></div>' +
-    '<button type="button" class="btn primary sm only-mobile" data-action="block-new">' + svg('plus', 15) + '新增安排</button>' +
-    '</div>';
-
-  if (p.mode === 'day') {
-    const list = blocksOfDate(p.date);
-    const totalMin = list.reduce(function (s, b) {
-      const a = timeToMinutes(b.startTime), c = timeToMinutes(b.endTime);
-      return s + ((a !== null && c !== null && c > a) ? (c - a) : 0);
-    }, 0);
-    const doneMin = list.filter(function (b) { return b.completed; }).reduce(function (s, b) {
-      const a = timeToMinutes(b.startTime), c = timeToMinutes(b.endTime);
-      return s + ((a !== null && c !== null && c > a) ? (c - a) : 0);
-    }, 0);
-    html += '<div class="card-body tight">' +
-      '<div class="row between" style="padding-bottom:8px">' +
-        '<div><div style="font-size:.92rem;font-weight:700">' + escapeHTML(formatDate(p.date) + ' ' + weekdayOf(p.date)) + '</div>' +
-        '<div style="font-size:.72rem;color:var(--text-muted)">' + list.length + ' 个时间块 · 共 ' + durationText(totalMin) + ' · 已完成 ' + durationText(doneMin) + '</div></div>' +
-        '<div class="row tight">' +
-          '<button type="button" class="btn sm" data-action="copy-prev-day">复制前一天</button>' +
-          '<button type="button" class="btn sm" data-action="copy-prev-week">复制上周同一天</button>' +
-        '</div>' +
-      '</div>' +
-      (list.length ? '<div class="tl">' + list.map(function (b, i) {
-        const conflicts = findConflicts(b.date, b.startTime, b.endTime, b.id);
-        const task = b.taskId ? findById('tasks', b.taskId) : null;
-        return '<div class="tl-item">' +
-          '<div class="tl-time"><b>' + escapeHTML(b.startTime) + '</b>' + escapeHTML(b.endTime) + '</div>' +
-          '<div class="tl-line"><span class="tl-dot" style="background:' + blockColorValue(b.color) + ';box-shadow:0 0 0 3px color-mix(in srgb,' + blockColorValue(b.color) + ' 20%,transparent)"></span>' + (i < list.length - 1 ? '<span class="tl-bar"></span>' : '') + '</div>' +
-          '<div class="tl-card' + (b.completed ? ' done' : '') + (conflicts.length ? ' tl-conflict' : '') + '" style="border-left-color:' + blockColorValue(b.color) + '">' +
-            '<div class="row between" style="gap:6px">' +
-              '<div style="flex:1;min-width:0">' +
-                '<div class="tl-title">' + escapeHTML(b.title) + '</div>' +
-                '<div class="tl-sub">' + escapeHTML(b.category || '其他') + ' · ' + escapeHTML(b.status) +
-                  (b.note ? ' · ' + escapeHTML(b.note) : '') + (b.actual ? ' · 实际：' + escapeHTML(b.actual) : '') + '</div>' +
-                '<div class="task-meta">' +
-                  (conflicts.length ? '<span class="tag orange">' + svg('warn', 11) + '与 ' + conflicts.length + ' 项时间重叠</span>' : '') +
-                  (task ? '<button type="button" class="tag blue" data-action="task-detail" data-id="' + task.id + '">' + svg('link', 11) + '关联：' + escapeHTML(task.title) + '</button>' : '') +
-                '</div>' +
-              '</div>' +
-              '<div class="task-acts">' +
-                '<button type="button" class="icon-btn sm" data-action="block-toggle" data-id="' + b.id + '" aria-label="切换完成状态" title="' + (b.completed ? '标记未完成' : '标记完成') + '">' + svg(b.completed ? 'refresh' : 'ok', 16) + '</button>' +
-                '<button type="button" class="icon-btn sm" data-action="block-edit" data-id="' + b.id + '" aria-label="编辑时间块" title="编辑">' + svg('edit', 16) + '</button>' +
-                '<button type="button" class="icon-btn sm danger" data-action="block-delete" data-id="' + b.id + '" aria-label="删除时间块" title="删除">' + svg('trash', 16) + '</button>' +
-              '</div>' +
-            '</div>' +
-          '</div></div>';
-      }).join('') + '</div>'
-        : emptyBlock(EMPTY_TEXT.planner, '新增时间安排', 'data-action="block-new"')) +
-      '</div>';
-  } else {
-    const wr = getWeekRange(p.date, state.settings.weekStartsOn);
-    const days = [];
-    for (let i = 0; i < 7; i++) days.push(addDays(wr.start, i));
-    html += '<div class="card-body tight">' +
-      '<div style="font-size:.92rem;font-weight:700;padding-bottom:8px">' + escapeHTML(formatDate(wr.start) + ' 至 ' + formatDate(wr.end)) + '</div>' +
-      '<div class="week-grid">' + days.map(function (d) {
-        const bl = blocksOfDate(d);
-        return '<div class="week-col' + (d === todayStr() ? ' today' : '') + '">' +
-          '<h4><span>' + escapeHTML(weekdayOf(d)) + '</span><b>' + escapeHTML(formatDateShort(d)) + '</b></h4>' +
-          (bl.length ? bl.map(function (b) {
-            return '<button type="button" class="wk-block' + (b.completed ? ' done' : '') + '" style="border-left-color:' + blockColorValue(b.color) + '" data-action="block-edit" data-id="' + b.id + '">' +
-              '<b>' + escapeHTML(b.startTime + '–' + b.endTime) + '</b>' + escapeHTML(b.title) + '</button>';
-          }).join('') : '<span style="font-size:.7rem;color:var(--text-muted);padding:4px 2px">暂无安排</span>') +
-          '<button type="button" class="btn ghost xs" data-action="block-new" data-date="' + d + '" style="margin-top:auto">' + svg('plus', 12) + '添加</button>' +
-        '</div>';
-      }).join('') + '</div></div>';
-  }
-  html += '</section>';
-  return html;
-}
-function blockFormFields(b) {
-  const taskOptions = [{ value:'', label:'不关联任务' }].concat(
-    coll('tasks').filter(function (t) { return !t.completed || t.id === (b && b.taskId); })
-      .sort(function (x, y) { return (x.planDate || '') < (y.planDate || '') ? -1 : 1; })
-      .slice(0, 200)
-      .map(function (t) { return { value:t.id, label: formatDateShort(t.planDate) + ' ' + t.title }; })
-  );
-  return [
-    { type:'text', name:'title', label:'安排名称', value:(b && b.title) || '', required:true, placeholder:'例如：修改简历', full:true },
-    { type:'date', name:'date', label:'日期', value:(b && b.date) || ui.planner.date },
-    { type:'select', name:'category', label:'分类', value:(b && b.category) || '其他', options:BLOCK_CATEGORIES },
-    { type:'time', name:'startTime', label:'开始时间', value:(b && b.startTime) || '09:00', required:true },
-    { type:'time', name:'endTime', label:'结束时间', value:(b && b.endTime) || '10:00', required:true },
-    { type:'select', name:'color', label:'颜色标记', value:(b && b.color) || 'green', options:BLOCK_COLORS.map(function (c) { return { value:c.key, label:c.label }; }) },
-    { type:'select', name:'status', label:'当前状态', value:(b && b.status) || '计划中', options:BLOCK_STATUSES },
-    { type:'select', name:'taskId', label:'关联待办', value:(b && b.taskId) || '', options:taskOptions, full:true },
-    { type:'text', name:'actual', label:'实际完成情况', value:(b && b.actual) || '', placeholder:'例如：只完成了一半', full:true },
-    { type:'textarea', name:'note', label:'备注', value:(b && b.note) || '', full:true, rows:2 },
-    { type:'checkbox', name:'completed', label:'已完成', value:!!(b && b.completed) }
-  ];
-}
-function openBlockModal(blockId, presets) {
-  const b = blockId ? findById('timeBlocks', blockId) : null;
-  const base = b || Object.assign({ date: (presets && presets.date) || ui.planner.date }, presets || {});
-  let conflictConfirmed = false;
-  showModal({
-    title: b ? '编辑时间安排' : '新增时间安排',
-    subtitle:'保存时会自动检查同一天的时间冲突',
-    body: buildForm(blockFormFields(base)),
-    submitText: b ? '保存修改' : '创建安排',
-    extraButtons: b ? [{ key:'block-to-task:' + b.id, label:'生成待办', cls:'soft' }] : [],
-    onSubmit: function (data) {
-      if (!data.title) { showToast('请填写安排名称', 'error'); return false; }
-      if (!isValidDateStr(data.date)) { showToast('请选择有效日期', 'error'); return false; }
-      const sm = timeToMinutes(data.startTime), em = timeToMinutes(data.endTime);
-      if (sm === null || em === null) { showToast('请填写完整的开始与结束时间', 'error'); return false; }
-      if (em <= sm) { showToast('结束时间必须晚于开始时间', 'error'); return false; }
-      const conflicts = findConflicts(data.date, data.startTime, data.endTime, b ? b.id : null);
-      const doSave = function () {
-        const patch = {
-          title:data.title, date:data.date, startTime:data.startTime, endTime:data.endTime,
-          category:data.category, color:data.color, taskId:data.taskId || '',
-          status:data.completed ? '已完成' : (data.status === '已完成' ? '计划中' : data.status),
-          completed:!!data.completed, actual:data.actual, note:data.note
-        };
-        if (data.completed) patch.status = '已完成';
-        if (b) { updateRecord('timeBlocks', b.id, patch); showToast('时间安排已更新'); }
-        else { insertRecord('timeBlocks', patch); showToast('时间安排已创建'); }
-        ui.planner.date = data.date;
-        renderCurrentRoute();
-      };
-      if (conflicts.length && !conflictConfirmed) {
-        showConfirm({
-          title:'检测到时间冲突',
-          message:'该时间段与以下安排重叠：\n' + conflicts.map(function (c) { return c.startTime + '–' + c.endTime + ' ' + c.title; }).join('；') + '。\n仍然要保存吗？',
-          confirmText:'仍然保存'
-        }).then(function (ok) {
-          if (!ok) return;
-          conflictConfirmed = true;
-          doSave();
-          const entry = modalStack[modalStack.length - 1];
-          if (entry) entry.baseline = null;
-          closeTopModal(true);
-        });
-        return false;
-      }
-      doSave();
-      return true;
-    }
-  });
-}
-
-/* ==========================================================================
-   区域 13：每日单词页
-   ========================================================================== */
-function renderWords() {
-  const s = state.settings;
-  const t = todayStr();
-  const log = wordLogOf(t);
-  const goal = log ? num(log.goal) : num(s.dailyWordGoal);
-  const done = log ? num(log.done) : 0;
-  const rate = pct(done, goal);
-  const wr = getWeekRange(t, s.weekStartsOn);
-  const mr = monthRange(ui.words.month);
-
-  let html = '';
-  html += '<section class="section card"><div class="card-head"><h2>今日学习</h2><span class="ch-sub">' + escapeHTML(formatDate(t) + ' ' + weekdayOf(t)) + '</span>' +
-    '<button type="button" class="btn primary sm" data-action="word-edit">' + svg(log ? 'edit' : 'plus', 15) + (log ? '编辑今日记录' : '记录今日学习') + '</button></div>' +
-    '<div class="card-body">' +
-      (log ? '' : '<div style="margin-bottom:12px">' + emptyBlock(EMPTY_TEXT.words, '记录今日学习', 'data-action="word-edit"') + '</div>') +
-      '<div class="row between" style="margin-bottom:8px"><span style="font-size:1.5rem;font-weight:700">' + done + ' <span style="font-size:.85rem;color:var(--text-muted);font-weight:400">/ ' + goal + ' 个</span></span>' +
-      '<span class="tag ' + (rate >= 100 ? 'green' : (rate > 0 ? 'orange' : 'gray')) + '">完成率 ' + rate + '%</span></div>' +
-      '<div class="bar" style="margin-bottom:14px"><i style="width:' + rate + '%" class="' + (rate >= 100 ? '' : 'orange') + '"></i></div>' +
-      '<div class="mini-stats">' +
-        miniBox(log ? num(log.newCount) : 0, '新学单词') +
-        miniBox(log ? num(log.reviewCount) : 0, '复习单词') +
-        miniBox(log ? num(log.minutes) : 0, '学习分钟') +
-        miniBox(wordStreak(), '连续达标天数') +
-        miniBox(log ? (log.platform || '—') : '—', '使用平台') +
-        miniBox(log ? log.status : '未开始', '学习状态') +
-      '</div>' +
-      (log && log.note ? '<p style="margin-top:12px;font-size:.78rem;color:var(--text-secondary);overflow-wrap:anywhere">备注：' + escapeHTML(log.note) + '</p>' : '') +
-    '</div></section>';
-
-  html += '<section class="section grid grid-4">' +
-    statBox('本周累计', wordSum(wr.start, wr.end, 'done'), '个单词', 'accent') +
-    statBox('本月累计', wordSum(mr.start, mr.end, 'done'), '个单词', 'accent') +
-    statBox('本月学习时长', durationText(wordSum(mr.start, mr.end, 'minutes')), mr.year + ' 年 ' + mr.month + ' 月', '') +
-    statBox('本月达标天数', wordGoalDays(mr.start, mr.end), '天', 'blue') +
-    '</section>';
-
-  // 最近七天
-  const days7 = [];
-  for (let i = 6; i >= 0; i--) days7.push(addDays(t, -i));
-  const maxVal = Math.max.apply(null, days7.map(function (d) { const l = wordLogOf(d); return Math.max(l ? num(l.done) : 0, l ? num(l.goal) : 0); }).concat([1]));
-  html += '<section class="section card"><div class="card-head"><h2>最近七天</h2><span class="ch-sub">柱高按完成数量与目标比例显示</span></div>' +
-    '<div class="card-body"><div class="bars7">' + days7.map(function (d) {
-      const l = wordLogOf(d);
-      const v = l ? num(l.done) : 0;
-      const g = l ? num(l.goal) : 0;
-      const h = Math.max(3, Math.round((v / maxVal) * 100));
-      const cls = v === 0 ? 'zero' : (g > 0 && v >= g ? '' : 'miss');
-      return '<div class="b7"><span class="b7-vl">' + v + '</span>' +
-        '<div class="b7-track" title="' + escapeAttr(formatDate(d) + '：' + v + ' / ' + g) + '"><div class="b7-fill ' + cls + '" style="height:' + h + '%"></div></div>' +
-        '<span class="b7-lb">' + escapeHTML(weekdayOf(d).slice(1)) + '<br>' + escapeHTML(String(Number(d.slice(8)))) + '</span></div>';
-    }).join('') + '</div></div></section>';
-
-  // 月历
-  html += '<section class="section card"><div class="card-head"><h2>打卡日历</h2>' +
-    '<div class="row tight"><button type="button" class="icon-btn sm" data-action="words-month" data-value="-1" aria-label="上个月">' + svg('left', 16) + '</button>' +
-    '<span style="font-size:.82rem;font-weight:600;min-width:82px;text-align:center">' + mr.year + ' 年 ' + mr.month + ' 月</span>' +
-    '<button type="button" class="icon-btn sm" data-action="words-month" data-value="1" aria-label="下个月">' + svg('right', 16) + '</button></div></div>' +
-    '<div class="card-body">' + monthCalendarHTML(ui.words.month) +
-    '<div class="row tight" style="margin-top:12px;font-size:.72rem;color:var(--text-muted)">' +
-      '<span class="dot" style="background:var(--primary)"></span>达标' +
-      '<span class="dot" style="background:var(--warning);margin-left:10px"></span>有记录未达标' +
-      '<span class="dot" style="background:var(--surface-3);border:1px solid var(--border);margin-left:10px"></span>无记录' +
-    '</div></div></section>';
-  return html;
-}
-function monthCalendarHTML(ym) {
-  const mr = monthRange(ym);
-  const startWeekday = state.settings.weekStartsOn === 0 ? 0 : 1;
-  const heads = [];
-  for (let i = 0; i < 7; i++) heads.push(WEEKDAY_CN[(startWeekday + i) % 7]);
-  const lead = (mr.firstDay - startWeekday + 7) % 7;
-  let cells = '';
-  for (let i = 0; i < lead; i++) cells += '<div class="cal-d blank" aria-hidden="true"></div>';
-  for (let d = 1; d <= mr.days; d++) {
-    const ds = mr.year + '-' + pad2(mr.month) + '-' + pad2(d);
-    const log = wordLogOf(ds);
-    const cls = log ? (wordAchieved(log) ? 'ok' : 'part') : '';
-    const isToday = ds === todayStr();
-    cells += '<button type="button" class="cal-d ' + cls + (isToday ? ' today' : '') + '" data-action="word-edit" data-date="' + ds + '" title="' + escapeAttr(formatDate(ds) + (log ? '：完成 ' + num(log.done) + ' / 目标 ' + num(log.goal) : '：暂无记录')) + '">' +
-      '<span>' + d + '</span>' + (log ? '<span style="font-size:.58rem;opacity:.85">' + num(log.done) + '</span>' : '') + '</button>';
-  }
-  return '<div class="cal">' + heads.map(function (h) { return '<div class="cal-h">' + escapeHTML(h) + '</div>'; }).join('') + cells + '</div>';
-}
-function openWordModal(dateStr) {
-  const date = isValidDateStr(dateStr) ? dateStr : todayStr();
-  const log = wordLogOf(date);
-  const s = state.settings;
-  const fields = [
-    { type:'date', name:'date', label:'日期', value:date, required:true },
-    { type:'number', name:'goal', label:'今日目标单词数', value: log ? log.goal : num(s.dailyWordGoal), min:0, step:5, required:true },
-    { type:'number', name:'done', label:'实际完成单词数', value: log ? log.done : 0, min:0, step:5 },
-    { type:'number', name:'newCount', label:'新学单词数', value: log ? log.newCount : 0, min:0, step:5 },
-    { type:'number', name:'reviewCount', label:'复习单词数', value: log ? log.reviewCount : 0, min:0, step:5 },
-    { type:'number', name:'minutes', label:'学习时长（分钟）', value: log ? log.minutes : 0, min:0, step:5 },
-    { type:'html', name:'_pf', html:'<label for="wPlatform">使用平台</label><input class="input" id="wPlatform" data-field="platform" data-ftype="text" list="wordPlatformList" value="' + escapeAttr(log ? log.platform : (s.defaultWordPlatform || '')) + '" placeholder="可自由输入，例如：墨墨背单词" autocomplete="off">' + datalist('wordPlatformList', WORD_PLATFORMS) },
-    { type:'select', name:'status', label:'学习状态', value: log ? log.status : '进行中', options:WORD_STATUSES },
-    { type:'textarea', name:'note', label:'备注', value: log ? log.note : '', full:true, rows:2 }
-  ];
-  showModal({
-    title: log ? '编辑单词学习记录' : '记录单词学习',
-    subtitle:'每天只保存一条主记录，重复保存会覆盖当天记录',
-    body: buildForm(fields),
-    submitText:'保存记录',
-    extraButtons: log ? [{ key:'word-delete:' + log.id, label:'删除记录', cls:'danger' }] : [],
-    onSubmit: function (data) {
-      if (!isValidDateStr(data.date)) { showToast('请选择有效日期', 'error'); return false; }
-      const goal = num(data.goal), done = num(data.done);
-      const achieved = goal > 0 && done >= goal;
-      let status = data.status;
-      if (achieved) status = '已完成';
-      else if (done > 0) status = (status === '已完成' ? '未达标' : status);
-      const patch = {
-        date:data.date, goal:goal, done:done, newCount:num(data.newCount), reviewCount:num(data.reviewCount),
-        minutes:num(data.minutes), platform:data.platform, achieved:achieved, status:status, note:data.note
-      };
-      const existing = wordLogOf(data.date);
-      if (existing) updateRecord('wordLogs', existing.id, patch);
-      else insertRecord('wordLogs', patch);
-      // 达标后自动完成当天的自动单词任务
-      if (achieved) completeAutoWordTask(data.date);
-      showToast('单词学习记录已保存');
-      renderCurrentRoute();
-      return true;
-    }
-  });
-}
-function autoWordTaskId(dateStr) { return 'auto-word-' + dateStr; }
-function ensureAutoWordTask() {
-  if (!state.settings.autoCreateWordTask) return;
-  const d = todayStr();
-  const key = autoWordTaskId(d);
-  const exists = coll('tasks').some(function (t) { return t.sourceModule === 'wordLogs' && t.sourceId === key; });
-  if (exists) return;
-  coll('tasks').push(normalizeRecord({
-    id: generateId(),
-    title:'完成今日单词学习目标',
-    description:'目标 ' + num(state.settings.dailyWordGoal) + ' 个单词',
-    category:'学习', planDate:d, dueTime:'', estimatedMinutes:30,
-    important:false, urgent:true, status:'未开始', completed:false, completedAt:'',
-    sourceModule:'wordLogs', sourceId:key
-  }));
-  saveState();
-}
-function completeAutoWordTask(dateStr) {
-  const key = autoWordTaskId(dateStr);
-  const task = coll('tasks').find(function (t) { return t.sourceModule === 'wordLogs' && t.sourceId === key; });
-  if (task && !task.completed) setTaskCompleted(task, true);
-}
-
-/* ==========================================================================
-   区域 14：四象限页
-   ========================================================================== */
-function matrixTasks() {
-  const r = ui.matrix;
-  const t = todayStr();
-  let list = coll('tasks').slice();
-  if (r.range === 'today') list = list.filter(function (x) { return x.planDate === t || taskIsOverdue(x); });
-  else if (r.range === 'week') {
-    const wr = getWeekRange(t, state.settings.weekStartsOn);
-    list = list.filter(function (x) { return inRange(x.planDate, wr.start, wr.end) || taskIsOverdue(x); });
-  }
-  if (!r.showCompleted) list = list.filter(function (x) { return !x.completed; });
-  return list;
-}
-function renderMatrix() {
-  const r = ui.matrix;
-  const list = matrixTasks();
-  const byQ = { 1:[], 2:[], 3:[], 4:[] };
-  list.forEach(function (t) { byQ[taskQuadrant(t)].push(t); });
-  Object.keys(byQ).forEach(function (k) { byQ[k] = sortTasks(byQ[k], 'due'); });
-
-  let html = '';
-  html += '<section class="section card matrix-filter-card"><div class="card-body tight"><div class="row between matrix-toolbar">' +
-    '<div class="seg" role="tablist" aria-label="时间范围">' +
-      '<button type="button" class="' + (r.range === 'today' ? 'on' : '') + '" data-action="matrix-range" data-value="today" role="tab" aria-selected="' + (r.range === 'today') + '">今天</button>' +
-      '<button type="button" class="' + (r.range === 'week' ? 'on' : '') + '" data-action="matrix-range" data-value="week" role="tab" aria-selected="' + (r.range === 'week') + '">本周</button>' +
-      '<button type="button" class="' + (r.range === 'all' ? 'on' : '') + '" data-action="matrix-range" data-value="all" role="tab" aria-selected="' + (r.range === 'all') + '">全部</button>' +
-    '</div>' +
-    '<div class="row tight">' +
-      '<button type="button" class="btn sm" data-action="matrix-toggle-done">' + (r.showCompleted ? '隐藏已完成' : '显示已完成') + '</button>' +
-      '<button type="button" class="btn primary sm only-mobile" data-action="task-new">' + svg('plus', 15) + '新增</button>' +
-    '</div>' +
-    '<div class="matrix-mobile-controls"><select class="select matrix-mobile-range" data-action="matrix-range" aria-label="四象限时间范围">' +
-      '<option value="today"' + (r.range === 'today' ? ' selected' : '') + '>今天</option>' +
-      '<option value="week"' + (r.range === 'week' ? ' selected' : '') + '>本周</option>' +
-      '<option value="all"' + (r.range === 'all' ? ' selected' : '') + '>全部</option>' +
-    '</select><button type="button" class="matrix-mobile-more" data-action="matrix-more" aria-label="四象限更多选项" title="更多选项">' + svg('more', 17) + '</button></div></div>' +
-    '<p style="font-size:.72rem;color:var(--text-muted);padding-top:8px">电脑端可直接拖动卡片切换象限；手机端点击卡片上的移动按钮选择目标象限。</p>' +
-    '</div></section>';
-
-  html += '<div class="matrix">' + [1, 2, 3, 4].map(function (q) {
-    const meta = QUAD_META[q];
-    const items = byQ[q];
-    return '<section class="quad" data-q="' + q + '" data-quad-drop="' + q + '" aria-label="' + escapeAttr(meta.roman + ' ' + meta.name) + '">' +
-      '<header class="quad-head"><span class="qh-num">' + meta.roman + '</span><span class="qh-name">' + escapeHTML(meta.name) + '</span>' +
-      '<span class="qh-count">' + items.length + '</span>' +
-      '<button type="button" class="qh-add" data-action="matrix-add" data-q="' + q + '" aria-label="在' + escapeAttr(meta.name) + '中新增任务" title="新增任务">' + svg('plus', 15) + '</button></header>' +
-      '<div class="quad-body scroll-y">' + (items.length ? items.map(function (t) { return quadCardHTML(t); }).join('') : '<div class="qempty">' + EMPTY_TEXT.matrix + '</div>') + '</div>' +
-    '</section>';
-  }).join('') + '</div>';
-  return html;
-}
-function quadCardHTML(t) {
-  return '<article class="qcard' + (t.completed ? ' done' : '') + '" draggable="true" data-task-card="' + t.id + '">' +
-    '<button type="button" class="task-check' + (t.completed ? ' on' : '') + '" data-action="task-toggle" data-id="' + t.id + '" aria-label="' + (t.completed ? '标记为未完成' : '标记为完成') + '">' + svg('tick', 12, 'stroke-width="3"') + '</button>' +
-    '<div class="qc-main">' +
-      '<button type="button" class="qc-title" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务：' + escapeAttr(t.title) + '">' + escapeHTML(t.title) + '</button>' +
-      '<div class="qc-meta">' + taskMetaTags(t, { showQuad:false }) + '</div>' +
-    '</div>' +
-    '<button type="button" class="qc-mobile-more" data-action="matrix-task-menu" data-id="' + t.id + '" aria-label="任务更多操作" title="更多操作">' + svg('more', 16) + '</button>' +
-    '<div class="task-acts">' +
-      '<button type="button" class="icon-btn sm qc-action" data-action="matrix-move" data-id="' + t.id + '" aria-label="移动到其他象限" title="移动到其他象限">' + svg('move', 15) + '<span class="qc-action-label">移动</span></button>' +
-      '<button type="button" class="icon-btn sm qc-action" data-action="task-edit" data-id="' + t.id + '" aria-label="编辑任务" title="编辑">' + svg('edit', 15) + '<span class="qc-action-label">编辑</span></button>' +
-      '<button type="button" class="icon-btn sm danger qc-action" data-action="task-delete" data-id="' + t.id + '" aria-label="删除任务" title="删除">' + svg('trash', 15) + '<span class="qc-action-label">删除</span></button>' +
-    '</div></article>';
-}
-function openQuadMoveModal(taskId) {
-  const t = findById('tasks', taskId);
-  if (!t) return;
-  const cur = taskQuadrant(t);
-  const body = '<p style="font-size:.82rem;margin-bottom:10px">当前位于：<b>' + QUAD_META[cur].roman + ' ' + escapeHTML(QUAD_META[cur].name) + '</b></p>' +
-    '<div style="display:flex;flex-direction:column;gap:8px">' + [1, 2, 3, 4].map(function (q) {
-      const m = QUAD_META[q];
-      return '<button type="button" class="btn' + (q === cur ? ' soft' : '') + ' block" data-move-quad="' + q + '" style="justify-content:flex-start">' +
-        '<span class="dot" style="background:var(--q' + q + ')"></span>' + m.roman + ' ' + escapeHTML(m.name) + (q === cur ? '（当前）' : '') + '</button>';
-    }).join('') + '</div>';
-  showModal({ title:'移动到其他象限', subtitle: t.title, body: body, hideSubmit:true, cancelText:'关闭', dirtyCheck:false });
-}
-function openMatrixTaskMenu(taskId) {
-  const t = findById('tasks', taskId);
-  if (!t) return;
-  const body = '<div style="display:flex;flex-direction:column;gap:8px">' +
-    '<button type="button" class="btn block" data-modal-extra="matrix-move:' + t.id + '">' + svg('move', 16) + '移动到其他象限</button>' +
-    '<button type="button" class="btn block" data-modal-extra="matrix-edit:' + t.id + '">' + svg('edit', 16) + '编辑任务</button>' +
-    '<button type="button" class="btn danger block" data-modal-extra="matrix-delete:' + t.id + '">' + svg('trash', 16) + '删除任务</button>' +
-    '</div>';
-  showModal({ title:'任务操作', subtitle:t.title, body:body, hideSubmit:true, cancelText:'关闭', dirtyCheck:false });
-}
-function openMatrixOptions() {
-  const label = ui.matrix.showCompleted ? '隐藏已完成任务' : '显示已完成任务';
-  showModal({ title:'四象限选项', body:'<button type="button" class="btn block" data-modal-extra="matrix-toggle-done">' + label + '</button>', hideSubmit:true, cancelText:'关闭', dirtyCheck:false });
-}
-function moveTaskToQuadrant(taskId, q) {
-  const t = findById('tasks', taskId);
-  const meta = QUAD_META[q];
-  if (!t || !meta) return;
-  if (t.important === meta.important && t.urgent === meta.urgent) return;
-  t.important = meta.important; t.urgent = meta.urgent; t.updatedAt = nowISO();
-  saveState();
-  showToast('已移动到「' + meta.name + '」');
-  renderCurrentRoute();
-}
-
-/* ==========================================================================
-   区域 15：秋招投递页
-   ========================================================================== */
-function jobRegions() {
-  const set = {};
-  coll('jobApplications').forEach(function (j) { if (j.region) set[j.region] = 1; });
-  return Object.keys(set).sort(function (a, b) { return a.localeCompare(b, 'zh-Hans-CN'); });
-}
-function filterJobs() {
-  const f = ui.jobs;
-  const t = todayStr();
-  let list = coll('jobApplications').slice();
-
-  const q = f.q.trim().toLowerCase();
-  if (q) {
-    list = list.filter(function (j) {
-      return [j.company, j.position, j.jobCode, j.region, j.note].some(function (v) {
-        return String(v || '').toLowerCase().indexOf(q) >= 0;
-      });
-    });
-  }
-  if (f.campus) list = list.filter(function (j) { return j.campusCategory === f.campus; });
-  if (f.industry) list = list.filter(function (j) { return (j.industries || []).indexOf(f.industry) >= 0; });
-  if (f.direction) list = list.filter(function (j) { return j.direction === f.direction; });
-  if (f.region) list = list.filter(function (j) { return j.region === f.region; });
-  if (f.priority) list = list.filter(function (j) { return j.priority === f.priority; });
-  if (f.progress) list = list.filter(function (j) { return j.progress === f.progress; });
-
-  if (f.quick === 'pending') list = list.filter(function (j) { return PROGRESS_GROUP[j.progress] === 'todo'; });
-  else if (f.quick === 'd3' || f.quick === 'd7') {
-    const lim = f.quick === 'd3' ? 3 : 7;
-    list = list.filter(function (j) {
-      if (j.deadlineType !== 'date' || !j.deadlineDate) return false;
-      const d = diffDays(t, j.deadlineDate);
-      return d !== null && d >= 0 && d <= lim;
-    });
-  } else if (f.quick === 'todayAction') {
-    list = list.filter(function (j) { return j.nextAction && j.nextActionDate && j.nextActionDate <= t; });
-  } else if (f.quick === 'event') {
-    list = list.filter(function (j) {
-      const a = j.assessDate && j.assessDate >= t && diffDays(t, j.assessDate) <= 14;
-      const i = j.interviewDate && j.interviewDate >= t && diffDays(t, j.interviewDate) <= 14;
-      return a || i;
-    });
-  } else if (f.quick === 'rolling') {
-    list = list.filter(function (j) { return j.deadlineType === 'rolling' && PROGRESS_GROUP[j.progress] === 'todo'; });
-  }
-
-  const priOrder = { '高':0, '中':1, '低':2 };
-  list.sort(function (a, b) {
-    switch (f.sort) {
-      case 'updated': return (b.updatedAt || '') < (a.updatedAt || '') ? -1 : 1;
-      case 'created': return (b.createdAt || '') < (a.createdAt || '') ? -1 : 1;
-      case 'priority': return (priOrder[a.priority] - priOrder[b.priority]) || (jobDeadlineSortKey(a) < jobDeadlineSortKey(b) ? -1 : 1);
-      case 'company': return String(a.company).localeCompare(String(b.company), 'zh-Hans-CN');
-      case 'progress': return JOB_PROGRESS.indexOf(a.progress) - JOB_PROGRESS.indexOf(b.progress);
-      default: {
-        const ka = jobDeadlineSortKey(a), kb = jobDeadlineSortKey(b);
-        return ka < kb ? -1 : (ka > kb ? 1 : 0);
-      }
-    }
-  });
-  return list;
-}
-function renderJobs() {
-  const f = ui.jobs;
-  const st = jobStats();
-  const list = filterJobs();
-  const hasFilter = !!(f.q || f.campus || f.industry || f.direction || f.region || f.priority || f.progress || f.quick);
-
-  let html = '';
-  html += '<section class="section grid grid-4">' +
-    statBox('岗位总数', st.total, '全部记录', '') +
-    statBox('待投递', st.todo, '待确认 + 待投递', st.todo ? 'orange' : '') +
-    statBox('已投递', st.submitted, '进入流程的岗位', 'accent') +
-    statBox('进行中', st.running, '简历筛选到笔试', 'blue') +
-    statBox('面试中', st.interview, '一面 / 二面 / HR 面', 'blue') +
-    statBox('Offer', st.offer, '已获得录用', 'accent') +
-    statBox('已结束', st.ended, '拒绝 / 挂 / 放弃', '') +
-    statBox('本页显示', list.length, hasFilter ? '当前筛选结果' : '全部岗位', '') +
-    '</section>';
-
-  html += '<section class="section card">' +
-    '<div class="card-body tight">' +
-      '<div class="filters">' +
-        '<div class="searchbox">' + svg('search', 15) +
-          '<input class="input" id="jobsSearch" type="search" value="' + escapeAttr(f.q) + '" placeholder="搜索公司、岗位、编号、地区或备注" aria-label="搜索岗位" data-action="jobs-search">' +
-        '</div>' +
-        selectFilter('jobs-filter', 'campus', '全部校招分类', CAMPUS_CATEGORIES, f.campus) +
-        selectFilter('jobs-filter', 'industry', '全部行业', INDUSTRIES, f.industry) +
-        selectFilter('jobs-filter', 'direction', '全部方向', JOB_DIRECTIONS, f.direction) +
-        selectFilter('jobs-filter', 'region', '全部地区', jobRegions(), f.region) +
-        selectFilter('jobs-filter', 'priority', '全部优先级', JOB_PRIORITIES, f.priority) +
-        selectFilter('jobs-filter', 'progress', '全部进度', JOB_PROGRESS, f.progress) +
-        selectFilter('jobs-filter', 'sort', '排序', [
-          { value:'deadline', label:'按截止日期' }, { value:'updated', label:'按更新时间' },
-          { value:'created', label:'按创建时间' }, { value:'priority', label:'按优先级' },
-          { value:'progress', label:'按进度' }, { value:'company', label:'按公司名称' }
-        ], f.sort, true) +
-      '</div>' +
-      '<div class="filters" style="margin-top:8px">' +
-        quickChip('', '全部', f.quick) + quickChip('pending', '只看待处理', f.quick) +
-        quickChip('d3', '三天内截止', f.quick) + quickChip('d7', '七天内截止', f.quick) +
-        quickChip('rolling', '招满即止未投', f.quick) +
-        quickChip('todayAction', '今天要做的事', f.quick) + quickChip('event', '临近测评/面试', f.quick) +
-        (hasFilter ? '<button type="button" class="btn ghost sm" data-action="jobs-clear">清除筛选</button>' : '') +
-        '<div class="spacer"></div>' +
-        '<button type="button" class="btn sm only-mobile" data-action="export-jobs-csv">' + svg('down_tray', 14) + '导出 CSV</button>' +
-        '<button type="button" class="btn primary sm only-mobile" data-action="job-new">' + svg('plus', 15) + '新增岗位</button>' +
-      '</div>' +
-    '</div>';
-
-  if (!list.length) {
-    html += '<div class="card-body">' + emptyBlock(coll('jobApplications').length ? '没有符合条件的岗位。' : EMPTY_TEXT.jobs, '新增岗位', 'data-action="job-new"') + '</div></section>';
-    return html;
-  }
-
-  // 电脑端表格
-  html += '<div class="only-desktop table-wrap scroll-y" style="max-height:70vh"><table class="tbl"><thead><tr>' +
-    ['公司名称', '岗位名称', '校招分类', '行业', '地区', '招聘类型', '是否在内', '网申开始', '网申截止', '优先级', '投递进度', '下一步行动', '投递链接', '操作']
-      .map(function (h) { return '<th scope="col">' + escapeHTML(h) + '</th>'; }).join('') +
-    '</tr></thead><tbody>' + list.map(function (j) {
-      const dl = jobDeadlineInfo(j);
-      const url = safeUrl(j.link);
-      return '<tr>' +
-        '<td><button type="button" class="btn ghost xs" style="padding:0;min-height:0;font-weight:700" data-action="job-detail" data-id="' + j.id + '">' + escapeHTML(j.company || '—') + '</button>' + (j.jobCode ? '<div style="font-size:.68rem;color:var(--text-muted)">' + escapeHTML(j.jobCode) + '</div>' : '') + '</td>' +
-        '<td><div class="break" style="max-width:170px">' + escapeHTML(j.position || '—') + '</div>' + (j.direction ? '<div style="font-size:.68rem;color:var(--text-muted)">' + escapeHTML(j.direction) + '</div>' : '') + '</td>' +
-        '<td>' + escapeHTML(j.campusCategory || '—') + '</td>' +
-        '<td><div class="break" style="max-width:120px">' + escapeHTML((j.industries || []).join('／') || '—') + '</div></td>' +
-        '<td><div class="break" style="max-width:100px">' + escapeHTML(j.region || '—') + '</div></td>' +
-        '<td>' + escapeHTML(j.recruitType || '—') + '</td>' +
-        '<td><span class="tag ' + (j.inside === '是' ? 'green' : (j.inside === '否' ? 'gray' : 'orange')) + '">' + escapeHTML(j.inside) + '</span></td>' +
-        '<td>' + escapeHTML(j.startDate ? formatDate(j.startDate) : '—') + '</td>' +
-        '<td><span class="tag ' + dl.cls + '">' + escapeHTML(dl.text) + '</span>' + (dl.kind === 'date' && j.deadlineDate ? '<div style="font-size:.68rem;color:var(--text-muted)">' + escapeHTML(formatDate(j.deadlineDate)) + '</div>' : '') + '</td>' +
-        '<td><span class="tag ' + (j.priority === '高' ? 'red' : (j.priority === '中' ? 'orange' : 'gray')) + '">' + escapeHTML(j.priority) + '</span></td>' +
-        '<td><span class="prog-pill ' + jobProgressClass(j.progress) + '">' + escapeHTML(j.progress) + '</span></td>' +
-        '<td><div class="break" style="max-width:150px">' + escapeHTML(j.nextAction || '—') + (j.nextActionDate ? '<div style="font-size:.68rem;color:var(--text-muted)">' + escapeHTML(formatDate(j.nextActionDate)) + '</div>' : '') + '</div></td>' +
-        '<td>' + (url ? '<a class="link-cell" href="' + escapeAttr(url) + '" target="_blank" rel="noopener noreferrer nofollow" title="' + escapeAttr(url) + '">' + escapeHTML(url) + '</a>' : '—') + '</td>' +
-        '<td class="tc-actions">' +
-          '<button type="button" class="icon-btn sm" data-action="job-detail" data-id="' + j.id + '" aria-label="查看详情" title="详情">' + svg('info', 15) + '</button>' +
-          '<button type="button" class="icon-btn sm" data-action="job-edit" data-id="' + j.id + '" aria-label="编辑岗位" title="编辑">' + svg('edit', 15) + '</button>' +
-          '<button type="button" class="icon-btn sm" data-action="job-copy" data-id="' + j.id + '" aria-label="复制岗位" title="复制">' + svg('copy', 15) + '</button>' +
-          '<button type="button" class="icon-btn sm danger" data-action="job-delete" data-id="' + j.id + '" aria-label="删除岗位" title="删除">' + svg('trash', 15) + '</button>' +
-        '</td></tr>';
-    }).join('') + '</tbody></table></div>';
-
-  // 手机端卡片
-  html += '<div class="only-mobile card-body tight" style="display:flex;flex-direction:column;gap:10px">' +
-    list.map(function (j) { return jobCardHTML(j); }).join('') + '</div>';
-
-  html += '</section>';
-  return html;
-}
-function quickChip(value, label, current) {
-  return '<button type="button" class="btn sm' + (current === value ? ' soft' : '') + '" data-action="jobs-quick" data-value="' + escapeAttr(value) + '" aria-pressed="' + (current === value) + '">' + escapeHTML(label) + '</button>';
-}
-function jobCardHTML(j) {
-  const dl = jobDeadlineInfo(j);
-  const url = safeUrl(j.link);
-  return '<article class="job-card">' +
-    '<div class="jc-top"><div class="jc-name">' +
-      '<div class="jc-company">' + escapeHTML(j.company || '未填公司') + '</div>' +
-      '<div class="jc-pos">' + escapeHTML(j.position || '未填岗位') + (j.jobCode ? ' · ' + escapeHTML(j.jobCode) : '') + '</div>' +
-    '</div><span class="prog-pill ' + jobProgressClass(j.progress) + '">' + escapeHTML(j.progress) + '</span></div>' +
-    '<div class="jc-tags">' +
-      '<span class="tag ' + (j.priority === '高' ? 'red' : (j.priority === '中' ? 'orange' : 'gray')) + '">' + escapeHTML(j.priority) + '优先</span>' +
-      '<span class="tag ' + dl.cls + '">' + escapeHTML(dl.text) + '</span>' +
-      '<span class="tag gray">' + escapeHTML(j.campusCategory) + '</span>' +
-      (j.region ? '<span class="tag gray">' + escapeHTML(j.region) + '</span>' : '') +
-      '<span class="tag ' + (j.inside === '是' ? 'green' : (j.inside === '否' ? 'gray' : 'orange')) + '">是否在内：' + escapeHTML(j.inside) + '</span>' +
-    '</div>' +
-    '<div class="jc-rows">' +
-      ((j.industries || []).length ? '<span>行业：<b>' + escapeHTML(j.industries.join('／')) + '</b></span>' : '') +
-      (j.direction ? '<span>方向：<b>' + escapeHTML(j.direction) + '</b></span>' : '') +
-      (j.recruitType ? '<span>招聘类型：<b>' + escapeHTML(j.recruitType) + '</b></span>' : '') +
-      (j.nextAction ? '<span>下一步：<b>' + escapeHTML(j.nextAction) + '</b>' + (j.nextActionDate ? '（' + escapeHTML(formatDateShort(j.nextActionDate)) + '）' : '') + '</span>' : '') +
-      (url ? '<span class="break">链接：<a href="' + escapeAttr(url) + '" target="_blank" rel="noopener noreferrer nofollow">' + escapeHTML(url) + '</a></span>' : '') +
-    '</div>' +
-    '<div class="jc-acts">' +
-      '<button type="button" class="btn xs" data-action="job-detail" data-id="' + j.id + '">' + svg('info', 13) + '详情</button>' +
-      '<button type="button" class="btn xs" data-action="job-edit" data-id="' + j.id + '">' + svg('edit', 13) + '编辑</button>' +
-      '<button type="button" class="btn xs" data-action="job-copy" data-id="' + j.id + '">' + svg('copy', 13) + '复制</button>' +
-      '<button type="button" class="btn xs" data-action="job-next-task" data-id="' + j.id + '">' + svg('plus', 13) + '下一步待办</button>' +
-      '<button type="button" class="btn xs danger" data-action="job-delete" data-id="' + j.id + '">' + svg('trash', 13) + '删除</button>' +
-    '</div></article>';
-}
-function jobFormFields(j) {
-  const s = state.settings;
-  const v = j || {};
-  return [
-    { type:'section', label:'基础信息' },
-    { type:'text', name:'company', label:'公司名称', value:v.company || '', required:true, placeholder:'例如：米哈游' },
-    { type:'text', name:'position', label:'岗位名称', value:v.position || '', placeholder:'例如：市场营销管培生' },
-    { type:'text', name:'jobCode', label:'岗位编号', value:v.jobCode || '', placeholder:'招聘系统中的编号' },
-    { type:'text', name:'region', label:'地区', value:v.region || '', placeholder:'例如：上海 / 远程' },
-    { type:'html', name:'_link', full:true, html:'<label for="jobLink">投递链接</label><input class="input" id="jobLink" data-field="link" data-ftype="text" value="' + escapeAttr(v.link || '') + '" placeholder="以 http:// 或 https:// 开头" inputmode="url" autocomplete="off"><span class="fhelp">仅支持 http 或 https 链接，其它内容不会生成可点击链接</span>' },
-
-    { type:'section', label:'分类与类型' },
-    { type:'select', name:'campusCategory', label:'校招分类', value:v.campusCategory || s.defaultCampusCategory, options:CAMPUS_CATEGORIES },
-    { type:'select', name:'recruitType', label:'招聘类型', value:v.recruitType || '正式校招', options:RECRUIT_TYPES },
-    { type:'select', name:'direction', label:'岗位方向', value:v.direction || s.defaultJobDirection, options:JOB_DIRECTIONS },
-    { type:'select', name:'priority', label:'投递优先级', value:v.priority || s.defaultJobPriority, options:JOB_PRIORITIES },
-    { type:'radio', name:'inside', label:'是否在内', value:v.inside || '未确认', options:INSIDE_OPTIONS, full:true },
-    { type:'multi', name:'industries', label:'行业（可多选）', value:v.industries || [], options:INDUSTRIES, full:true },
-
-    { type:'section', label:'时间安排' },
-    { type:'date', name:'startDate', label:'网申开始时间', value:v.startDate || '' },
-    { type:'select', name:'deadlineType', label:'网申截止类型', value:v.deadlineType || 'date', options:DEADLINE_TYPES.map(function (d) { return { value:d.key, label:d.label }; }) },
-    { type:'date', name:'deadlineDate', label:'网申截止日期', value:v.deadlineDate || '', help:'仅当截止类型为「具体日期」时生效' },
-    { type:'text', name:'deadlineText', label:'截止补充说明', value:v.deadlineText || '', placeholder:'例如：招满即止，建议尽早投递' },
-
-    { type:'section', label:'投递进度' },
-    { type:'select', name:'progress', label:'投递进度', value:v.progress || '待确认', options:JOB_PROGRESS },
-    { type:'date', name:'appliedDate', label:'实际投递日期', value:v.appliedDate || '' },
-    { type:'text', name:'resumeVersion', label:'简历版本', value:v.resumeVersion || '', placeholder:'例如：市场营销 v3' },
-    { type:'html', name:'_channel', html:'<label for="jobChannel">投递渠道</label><input class="input" id="jobChannel" data-field="channel" data-ftype="text" list="jobChannelList" value="' + escapeAttr(v.channel || '') + '" placeholder="例如：官网 / 牛客 / 内推" autocomplete="off">' + datalist('jobChannelList', JOB_CHANNELS) },
-    { type:'text', name:'referrer', label:'内推人或联系人', value:v.referrer || '' },
-    { type:'select', name:'result', label:'结果', value:v.result || '进行中', options:JOB_RESULTS },
-
-    { type:'section', label:'后续安排' },
-    { type:'text', name:'nextAction', label:'下一步行动', value:v.nextAction || '', placeholder:'例如：修改并提交简历', full:true },
-    { type:'date', name:'nextActionDate', label:'下一步行动日期', value:v.nextActionDate || '' },
-    { type:'date', name:'assessDate', label:'测评／笔试日期', value:v.assessDate || '' },
-    { type:'time', name:'assessTime', label:'测评／笔试时间', value:v.assessTime || '' },
-    { type:'date', name:'interviewDate', label:'面试日期', value:v.interviewDate || '' },
-    { type:'time', name:'interviewTime', label:'面试时间', value:v.interviewTime || '' },
-    { type:'textarea', name:'note', label:'备注', value:v.note || '', full:true, rows:3, placeholder:'例如：需要准备作品集、面试官姓名、薪资信息等' }
-  ];
-}
-function openJobModal(jobId, presetData) {
-  const job = jobId ? findById('jobApplications', jobId) : null;
-  const base = job || presetData || null;
-  showModal({
-    title: job ? '编辑岗位' : '新增岗位',
-    subtitle: job ? jobTitleText(job) : '记录一个新的秋招或实习岗位',
-    size:'wide',
-    body: buildForm(jobFormFields(base)),
-    submitText: job ? '保存修改' : '创建岗位',
-    onSubmit: function (data) {
-      if (!data.company) { showToast('请填写公司名称', 'error'); return false; }
-      if (data.deadlineType === 'date' && data.deadlineDate && !isValidDateStr(data.deadlineDate)) { showToast('截止日期无效', 'error'); return false; }
-      if (data.link && !safeUrl(data.link)) { showToast('投递链接需以 http:// 或 https:// 开头', 'warning'); }
-      const patch = {
-        company:data.company, position:data.position, jobCode:data.jobCode, region:data.region, link:data.link,
-        campusCategory:data.campusCategory, recruitType:data.recruitType, direction:data.direction,
-        priority:data.priority, inside:data.inside, industries:data.industries || [],
-        startDate:data.startDate || '', deadlineType:data.deadlineType,
-        deadlineDate: data.deadlineType === 'date' ? (data.deadlineDate || '') : '',
-        deadlineText:data.deadlineText || '',
-        progress:data.progress, appliedDate:data.appliedDate || '', resumeVersion:data.resumeVersion,
-        channel:data.channel, referrer:data.referrer, result:data.result,
-        nextAction:data.nextAction, nextActionDate:data.nextActionDate || '',
-        assessDate:data.assessDate || '', assessTime:data.assessTime || '',
-        interviewDate:data.interviewDate || '', interviewTime:data.interviewTime || '',
-        note:data.note
-      };
-      if (job) { updateRecord('jobApplications', job.id, patch); showToast('岗位已更新'); }
-      else { insertRecord('jobApplications', patch); showToast('岗位已创建'); }
-      renderCurrentRoute();
-      return true;
-    }
-  });
-}
-function openJobDetail(id) {
-  const j = findById('jobApplications', id);
-  if (!j) { showToast('岗位不存在', 'error'); return; }
-  const dl = jobDeadlineInfo(j);
-  const url = safeUrl(j.link);
-  const linked = coll('tasks').filter(function (t) { return t.sourceModule === 'jobApplications' && t.sourceId === j.id; });
-  const rows = [
-    ['公司', j.company || '—'], ['岗位', j.position || '—'], ['岗位编号', j.jobCode || '—'],
-    ['校招分类', j.campusCategory], ['行业', (j.industries || []).join('／') || '—'],
-    ['地区', j.region || '—'], ['招聘类型', j.recruitType], ['岗位方向', j.direction || '—'],
-    ['是否在内', j.inside], ['优先级', j.priority],
-    ['开始时间', j.startDate ? formatDate(j.startDate) : '—'],
-    ['截止时间', dl.text + (j.deadlineType === 'date' && j.deadlineDate ? '（' + formatDate(j.deadlineDate) + '）' : '') + (j.deadlineText ? ' · ' + j.deadlineText : '')],
-    ['投递日期', j.appliedDate ? formatDate(j.appliedDate) : '—'],
-    ['简历版本', j.resumeVersion || '—'], ['投递渠道', j.channel || '—'], ['内推人', j.referrer || '—'],
-    ['当前进度', j.progress],
-    ['下一步行动', j.nextAction || '—'],
-    ['下一步日期', j.nextActionDate ? formatDate(j.nextActionDate) + '（' + relativeDayLabel(j.nextActionDate) + '）' : '—'],
-    ['测评时间', j.assessDate ? formatDate(j.assessDate) + (j.assessTime ? ' ' + j.assessTime : '') : '—'],
-    ['面试时间', j.interviewDate ? formatDate(j.interviewDate) + (j.interviewTime ? ' ' + j.interviewTime : '') : '—'],
-    ['结果', j.result || '—']
-  ];
-  const body = '<dl class="dl">' + rows.map(function (r) {
-      return '<div class="dl-item"><dt>' + escapeHTML(r[0]) + '</dt><dd>' + escapeHTML(String(r[1])) + '</dd></div>';
-    }).join('') +
-    '<div class="dl-item full"><dt>投递链接</dt><dd>' + (url ? '<a href="' + escapeAttr(url) + '" target="_blank" rel="noopener noreferrer nofollow">' + escapeHTML(url) + '</a>' : escapeHTML(j.link || '—')) + '</dd></div>' +
-    '<div class="dl-item full"><dt>备注</dt><dd>' + escapeHTML(j.note || '—') + '</dd></div>' +
-    '</dl>' +
-    '<div style="margin-top:14px"><span class="flabel">关联待办（' + linked.length + '）</span>' +
-      (linked.length ? '<ul class="list" style="margin-top:4px">' + linked.map(function (t) { return taskItemHTML(t, { compact:true }); }).join('') + '</ul>'
-        : '<p style="font-size:.76rem;color:var(--text-muted);margin-top:4px">还没有为该岗位创建待办。</p>') +
-    '</div>';
-  showModal({
-    title:'岗位详情', subtitle: jobTitleText(j), size:'wide', dirtyCheck:false, hideSubmit:true, cancelText:'关闭',
-    body: body,
-    extraButtons: [
-      url ? { key:'open-url:' + j.id, label:'打开链接', cls:'soft' } : null,
-      { key:'job-next-task:' + j.id, label:'创建下一步待办', cls:'soft' },
-      { key:'job-edit:' + j.id, label:'编辑', cls:'soft' }
-    ].filter(Boolean)
-  });
-}
-function createJobNextTask(jobId) {
-  const j = findById('jobApplications', jobId);
-  if (!j) return;
-  if (!j.nextAction) { showToast('请先在岗位中填写「下一步行动」', 'warning'); return; }
-  const date = isValidDateStr(j.nextActionDate) ? j.nextActionDate : todayStr();
-  const d = diffDays(todayStr(), date);
-  const urgent = d !== null && d <= 3;
-  const title = (j.company || '岗位') + '｜' + j.nextAction;
-  const dup = coll('tasks').find(function (t) {
-    return t.sourceModule === 'jobApplications' && t.sourceId === j.id && t.title === title && !t.completed;
-  });
-  if (dup) { showToast('已存在相同的未完成待办', 'warning'); return; }
-  insertRecord('tasks', {
-    title: title,
-    description: (j.position ? '岗位：' + j.position + '\n' : '') + (j.link ? '链接：' + j.link : ''),
-    category:'求职', planDate:date, dueTime:'', estimatedMinutes: num(state.settings.defaultTaskDuration, 30),
-    important:true, urgent:urgent, status:'未开始', completed:false, completedAt:'',
-    sourceModule:'jobApplications', sourceId:j.id
-  });
-  showToast('已创建待办：' + title);
-  renderCurrentRoute();
-}
-function deleteJob(jobId) {
-  const j = findById('jobApplications', jobId);
-  if (!j) return;
-  const linked = coll('tasks').filter(function (t) { return t.sourceModule === 'jobApplications' && t.sourceId === j.id; });
-  showConfirm({
-    title:'删除岗位',
-    message:'确定要删除「' + jobTitleText(j) + '」吗？该操作无法撤销。',
-    confirmText:'删除', danger:true
-  }).then(function (ok) {
-    if (!ok) return;
-    if (!linked.length) {
-      removeRecord('jobApplications', j.id);
-      showToast('岗位已删除');
-      renderCurrentRoute();
-      return;
-    }
-    showConfirm({
-      title:'是否同时删除关联待办？',
-      message:'该岗位有 ' + linked.length + ' 条关联待办。选择「保留待办」将只删除岗位记录。',
-      confirmText:'一并删除待办', cancelText:'保留待办', danger:true
-    }).then(function (alsoTasks) {
-      if (alsoTasks) linked.forEach(function (t) { removeRecord('tasks', t.id); });
-      removeRecord('jobApplications', j.id);
-      showToast(alsoTasks ? '岗位与关联待办已删除' : '岗位已删除，关联待办已保留');
-      renderCurrentRoute();
-    });
-  });
-}
-
-/* ==========================================================================
-   区域 16：奶茶记录页
-   ========================================================================== */
-function filterTeas() {
-  const f = ui.milktea;
-  const mr = monthRange(f.month);
-  let list = coll('milkTeaLogs').filter(function (m) { return inRange(m.date, mr.start, mr.end); });
-  if (f.brand) list = list.filter(function (m) { return m.brand === f.brand; });
-  const q = f.q.trim().toLowerCase();
-  if (q) {
-    list = list.filter(function (m) {
-      return [m.brand, m.drink, m.note].some(function (v) { return String(v || '').toLowerCase().indexOf(q) >= 0; });
-    });
-  }
-  list.sort(function (a, b) {
-    const ka = a.date + ' ' + (a.time || '00:00'), kb = b.date + ' ' + (b.time || '00:00');
-    return ka < kb ? 1 : -1;
-  });
-  return list;
-}
-function teaBrands() {
-  const set = {};
-  coll('milkTeaLogs').forEach(function (m) { if (m.brand) set[m.brand] = 1; });
-  return Object.keys(set).sort(function (a, b) { return a.localeCompare(b, 'zh-Hans-CN'); });
-}
-function renderMilkTea() {
-  const s = state.settings;
-  const t = todayStr();
-  const f = ui.milktea;
-  const wr = getWeekRange(t, s.weekStartsOn);
-  const mr = monthRange(f.month);
-  const prevMr = monthRange(shiftMonth(f.month, -1));
-
-  const weekList = teaInRange(wr.start, wr.end);
-  const monthList = teaInRange(mr.start, mr.end);
-  const prevList = teaInRange(prevMr.start, prevMr.end);
-  const spend = teaSum(monthList, 'price');
-  const prevSpend = teaSum(prevList, 'price');
-  const discount = teaSum(monthList, 'discount');
-  const avg = monthList.length ? spend / monthList.length : 0;
-  const limit = num(s.weeklyMilkTeaLimit, 0);
-  const budget = num(s.monthlyMilkTeaBudget, 0);
-  const overWeek = limit > 0 && weekList.length > limit;
-  const overBudget = budget > 0 && spend > budget;
-
-  const topBrand = topBy(monthList, function (m) { return m.brand; });
-  const topDrink = topBy(monthList, function (m) { return m.drink; });
-  // 品牌平均评分
-  const ratingMap = {};
-  monthList.forEach(function (m) {
-    if (!m.brand || !num(m.rating)) return;
-    if (!ratingMap[m.brand]) ratingMap[m.brand] = { sum:0, n:0 };
-    ratingMap[m.brand].sum += num(m.rating); ratingMap[m.brand].n++;
-  });
-  const bestBrand = Object.keys(ratingMap).map(function (k) { return { brand:k, avg: ratingMap[k].sum / ratingMap[k].n }; })
-    .sort(function (a, b) { return b.avg - a.avg; })[0];
-
-  const cupsDiff = monthList.length - prevList.length;
-  const spendDiff = spend - prevSpend;
-
-  let html = '';
-  html += '<section class="section card"><div class="card-head">' +
-    '<h2>' + mr.year + ' 年 ' + mr.month + ' 月</h2>' +
-    '<div class="row tight"><button type="button" class="icon-btn sm" data-action="tea-month" data-value="-1" aria-label="上个月">' + svg('left', 16) + '</button>' +
-    '<button type="button" class="btn sm" data-action="tea-month" data-value="0">本月</button>' +
-    '<button type="button" class="icon-btn sm" data-action="tea-month" data-value="1" aria-label="下个月">' + svg('right', 16) + '</button></div>' +
-    '<div class="spacer"></div>' +
-    '<button type="button" class="btn primary sm only-mobile" data-action="tea-new">' + svg('plus', 15) + '记录一杯</button></div>' +
-    '<div class="card-body"><div class="grid grid-4">' +
-      statBox('本周杯数', weekList.length + (limit > 0 ? ' / ' + limit : ''), overWeek ? '已超过每周上限' : '本周饮用情况', overWeek ? 'red' : 'accent') +
-      statBox('本月杯数', monthList.length, (cupsDiff >= 0 ? '较上月多 ' + cupsDiff : '较上月少 ' + Math.abs(cupsDiff)) + ' 杯', '') +
-      statBox('本月消费', money(spend), (spendDiff >= 0 ? '较上月多 ' + money(spendDiff) : '较上月少 ' + money(Math.abs(spendDiff))), overBudget ? 'red' : 'accent') +
-      statBox('本月优惠', money(discount), '累计优惠金额', 'blue') +
-      statBox('平均每杯', money(avg), '实际支付均价', '') +
-      statBox('最常购买品牌', topBrand ? topBrand.key : '—', topBrand ? topBrand.count + ' 杯' : '暂无数据', '') +
-      statBox('最常购买饮品', topDrink ? topDrink.key : '—', topDrink ? topDrink.count + ' 杯' : '暂无数据', '') +
-      statBox('评分最高品牌', bestBrand ? bestBrand.brand : '—', bestBrand ? '平均 ' + bestBrand.avg.toFixed(1) + ' 分' : '暂无评分', 'orange') +
-    '</div>' +
-    (limit > 0 || budget > 0 ? '<div style="margin-top:14px;display:flex;flex-direction:column;gap:10px">' +
-      (limit > 0 ? '<div><div class="row between" style="font-size:.75rem;color:var(--text-secondary);margin-bottom:4px"><span>本周杯数上限</span><span>' + weekList.length + ' / ' + limit + '</span></div><div class="bar"><i class="' + (overWeek ? 'red' : '') + '" style="width:' + pct(weekList.length, limit) + '%"></i></div></div>' : '') +
-      (budget > 0 ? '<div><div class="row between" style="font-size:.75rem;color:var(--text-secondary);margin-bottom:4px"><span>本月预算</span><span>' + money(spend) + ' / ' + money(budget) + '</span></div><div class="bar"><i class="' + (overBudget ? 'red' : '') + '" style="width:' + pct(spend, budget) + '%"></i></div></div>' : '') +
-      '</div>' : '') +
-    ((overWeek || overBudget) ? '<p style="margin-top:12px;font-size:.78rem;color:var(--warning)">' + svg('warn', 13) + ' ' + (overWeek ? '本周已超过设定的杯数上限。' : '') + (overBudget ? '本月消费已超出预算，注意控制。' : '') + '</p>' : '') +
-    '</div></section>';
-
-  // 最近七天
-  const days7 = [];
-  for (let i = 6; i >= 0; i--) days7.push(addDays(t, -i));
-  const counts7 = days7.map(function (d) { return coll('milkTeaLogs').filter(function (m) { return m.date === d; }).length; });
-  const max7 = Math.max.apply(null, counts7.concat([1]));
-  html += '<section class="section card"><div class="card-head"><h2>最近七天</h2><span class="ch-sub">每天饮用杯数</span></div>' +
-    '<div class="card-body"><div class="bars7">' + days7.map(function (d, i) {
-      const v = counts7[i];
-      return '<div class="b7"><span class="b7-vl">' + v + '</span>' +
-        '<div class="b7-track"><div class="b7-fill ' + (v === 0 ? 'zero' : 'miss') + '" style="height:' + Math.max(3, Math.round(v / max7 * 100)) + '%"></div></div>' +
-        '<span class="b7-lb">' + escapeHTML(weekdayOf(d).slice(1)) + '<br>' + Number(d.slice(8)) + '</span></div>';
-    }).join('') + '</div>' +
-    (topBrand ? '<div style="margin-top:14px;display:flex;flex-direction:column;gap:6px">' +
-      Object.keys(topBrand.map).sort(function (a, b) { return topBrand.map[b] - topBrand.map[a]; }).slice(0, 5).map(function (k) {
-        return '<div class="hbar"><span class="hb-n">' + escapeHTML(k) + '</span><span class="hb-t"><i style="width:' + pct(topBrand.map[k], topBrand.count) + '%"></i></span><span class="hb-v">' + topBrand.map[k] + ' 杯</span></div>';
-      }).join('') + '</div>' : '') +
-    '</div></section>';
-
-  // 记录列表
-  const list = filterTeas();
-  html += '<section class="section card"><div class="card-head"><h2>记录列表</h2><span class="ch-sub">共 ' + list.length + ' 条</span></div>' +
-    '<div class="card-body tight"><div class="filters">' +
-      '<div class="searchbox">' + svg('search', 15) +
-        '<input class="input" id="teaSearch" type="search" value="' + escapeAttr(f.q) + '" placeholder="搜索品牌、饮品或备注" aria-label="搜索奶茶记录" data-action="tea-search">' +
-      '</div>' +
-      selectFilter('tea-filter', 'brand', '全部品牌', teaBrands(), f.brand) +
-      ((f.q || f.brand) ? '<button type="button" class="btn ghost sm" data-action="tea-clear">清除筛选</button>' : '') +
-    '</div>' +
-    (list.length ? '<ul class="list">' + list.map(function (m) {
-      const stars = num(m.rating) ? '★'.repeat(Math.floor(num(m.rating))) + (num(m.rating) % 1 ? '½' : '') : '';
-      return '<li><div class="tea-item">' +
-        '<span class="tea-ic">' + svg('cup', 18) + '</span>' +
-        '<div class="tea-main">' +
-          '<div class="row between" style="gap:6px"><span style="font-size:.86rem;font-weight:600;overflow-wrap:anywhere">' + escapeHTML((m.brand || '未填品牌') + ' · ' + (m.drink || '未填饮品')) + '</span>' +
-          '<span style="font-size:.86rem;font-weight:700;flex:none">' + escapeHTML(money(m.price)) + '</span></div>' +
-          '<div class="task-meta">' +
-            '<span class="tag gray">' + escapeHTML(formatDateShort(m.date) + (m.time ? ' ' + m.time : '')) + '</span>' +
-            '<span class="tag gray">' + escapeHTML(m.cupSize) + '</span><span class="tag gray">' + escapeHTML(m.sugar) + '</span><span class="tag gray">' + escapeHTML(m.ice) + '</span>' +
-            (stars ? '<span class="tag orange stars">' + stars + ' ' + num(m.rating) + '</span>' : '') +
-            (m.usedCoupon ? '<span class="tag green">优惠 ' + escapeHTML(money(m.discount)) + '</span>' : '') +
-            ((m.reasons || []).length ? '<span class="tag blue">' + escapeHTML(m.reasons.join('／')) + '</span>' : '') +
-          '</div>' +
-          (m.note ? '<div class="task-desc">' + escapeHTML(m.note) + '</div>' : '') +
-        '</div>' +
-        '<div class="task-acts">' +
-          '<button type="button" class="icon-btn sm" data-action="tea-edit" data-id="' + m.id + '" aria-label="编辑记录" title="编辑">' + svg('edit', 16) + '</button>' +
-          '<button type="button" class="icon-btn sm danger" data-action="tea-delete" data-id="' + m.id + '" aria-label="删除记录" title="删除">' + svg('trash', 16) + '</button>' +
-        '</div></div></li>';
-    }).join('') + '</ul>' : emptyBlock(coll('milkTeaLogs').length ? '当前筛选下没有记录。' : EMPTY_TEXT.milktea, '记录一杯', 'data-action="tea-new"')) +
-    '</div></section>';
-  return html;
-}
-function openTeaModal(id) {
-  const m = id ? findById('milkTeaLogs', id) : null;
-  const s = state.settings;
-  const fields = [
-    { type:'date', name:'date', label:'日期', value:(m && m.date) || todayStr(), required:true },
-    { type:'time', name:'time', label:'时间', value:(m && m.time) || nowTimeStr() },
-    { type:'html', name:'_brand', html:'<label for="teaBrand">品牌或店铺</label><input class="input" id="teaBrand" data-field="brand" data-ftype="text" list="teaBrandList" value="' + escapeAttr((m && m.brand) || '') + '" placeholder="例如：喜茶" autocomplete="off">' + datalist('teaBrandList', teaBrands()) },
-    { type:'text', name:'drink', label:'饮品名称', value:(m && m.drink) || '', placeholder:'例如：多肉葡萄' },
-    { type:'select', name:'cupSize', label:'杯型', value:(m && m.cupSize) || s.defaultCupSize, options:CUP_SIZES },
-    { type:'select', name:'sugar', label:'糖度', value:(m && m.sugar) || s.defaultSugar, options:SUGARS },
-    { type:'select', name:'ice', label:'冰量', value:(m && m.ice) || s.defaultIce, options:ICES },
-    { type:'number', name:'price', label:'实际价格（元）', value:(m ? m.price : ''), min:0, step:0.5, placeholder:'0' },
-    { type:'rating', name:'rating', label:'评分（1～5，可 0.5）', value:(m ? m.rating : 0), min:0, max:5, step:0.5 },
-    { type:'checkbox', name:'usedCoupon', label:'使用了优惠', value:!!(m && m.usedCoupon) },
-    { type:'number', name:'discount', label:'优惠金额（元）', value:(m ? m.discount : ''), min:0, step:0.5, placeholder:'0' },
-    { type:'multi', name:'reasons', label:'饮用原因（可多选）', value:(m && m.reasons) || [], options:TEA_REASONS, full:true },
-    { type:'textarea', name:'note', label:'备注', value:(m && m.note) || '', full:true, rows:2 }
-  ];
-  showModal({
-    title: m ? '编辑奶茶记录' : '记录一杯奶茶',
-    body: buildForm(fields),
-    submitText: m ? '保存修改' : '保存记录',
-    onSubmit: function (data) {
-      if (!isValidDateStr(data.date)) { showToast('请选择有效日期', 'error'); return false; }
-      const patch = {
-        date:data.date, time:data.time || '', brand:data.brand, drink:data.drink,
-        cupSize:data.cupSize, sugar:data.sugar, ice:data.ice,
-        price:num(data.price), rating:num(data.rating), reasons:data.reasons || [],
-        usedCoupon:!!data.usedCoupon, discount:num(data.discount), note:data.note
-      };
-      if (m) { updateRecord('milkTeaLogs', m.id, patch); showToast('记录已更新'); }
-      else {
-        insertRecord('milkTeaLogs', patch);
-        // 记录后温和提示是否超限
-        const s2 = state.settings;
-        const wr = getWeekRange(patch.date, s2.weekStartsOn);
-        const cups = teaInRange(wr.start, wr.end).length;
-        const lim = num(s2.weeklyMilkTeaLimit, 0);
-        showToast('记录已保存');
-        if (lim > 0 && cups > lim) setTimeout(function () { showToast('本周已喝 ' + cups + ' 杯，超过上限 ' + lim + ' 杯', 'warning', 3200); }, 600);
-      }
-      ui.milktea.month = patch.date.slice(0, 7);
-      renderCurrentRoute();
-      return true;
-    }
-  });
 }
 
 /* ==========================================================================
@@ -3483,8 +1669,6 @@ function renderWeeklyReview() {
   const we = addDays(ws, 6);
   const info = getWeekNumber(ws);
   const rev = reviewOf(ws);
-  const snap = (rev && rev.completed && isPlainObject(rev.snapshot) && Object.keys(rev.snapshot).length) ? rev.snapshot : buildWeekSnapshot(ws, we);
-  const isSnapshot = !!(rev && rev.completed && isPlainObject(rev.snapshot) && Object.keys(rev.snapshot).length);
   const isThisWeek = ws === currentWeekStart();
 
   let html = '';
@@ -3499,16 +1683,6 @@ function renderWeeklyReview() {
     '<div class="spacer"></div>' +
     '<span class="tag ' + (rev && rev.completed ? 'green' : 'orange') + '">' + (rev && rev.completed ? '已完成复盘' : '尚未完成') + '</span>' +
     '<button type="button" class="btn primary sm" data-action="review-edit">' + svg(rev ? 'edit' : 'plus', 15) + (rev ? '编辑复盘' : '填写复盘') + '</button>' +
-    '</div>' +
-    '<div class="card-body">' +
-      '<div class="row between" style="margin-bottom:10px"><span class="flabel">本周自动统计</span>' +
-      '<span style="font-size:.7rem;color:var(--text-muted)">' + (isSnapshot ? '显示保存复盘时生成的统计快照' : '根据当前数据实时计算') + '</span></div>' +
-      '<div class="rev-snap">' + SNAPSHOT_LABELS.map(function (x) {
-        const v = snap[x[0]];
-        const unit = x[2] || '';
-        const text = unit === '¥' ? money(v) : (unit === '%' ? num(v) + '%' : String(v === undefined ? 0 : v));
-        return '<div class="rs"><div class="rs-v">' + escapeHTML(text) + '</div><div class="rs-l">' + escapeHTML(x[1]) + '</div></div>';
-      }).join('') + '</div>' +
     '</div></section>';
 
   if (rev) {
@@ -3530,7 +1704,6 @@ function renderWeeklyReview() {
       '<div class="card-body"><dl class="dl">' + blocks.map(function (b) {
         return '<div class="dl-item full"><dt style="width:130px">' + escapeHTML(b[0]) + '</dt><dd style="white-space:pre-wrap">' + escapeHTML(b[1] || '—') + '</dd></div>';
       }).join('') + '</dl>' +
-      ((rev.nextTop3 || []).filter(Boolean).length ? '<div style="margin-top:12px"><button type="button" class="btn soft sm" data-action="review-next-tasks" data-id="' + rev.id + '">' + svg('plus', 14) + '把下周三件事转为待办</button></div>' : '') +
       '</div></section>';
   } else {
     html += '<section class="section card"><div class="card-body">' + emptyBlock(EMPTY_TEXT.review, '填写本周复盘', 'data-action="review-edit"') + '</div></section>';
@@ -3609,7 +1782,7 @@ function openReviewModal(weekStart) {
     { type:'text', name:'next2', label:'下周最重要的第 3 件事', value:next[2] || '', full:true },
     { type:'textarea', name:'stop', label:'下周需要减少或停止的事情', value:(r && r.stop) || '', full:true, rows:2 },
     { type:'textarea', name:'others', label:'其他记录', value:(r && r.others) || '', full:true, rows:2 },
-    { type:'checkbox', name:'completed', label:'标记为已完成复盘（保存统计快照）', value: r ? !!r.completed : true }
+    { type:'checkbox', name:'completed', label:'标记为已完成复盘', value: r ? !!r.completed : true }
   ];
   showModal({
     title:'每周复盘', subtitle: info.year + ' 年第 ' + info.week + ' 周 · ' + formatDate(ws) + ' 至 ' + formatDate(we),
@@ -3617,7 +1790,7 @@ function openReviewModal(weekStart) {
     onSubmit: function (data) {
       const patch = {
         weekStart:ws, weekEnd:we, year:info.year, weekNo:info.week,
-        snapshot: buildWeekSnapshot(ws, we),
+        snapshot: r && r.snapshot ? r.snapshot : {},
         best:[data.best0, data.best1, data.best2],
         undone:data.undone, reasons:data.reasons, keep:data.keep, problems:data.problems,
         mood:num(data.mood, 3), energy:num(data.energy, 3), score:num(data.score, 6),
@@ -3633,30 +1806,6 @@ function openReviewModal(weekStart) {
       return true;
     }
   });
-}
-function reviewNextToTasks(reviewId) {
-  const r = findById('weeklyReviews', reviewId);
-  if (!r) return;
-  const items = (r.nextTop3 || []).filter(function (x) { return String(x || '').trim(); });
-  if (!items.length) { showToast('下周三件事还没有填写', 'warning'); return; }
-  const nextWeekStart = addDays(r.weekStart, 7);
-  let created = 0;
-  items.forEach(function (title) {
-    const exists = coll('tasks').some(function (t) {
-      return t.sourceModule === 'weeklyReviews' && t.sourceId === r.id && t.title === title;
-    });
-    if (exists) return;
-    coll('tasks').push(normalizeRecord({
-      id: generateId(), title: title, description:'来自 ' + r.year + ' 年第 ' + r.weekNo + ' 周复盘的下周重点',
-      category:'其他', planDate: nextWeekStart, dueTime:'', estimatedMinutes: num(state.settings.defaultTaskDuration, 30),
-      important:true, urgent:false, status:'未开始', completed:false, completedAt:'',
-      sourceModule:'weeklyReviews', sourceId:r.id
-    }));
-    created++;
-  });
-  saveState();
-  showToast(created ? '已创建 ' + created + ' 条下周待办' : '这些待办已经创建过了', created ? 'success' : 'warning');
-  renderCurrentRoute();
 }
 
 /* ==========================================================================
@@ -3695,43 +1844,6 @@ function renderSettings() {
     setLine('默认打开页面', '每次打开应用时首先进入的页面', setSelect('defaultRoute', ROUTES.map(function (r) { return { value:r.key, label:r.label }; })), true) +
     setLine('每周开始日', '影响本周统计范围与复盘周次', setSelect('weekStartsOn', [{ value:1, label:'周一' }, { value:0, label:'周日' }])) +
     setLine('日期显示格式', '仅影响显示，存储格式始终为 YYYY-MM-DD', setSelect('dateFormat', ['YYYY-MM-DD', 'YYYY/MM/DD', 'MM月DD日', 'DD/MM/YYYY'])) +
-    setLine('显示已完成任务', '关闭后待办列表默认隐藏已完成项', setSwitch('showCompletedTasks', '显示已完成任务')) +
-    setLine('总览显示奶茶统计', '', setSwitch('showMilkTeaOnDashboard', '总览显示奶茶统计')) +
-    setLine('总览显示秋招提醒', '', setSwitch('showJobsOnDashboard', '总览显示秋招提醒')) +
-    '</div></section>';
-
-  html += '<section class="section card"><div class="card-head"><h2>任务设置</h2></div><div class="card-body" style="padding-top:2px">' +
-    setLine('默认任务分类', '新增任务时预先选中的分类', setSelect('defaultTaskCategory', TASK_CATEGORIES)) +
-    setLine('默认预计用时', '单位：分钟', setNumber('defaultTaskDuration', 0, 1440, 5)) +
-    setLine('新任务默认设为重要', '开启后新增任务默认勾选「重要」', setSwitch('defaultTaskImportant', '新任务默认设为重要')) +
-    setLine('自动延期未完成任务', '每天首次打开应用时，把昨天及更早未完成的任务顺延到今天', setSwitch('autoCarryOverTasks', '自动延期未完成任务')) +
-    '</div></section>';
-
-  html += '<section class="section card"><div class="card-head"><h2>单词设置</h2></div><div class="card-body" style="padding-top:2px">' +
-    setLine('每日目标单词数', '新增单词记录时自动填入', setNumber('dailyWordGoal', 0, 5000, 10)) +
-    setLine('每天自动创建单词待办', '当天首次打开应用时自动生成一条学习任务，同一天不会重复创建', setSwitch('autoCreateWordTask', '每天自动创建单词待办')) +
-    setLine('默认单词学习平台', '例如：墨墨背单词', setText('defaultWordPlatform', '可自由输入'), true) +
-    '</div></section>';
-
-  html += '<section class="section card"><div class="card-head"><h2>求职设置</h2></div><div class="card-body" style="padding-top:2px">' +
-    setLine('默认校招分类', '', setSelect('defaultCampusCategory', CAMPUS_CATEGORIES)) +
-    setLine('默认岗位方向', '', setSelect('defaultJobDirection', JOB_DIRECTIONS)) +
-    setLine('默认投递优先级', '', setSelect('defaultJobPriority', JOB_PRIORITIES)) +
-    setLine('截止提前提醒天数', '总览页在距离截止不足该天数时提醒', setNumber('deadlineReminderDays', 0, 60, 1)) +
-    setLine('长时间未更新提醒天数', '投递记录超过该天数未更新时提醒', setNumber('staleApplicationDays', 1, 180, 1)) +
-    '</div></section>';
-
-  html += '<section class="section card"><div class="card-head"><h2>奶茶设置</h2></div><div class="card-body" style="padding-top:2px">' +
-    setLine('每周杯数上限', '仅温和提示，不会阻止记录', setNumber('weeklyMilkTeaLimit', 0, 50, 1)) +
-    setLine('每月预算（元）', '', setNumber('monthlyMilkTeaBudget', 0, 100000, 10)) +
-    setLine('默认杯型', '', setSelect('defaultCupSize', CUP_SIZES)) +
-    setLine('默认糖度', '', setSelect('defaultSugar', SUGARS)) +
-    setLine('默认冰量', '', setSelect('defaultIce', ICES)) +
-    '</div></section>';
-
-  html += '<section class="section card"><div class="card-head"><h2>复盘设置</h2></div><div class="card-body" style="padding-top:2px">' +
-    setLine('每周复盘日', '建议设为周末，便于形成固定习惯', setSelect('weeklyReviewDay', WEEKDAY_CN.map(function (w, i) { return { value:i, label:w }; }))) +
-    setLine('总览显示复盘提醒', '', setSwitch('showWeeklyReviewReminder', '总览显示复盘提醒')) +
     '</div></section>';
 
   html += '<section class="section card"><div class="card-head"><h2>外观设置</h2></div><div class="card-body" style="padding-top:2px">' +
@@ -3750,14 +1862,13 @@ function renderSettings() {
       }).join('') + '</div>', true) +
     '</div></section>';
 
-  const counts = COLLECTIONS.map(function (c) { return { key:c, n: coll(c).length }; });
-  const labelMap = { tasks:'任务', timeBlocks:'时间块', wordLogs:'单词记录', jobApplications:'秋招岗位', milkTeaLogs:'奶茶记录', weeklyReviews:'每周复盘' };
+  const counts = ['experimentRuns', 'experimentLogs', 'weeklyReviews'].map(function (c) { return { key:c, n: coll(c).length }; });
+  const labelMap = { experimentRuns:'实验周期', experimentLogs:'实验日记录', weeklyReviews:'每周复盘' };
   html += '<section class="section card"><div class="card-head"><h2>数据管理</h2><span class="badge-ver">应用版本 v' + APP_VERSION + '</span></div><div class="card-body">' +
     '<div class="mini-stats" style="margin-bottom:14px">' + counts.map(function (c) { return miniBox(c.n, labelMap[c.key]); }).join('') + '</div>' +
     '<div class="row" style="gap:8px">' +
       '<button type="button" class="btn primary sm" data-action="export-all">' + svg('down_tray', 15) + '导出全部数据</button>' +
       '<button type="button" class="btn sm" data-action="import-all">' + svg('up_tray', 15) + '导入数据</button>' +
-      '<button type="button" class="btn sm" data-action="export-jobs-csv">' + svg('down_tray', 15) + '仅导出秋招 CSV</button>' +
     '</div>' +
     '<p class="kv" style="margin-top:12px">最后一次导出备份：' + escapeHTML(state.meta.lastExportAt ? (formatDate(getLocalDateString(new Date(state.meta.lastExportAt))) + ' ' + getLocalTimeString(new Date(state.meta.lastExportAt))) : '尚未导出') + '</p>' +
     '<p class="kv">数据保存位置：当前浏览器 localStorage，键名 <code>' + STORAGE_KEY + '</code></p>' +
@@ -3818,23 +1929,6 @@ function exportAllData() {
     console.error(e);
     showToast('导出失败：' + (e && e.message ? e.message : '未知错误'), 'error');
   }
-}
-function csvCell(v) { return '"' + String(v === null || v === undefined ? '' : v).replace(/"/g, '""') + '"'; }
-function exportJobsCSV() {
-  const list = coll('jobApplications');
-  if (!list.length) { showToast('还没有可导出的秋招岗位', 'warning'); return; }
-  const headers = ['公司名称', '岗位名称', '校招分类', '行业', '地区', '招聘类型', '是否在内', '开始时间', '截止时间', '优先级', '投递进度', '投递日期', '下一步行动', '下一步日期', '投递链接', '备注'];
-  const rows = list.map(function (j) {
-    const dl = j.deadlineType === 'date' ? (j.deadlineDate || '') : (j.deadlineType === 'rolling' ? '招满即止' : '未公布');
-    return [
-      j.company, j.position, j.campusCategory, (j.industries || []).join('／'), j.region, j.recruitType, j.inside,
-      j.startDate, dl, j.priority, j.progress, j.appliedDate, j.nextAction, j.nextActionDate, j.link, j.note
-    ].map(csvCell).join(',');
-  });
-  const csv = '\uFEFF' + headers.map(csvCell).join(',') + '\r\n' + rows.join('\r\n');
-  const d = new Date();
-  downloadBlob(new Blob([csv], { type:'text/csv;charset=utf-8' }), '秋招投递记录_' + getLocalDateString(d) + '.csv');
-  showToast('秋招 CSV 已导出（UTF-8 BOM，Excel 可直接打开）');
 }
 function validateImport(parsed) {
   if (!isPlainObject(parsed)) return { ok:false, msg:'文件内容不是有效的 JSON 对象' };
@@ -3925,7 +2019,7 @@ function handleImportFile(file) {
 function clearAllData() {
   showConfirm({
     title:'清空全部数据',
-    message:'该操作会删除所有实验周期、实验记录、任务、时间安排、单词记录、秋招岗位、奶茶记录与复盘内容，且无法撤销。建议先导出备份。',
+    message:'该操作会删除所有实验周期、实验记录、每周复盘与历史归档，且无法撤销。建议先导出备份。',
     confirmText:'确认清空', danger:true, requireText:'确认清空'
   }).then(function (ok) {
     if (!ok) return;
@@ -3971,29 +2065,6 @@ function closeModalIfNeeded(el) {
 function climb(el, sel) { return el && el.closest ? el.closest(sel) : null; }
 
 /* --------- 弹窗额外按钮 --------- */
-function handleModalExtra(key) {
-  const idx = key.indexOf(':');
-  const base = idx >= 0 ? key.slice(0, idx) : key;
-  const val = idx >= 0 ? key.slice(idx + 1) : '';
-  switch (base) {
-    case 'edit-task': closeTopModal(true); openTaskModal(val); break;
-    case 'toggle-task': closeTopModal(true); toggleTaskWithToast(val); break;
-    case 'block-to-task': closeTopModal(true); blockToTask(val); break;
-    case 'word-delete': closeTopModal(true); deleteWordLog(val); break;
-    case 'open-url': {
-      const j = findById('jobApplications', val); closeTopModal(true);
-      if (j) { const u = safeUrl(j.link); if (u) window.open(u, '_blank', 'noopener,noreferrer'); }
-      break;
-    }
-    case 'job-next-task': closeTopModal(true); createJobNextTask(val); break;
-    case 'job-edit': closeTopModal(true); openJobModal(val); break;
-    case 'matrix-toggle-done': ui.matrix.showCompleted = !ui.matrix.showCompleted; closeTopModal(true); renderCurrentRoute(); break;
-    case 'matrix-move': closeTopModal(true); openQuadMoveModal(val); break;
-    case 'matrix-edit': closeTopModal(true); openTaskModal(val); break;
-    case 'matrix-delete': closeTopModal(true); deleteTaskConfirm(val); break;
-    default: break;
-  }
-}
 function doImportMode(mode) {
   const entry = modalStack[modalStack.length - 1];
   const parsed = entry && entry.pendingImport;
@@ -4019,7 +2090,6 @@ function dispatch(action, el) {
   switch (action) {
     /* 外壳 / 导航 */
     case 'go': navigate(el.getAttribute('data-route')); break;
-    case 'dashboard-matrix': ui.matrix.range = 'all'; ui.matrix.showCompleted = false; navigate('matrix'); break;
     case 'fab': { const fa = el.getAttribute('data-fab-action'); if (fa) dispatch(fa, el); break; }
     case 'toggle-sidebar':
       state.settings.sidebarCollapsed = !state.settings.sidebarCollapsed;
@@ -4027,92 +2097,6 @@ function dispatch(action, el) {
     case 'open-drawer': openDrawer(); break;
     case 'open-more': openMore(); break;
     case 'close-layers': closeLayers(); break;
-
-    /* 任务 */
-    case 'task-new':
-      openTaskModal(null, el.getAttribute('data-presets') ? safeParse(el.getAttribute('data-presets')) : null); break;
-    case 'task-toggle': {
-      const t = findById('tasks', id);
-      if (t) { setTaskCompleted(t, !t.completed); showToast(t.completed ? '已标记完成' : '已标记为未完成'); renderCurrentRoute(); }
-      break;
-    }
-    case 'task-edit': openTaskModal(id); break;
-    case 'task-detail': openTaskDetail(id); break;
-    case 'task-delete': deleteTaskConfirm(id); break;
-    case 'task-select': {
-      if (!ui.today.selected) ui.today.selected = {};
-      if (ui.today.selected[id]) delete ui.today.selected[id]; else ui.today.selected[id] = true;
-      renderCurrentRoute(); break;
-    }
-    case 'select-all': toggleSelectAll(); break;
-    case 'bulk-complete': bulkAction('complete'); break;
-    case 'bulk-postpone': bulkAction('postpone'); break;
-    case 'bulk-delete': bulkAction('delete'); break;
-    case 'bulk-clear': ui.today.selected = {}; renderCurrentRoute(); break;
-    case 'toggle-show-completed':
-      state.settings.showCompletedTasks = !state.settings.showCompletedTasks; saveState(true); renderCurrentRoute(); break;
-    case 'today-tab': ui.today.tab = value; renderCurrentRoute(); break;
-    case 'today-clear':
-      ui.today.q = ''; ui.today.category = ''; ui.today.status = ''; ui.today.importance = ''; renderCurrentRoute(); break;
-
-    /* 时间规划 */
-    case 'block-new': openBlockModal(null, el.getAttribute('data-date') ? { date: el.getAttribute('data-date') } : null); break;
-    case 'block-edit': openBlockModal(id); break;
-    case 'block-delete': deleteBlockConfirm(id); break;
-    case 'block-toggle': {
-      const b = findById('timeBlocks', id);
-      if (b) { b.completed = !b.completed; b.updatedAt = nowISO(); saveState(); renderCurrentRoute(); }
-      break;
-    }
-    case 'planner-mode': ui.planner.mode = value; renderCurrentRoute(); break;
-    case 'planner-shift': {
-      let d = ui.planner.date; if (!isValidDateStr(d)) d = todayStr();
-      ui.planner.date = addDays(d, Number(value) * (ui.planner.mode === 'week' ? 7 : 1)); renderCurrentRoute(); break;
-    }
-    case 'planner-today': ui.planner.date = todayStr(); renderCurrentRoute(); break;
-    case 'copy-prev-day': copyPrevDayBlocks(); break;
-    case 'copy-prev-week': copyPrevWeekBlocks(); break;
-
-    /* 单词 */
-    case 'word-edit': openWordModal(el.getAttribute('data-date')); break;
-    case 'words-month': ui.words.month = shiftMonth(ui.words.month, Number(value)); renderCurrentRoute(); break;
-
-    /* 四象限 */
-    case 'matrix-range': ui.matrix.range = value; renderCurrentRoute(); break;
-    case 'matrix-toggle-done': ui.matrix.showCompleted = !ui.matrix.showCompleted; renderCurrentRoute(); break;
-    case 'matrix-more': openMatrixOptions(); break;
-    case 'matrix-task-menu': openMatrixTaskMenu(id); break;
-    case 'matrix-move': openQuadMoveModal(id); break;
-    case 'matrix-add': {
-      const m = QUAD_META[Number(value)] || { important:false, urgent:false };
-      openTaskModal(null, { important: m.important, urgent: m.urgent }); break;
-    }
-    case 'move-quad': moveTaskToQuadrant(id, Number(value)); closeTopModal(true); break;
-
-    /* 秋招 */
-    case 'job-new': openJobModal(null); break;
-    case 'job-edit': openJobModal(id); break;
-    case 'job-detail': openJobDetail(id); break;
-    case 'job-copy': copyJob(id); break;
-    case 'job-delete': deleteJob(id); break;
-    case 'job-next-task': createJobNextTask(id); break;
-    case 'export-jobs-csv': exportJobsCSV(); break;
-    case 'jobs-quick': ui.jobs.quick = value; renderCurrentRoute(); break;
-    case 'jobs-clear':
-      ui.jobs.q = ''; ui.jobs.campus = ''; ui.jobs.industry = ''; ui.jobs.direction = '';
-      ui.jobs.region = ''; ui.jobs.priority = ''; ui.jobs.progress = ''; ui.jobs.quick = '';
-      renderCurrentRoute(); break;
-
-    /* 奶茶 */
-    case 'tea-new': openTeaModal(null); break;
-    case 'tea-edit': openTeaModal(id); break;
-    case 'tea-delete': deleteTeaConfirm(id); break;
-    case 'tea-month': {
-      const mv = Number(value);
-      ui.milktea.month = mv === 0 ? currentMonthStr() : shiftMonth(ui.milktea.month, mv);
-      renderCurrentRoute(); break;
-    }
-    case 'tea-clear': ui.milktea.q = ''; ui.milktea.brand = ''; renderCurrentRoute(); break;
 
     /* 每周复盘 */
     case 'review-edit': openReviewModal(el.getAttribute('data-week')); break;
@@ -4122,7 +2106,6 @@ function dispatch(action, el) {
       renderCurrentRoute(); break;
     case 'review-this-week': ui.review.weekStart = currentWeekStart(); renderCurrentRoute(); break;
     case 'review-toggle-incomplete': ui.review.onlyIncomplete = !ui.review.onlyIncomplete; renderCurrentRoute(); break;
-    case 'review-next-tasks': reviewNextToTasks(id); break;
     case 'review-delete': deleteReviewConfirm(id); break;
 
     /* 设置与数据 */
@@ -4144,8 +2127,6 @@ function handleClick(e) {
   if (climb(e.target, '[data-modal-close]')) { e.preventDefault(); closeTopModal(); return; }
   if (e.target.classList && e.target.classList.contains('modal-mask')) { e.preventDefault(); closeTopModal(); return; }
   if (climb(e.target, '[data-modal-submit]')) { e.preventDefault(); submitTopModal(); return; }
-  const extraBtn = climb(e.target, '[data-modal-extra]');
-  if (extraBtn) { e.preventDefault(); handleModalExtra(extraBtn.getAttribute('data-modal-extra')); return; }
   const importBtn = climb(e.target, '[data-import-mode]');
   if (importBtn) { e.preventDefault(); doImportMode(importBtn.getAttribute('data-import-mode')); return; }
 
@@ -4154,26 +2135,17 @@ function handleClick(e) {
   if (!el) return;
   const action = el.getAttribute('data-action');
   if (el.matches('[data-exp-field], [data-exp-run]')) return;
-  if (action === 'matrix-range' && el.tagName === 'SELECT') return;
-  if (action === 'today-search' || action === 'jobs-search' || action === 'tea-search' || action === 'planner-date') return;
   closeModalIfNeeded(el);
   dispatch(action, el);
 }
 
 /* --------- 输入 / 变更托管 --------- */
-function handleLiveInput(e) {
-  const t = e.target;
-  if (t.hasAttribute('data-exp-field')) { saveExperimentInput(t); return; }
-  if (t.id === 'todaySearch') { ui.today.q = t.value; renderCurrentRoute(); }
-  else if (t.id === 'jobsSearch') { ui.jobs.q = t.value; renderCurrentRoute(); }
-  else if (t.id === 'teaSearch') { ui.milktea.q = t.value; renderCurrentRoute(); }
-}
+function handleLiveInput(e) { if (e.target.hasAttribute('data-exp-field')) saveExperimentInput(e.target); }
 function handleChange(e) {
   const t = e.target;
   if (!t || !t.getAttribute) return;
   if (t.hasAttribute('data-exp-field')) { saveExperimentInput(t); return; }
   if (t.hasAttribute('data-exp-run')) { state.settings.activeExperimentId = t.value; expUI.day = null; saveState(true); renderCurrentRoute(); return; }
-  if (t.getAttribute('data-action') === 'matrix-range') { ui.matrix.range = t.value; renderCurrentRoute(); return; }
   // 设置页控件
   if (climb(t, '[data-action="setting"]')) {
     const setEl = climb(t, '[data-action="setting"]');
@@ -4190,19 +2162,7 @@ function handleChange(e) {
     return;
   }
   const action = t.getAttribute('data-action');
-  if (action === 'planner-date') {
-    if (isValidDateStr(t.value)) { ui.planner.date = t.value; renderCurrentRoute(); }
-    return;
-  }
-  if (action === 'today-filter' || action === 'jobs-filter' || action === 'tea-filter' || action === 'review-year') {
-    const fkey = t.getAttribute('data-key');
-    if (action === 'today-filter') ui.today[fkey] = t.value;
-    else if (action === 'jobs-filter') ui.jobs[fkey] = t.value;
-    else if (action === 'tea-filter') ui.milktea[fkey] = t.value;
-    else if (action === 'review-year') ui.review.year = t.value;
-    renderCurrentRoute();
-    return;
-  }
+  if (action === 'review-year') { ui.review.year = t.value; renderCurrentRoute(); }
 }
 function handleFormSubmit(e) {
   if (e.target && e.target.getAttribute && e.target.getAttribute('data-modal-form') !== null) {
@@ -4210,77 +2170,6 @@ function handleFormSubmit(e) {
   }
 }
 
-/* --------- 矩阵拖拽（电脑端） --------- */
-function onDragStart(e) {
-  const card = climb(e.target, '.qcard');
-  if (!card) return;
-  if (e.dataTransfer) {
-    e.dataTransfer.setData('text/plain', card.getAttribute('data-task-card'));
-    e.dataTransfer.effectAllowed = 'move';
-  }
-  try { card.classList.add('dragging'); } catch (er) {}
-}
-function onDragEnd(e) {
-  const card = climb(e.target, '.qcard');
-  if (card) card.classList.remove('dragging');
-  const all = document.querySelectorAll('.quad.dragover');
-  for (let i = 0; i < all.length; i++) all[i].classList.remove('dragover');
-}
-function onDragOver(e) {
-  const quad = climb(e.target, '.quad[data-quad-drop]');
-  if (!quad) return;
-  e.preventDefault();
-  if (e.dataTransfer) e.dataTransfer.dropEffect = 'move';
-  const all = document.querySelectorAll('.quad.dragover');
-  for (let i = 0; i < all.length; i++) if (all[i] !== quad) all[i].classList.remove('dragover');
-  quad.classList.add('dragover');
-}
-function onDrop(e) {
-  const quad = climb(e.target, '.quad[data-quad-drop]');
-  if (!quad) return;
-  e.preventDefault();
-  const id = e.dataTransfer ? e.dataTransfer.getData('text/plain') : '';
-  quad.classList.remove('dragover');
-  if (id) moveTaskToQuadrant(id, Number(quad.getAttribute('data-quad-drop')));
-}
-
-/* ==========================================================================
-   区域 20.1：事件处理所需的辅助函数
-   ========================================================================== */
-function safeParse(str) {
-  try { return JSON.parse(str); } catch (e) { return null; }
-}
-function deleteTaskConfirm(id) {
-  const t = findById('tasks', id);
-  if (!t) return;
-  showConfirm({ title:'删除任务', message:'确定删除任务「' + t.title + '」吗？该操作无法撤销。', confirmText:'删除', danger:true }).then(function (ok) {
-    if (!ok) return;
-    removeRecord('tasks', id);
-    if (ui.today.selected && ui.today.selected[id]) delete ui.today.selected[id];
-    showToast('任务已删除');
-    renderCurrentRoute();
-  });
-}
-function deleteBlockConfirm(id) {
-  const b = findById('timeBlocks', id);
-  if (!b) return;
-  showConfirm({ title:'删除时间安排', message:'确定删除「' + b.title + '」吗？', confirmText:'删除', danger:true }).then(function (ok) {
-    if (!ok) return;
-    removeRecord('timeBlocks', id);
-    showToast('时间安排已删除');
-    renderCurrentRoute();
-  });
-}
-function deleteTeaConfirm(id) {
-  const m = findById('milkTeaLogs', id);
-  if (!m) return;
-  showConfirm({ title:'删除奶茶记录', message:'确定删除这条奶茶记录吗？', confirmText:'删除', danger:true }).then(function (ok) {
-    if (!ok) return;
-    removeRecord('milkTeaLogs', id);
-    showToast('记录已删除');
-    renderCurrentRoute();
-  });
-}
 function deleteReviewConfirm(id) {
   const r = findById('weeklyReviews', id);
   if (!r) return;
@@ -4290,123 +2179,6 @@ function deleteReviewConfirm(id) {
     showToast('复盘已删除');
     renderCurrentRoute();
   });
-}
-function copyJob(id) {
-  const j = findById('jobApplications', id);
-  if (!j) return;
-  const copy = clone(j);
-  delete copy.id; delete copy.createdAt; delete copy.updatedAt;
-  copy.company = (j.company || '未填公司') + '（副本）';
-  copy.progress = '待确认';
-  insertRecord('jobApplications', copy);
-  showToast('已复制岗位');
-  renderCurrentRoute();
-}
-function toggleSelectAll() {
-  const list = filterTasks();
-  if (!list.length) return;
-  const allSelected = list.every(function (x) { return ui.today.selected && ui.today.selected[x.id]; });
-  if (!ui.today.selected) ui.today.selected = {};
-  if (allSelected) list.forEach(function (x) { delete ui.today.selected[x.id]; });
-  else list.forEach(function (x) { ui.today.selected[x.id] = true; });
-  renderCurrentRoute();
-}
-function bulkAction(kind) {
-  const ids = Object.keys(ui.today.selected || {}).filter(function (id) { return ui.today.selected[id] && findById('tasks', id); });
-  if (!ids.length) { showToast('请先选择任务', 'warning'); return; }
-  if (kind === 'delete') {
-    showConfirm({ title:'批量删除', message:'确定删除选中的 ' + ids.length + ' 个任务吗？此操作无法撤销。', confirmText:'删除', danger:true }).then(function (ok) {
-      if (!ok) return;
-      ids.forEach(function (id) { removeRecord('tasks', id); });
-      ui.today.selected = {};
-      showToast('已删除 ' + ids.length + ' 个任务');
-      renderCurrentRoute();
-    });
-  } else if (kind === 'complete') {
-    ids.forEach(function (id) { const t = findById('tasks', id); if (t && !t.completed) setTaskCompleted(t, true); });
-    ui.today.selected = {};
-    showToast('已批量标记完成');
-    renderCurrentRoute();
-  } else if (kind === 'postpone') {
-    const tmr = addDays(todayStr(), 1);
-    ids.forEach(function (id) { const t = findById('tasks', id); if (t) { t.planDate = tmr; t.updatedAt = nowISO(); } });
-    saveState();
-    ui.today.selected = {};
-    showToast('已延期到明天');
-    renderCurrentRoute();
-  }
-}
-function toggleTaskWithToast(id) {
-  const t = findById('tasks', id);
-  if (!t) return;
-  setTaskCompleted(t, !t.completed);
-  showToast(t.completed ? '已标记完成' : '已标记为未完成');
-  renderCurrentRoute();
-}
-function blockToTask(blockId) {
-  const b = findById('timeBlocks', blockId);
-  if (!b) return;
-  const dup = coll('tasks').find(function (t) { return t.sourceModule === 'timeBlocks' && t.sourceId === b.id && !t.completed; });
-  if (dup) { showToast('已经存在关联的未完成待办', 'warning'); return; }
-  const dur = Math.max(0, (timeToMinutes(b.endTime) || 0) - (timeToMinutes(b.startTime) || 0));
-  insertRecord('tasks', {
-    title: b.title,
-    description: '来自时间安排：' + formatDateShort(b.date) + ' ' + b.startTime + '–' + b.endTime,
-    category: b.category || '其他', planDate: b.date, dueTime: b.endTime,
-    estimatedMinutes: dur, important:false, urgent:false, status:'未开始',
-    completed:false, completedAt:'', sourceModule:'timeBlocks', sourceId:b.id
-  });
-  showToast('已从时间安排生成待办');
-  renderCurrentRoute();
-}
-function deleteWordLog(id) {
-  const w = findById('wordLogs', id);
-  if (!w) return;
-  showConfirm({ title:'删除单词记录', message:'确定删除 ' + formatDate(w.date) + ' 的单词学习记录吗？', confirmText:'删除', danger:true }).then(function (ok) {
-    if (!ok) return;
-    removeRecord('wordLogs', id);
-    showToast('单词记录已删除');
-    renderCurrentRoute();
-  });
-}
-function copyPrevDayBlocks() {
-  let d = ui.planner.date; if (!isValidDateStr(d)) d = todayStr();
-  if (blocksOfDate(d).length) { showToast('当天已有时间安排，无法复制覆盖', 'warning'); return; }
-  const src = blocksOfDate(addDays(d, -1));
-  if (!src.length) { showToast('前一天没有可复制的安排', 'warning'); return; }
-  cloneDayBlocks(src, d);
-  showToast('已复制前一天的 ' + src.length + ' 个安排到今天');
-  renderCurrentRoute();
-}
-function copyPrevWeekBlocks() {
-  let d = ui.planner.date; if (!isValidDateStr(d)) d = todayStr();
-  if (blocksOfDate(d).length) { showToast('当天已有时间安排，无法复制覆盖', 'warning'); return; }
-  const src = blocksOfDate(addDays(d, -7));
-  if (!src.length) { showToast('上周同一天没有可复制的安排', 'warning'); return; }
-  cloneDayBlocks(src, d);
-  showToast('已复制上周同一天的 ' + src.length + ' 个安排');
-  renderCurrentRoute();
-}
-function cloneDayBlocks(src, targetDate) {
-  src.forEach(function (b) {
-    insertRecord('timeBlocks', {
-      title:b.title, date:targetDate, startTime:b.startTime, endTime:b.endTime,
-      category:b.category, color:b.color, taskId:'', status:b.status,
-      completed:false, actual:'', note:b.note
-    });
-  });
-}
-function carryOverTasks() {
-  if (!state.settings.autoCarryOverTasks) return;
-  const today = todayStr();
-  const y = addDays(today, -1);
-  let changed = false;
-  coll('tasks').forEach(function (t) {
-    if (!t.completed && t.planDate && t.planDate <= y && t.planDate !== today) {
-      t.planDate = today; t.updatedAt = nowISO(); changed = true;
-    }
-  });
-  if (changed) { saveState(true); showToast('已将未完成的过期任务顺延到今天', 'info'); }
 }
 
 /* ==========================================================================
@@ -4791,10 +2563,6 @@ function bindEvents() {
   document.addEventListener('input', handleLiveInput);
   document.addEventListener('change', handleChange);
   document.addEventListener('submit', handleFormSubmit);
-  document.addEventListener('dragstart', onDragStart);
-  document.addEventListener('dragend', onDragEnd);
-  document.addEventListener('dragover', onDragOver);
-  document.addEventListener('drop', onDrop);
 
   const importFile = document.getElementById('importFile');
   if (importFile) importFile.addEventListener('change', function () { if (this.files && this.files[0]) handleImportFile(this.files[0]); });
@@ -4814,8 +2582,6 @@ function boot() {
   applyAppearance();
   if (!state.meta.createdAt) state.meta.createdAt = nowISO();
   saveState(true);
-  carryOverTasks();
-  ensureAutoWordTask();
   bindEvents();
   if (!currentRouteFromHash()) {
     const def = ROUTE_KEYS.indexOf(state.settings.defaultRoute) >= 0 ? state.settings.defaultRoute : 'dashboard';
